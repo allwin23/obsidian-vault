@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "560bb435c38c31be",
+    "type": "split",
+    "children": [
+      {
+        "id": "7dbca740a8f9c122",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4174a67e9073903",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/2.Subset2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2.Subset2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dd6afc84b6af8ae4",
+    "type": "split",
+    "children": [
+      {
+        "id": "469c798828afb5db",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "290831b0cef70cc5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f9e771bc63c575ab",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#dsa",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "8084d0928b5c26af",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "9900be67503371e3",
+    "type": "split",
+    "children": [
+      {
+        "id": "41fa865228b958f9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "59fc096130f22b61",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "07-Daily Journal/17-12-2025.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 17-12-2025"
+            }
+          },
+          {
+            "id": "23a1c419217011a6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "07-Daily Journal/17-12-2025.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 17-12-2025"
+            }
+          },
+          {
+            "id": "e9c6beaa6062cf9b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "20ad7a3a5e8c5cae",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "64c52e17256479b8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "07-Daily Journal/17-12-2025.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 17-12-2025"
+            }
+          },
+          {
+            "id": "86276b6e9346c702",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "07-Daily Journal/16-02-2026.md"
+              },
+              "icon": "lucide-info",
+              "title": "File properties for 16-02-2026"
+            }
+          },
+          {
+            "id": "4fe6a0f3f32ede09",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          },
+          {
+            "id": "4d3ea1011e862188",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "daily-notes:Open today's daily note": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "share-to-notionnext:Share to NotionNext": false,
+      "obsidian-kanban:Create new board": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "f4174a67e9073903",
+  "lastOpenFiles": [
+    "00-Indexes/CS-Index.md",
+    "03-Main Notes/Best Practises.md",
+    "tn_10th_ch7_mensuration_full_text_exam.pdf",
+    "03-Main Notes/RAG.md",
+    "Pasted image 20260313230149.png",
+    "03-Main Notes/Feb19.md",
+    "03-Main Notes/Gen AI course Coursera.md",
+    "03-Main Notes/Langchain.md",
+    "00-Indexes/Interests-Index.md",
+    "00-Indexes/Personal-Index.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "01-Rough Notes/Obsidian Ideas.md",
+    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
+    "01-Rough Notes/Untitled.md",
+    "02-Tags/DSA.md",
+    "3-Tags/CS/Development.md",
+    "03-Main Notes/Feb16.md",
+    "01-Rough Notes/16 feb.md",
+    "03-Main Notes/5.Palindrome Partitioning.md",
+    "03-Main Notes/6. Permutation Sequence.md",
+    "03-Main Notes/2.Subset2.md",
+    "03-Main Notes/2. Subset problem 2.md",
+    "03-Main Notes/PrefetchForge.md",
+    "07-Daily Journal/01-01-2026.md",
+    "03-Main Notes/Untitled 2.base",
+    "07-Daily Journal/16-02-2026.md",
+    "Excalidraw/Drawing 2026-02-16 17.59.47.excalidraw.md",
+    "03-Main Notes/Untitled 1.base",
+    "Untitled.canvas",
+    "03-Main Notes/Feb15.md",
+    "Excalidraw",
+    "Pasted image 20260103160317.png",
+    "3-Tags/CS",
+    "3-Tags/Personal",
+    "3-Tags",
+    "03-Main Notes/Untitled.base",
+    "03-Main Notes/Pasted image 20251217131955.png",
+    "07-Daily Journal",
+    "Pasted image 20251216221627.png",
+    "06-Kanbancards"
+  ]
+}

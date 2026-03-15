@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "LiArrowDownWideNarrow",
+      "LiTableOfContents",
+      "LiBookTemplate",
+      "LiFiles",
+      "LiBook"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false,
+    "useInternalPlugins": false
+  },
+  "00-Indexes": "LiTableOfContents",
+  "02-Tags": "LiTag",
+  "03-Main Notes": "LiNotebookPen",
+  "06-Kanbancards": "LiCircuitBoard",
+  "01-Rough Notes": "LiActivitySquare",
+  "04-Source Material 🫆": "LiBook",
+  "05-Templates📜": "LiFiles",
+  "07-Daily Journal": "LiArrowDownWideNarrow"
+}
