@@ -716,4 +716,410 @@ In this reading, you gained a foundational understanding of how similarity searc
 - **Refining search results** – using metadata filters and full-text constraints to enhance relevance and reduce
   
   [[Entire Math for Rag]]
+  [Essential Database Operations in Chroma DB](https://www.coursera.org/learn/vector-databases-for-rag-an-introduction/lecture/YVEaT/essential-database-operations-in-chroma-db?trk_ref=coach_copy)  
+
+Creating Collections
+
+- To create a collection, import chromadb and embedding_functions, define an embedding model, and use the create_collection method.
+- Metadata is used to describe the collection's purpose and contents, and you can connect to an existing collection using the get_collection method.
+
+Modifying and Managing Collections
+
+- Collections can be modified using the modify method, but certain changes require cloning the collection.
+- Data can be added using the add method, and documents can be retrieved with the get method, which returns a Python dictionary.
+
+Updating and Deleting Data
+
+- The update method allows modification of existing records based on their IDs, while the delete method can remove documents using IDs or filters.
+- Chroma DB uses the HNSW algorithm for approximate nearest neighbor searches, with the space parameter defining the distance function used in the embedding space.
+  # Vector Databases for Recommendation Systems and RAG Cheat Sheet
+
+![cognitiveclass.ai logo](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-WD0231EN-SkillsNetwork/IDSN-logo.png)  
+
+**Estimated Reading Time: 15 minutes**
+
+## What is RAG?
+
+RAG is a framework that enhances language models by retrieving relevant information from external sources and using it to generate more accurate grounded responses, and thereby reducing the amount of potential hallucinations that may occur.
+
+**Core Problems RAG Solves:**
+
+- LLMs have limited context windows - not possible to include all information in a single prompt
+- Knowledge is frozen at the point at which they are trained
+- LLMs can hallucinate facts
+
+## RAG Pipeline Steps
+
+1. **Source documents** that are relevant to the use case are provided and potentially split into smaller chunks
+2. **Source documents or their chunks are embedded**
+3. **Sources and their embeddings are stored** in a vector database such as Chroma DB
+4. **User's prompt is received**
+5. **User's prompt is embedded**
+6. **Retriever selects the chunks** from the vector store that best match the user's prompt
+7. **Retrieved text is combined** with the user's original prompt to produce an augmented prompt
+8. **Augmented prompt is passed to the LLM** to produce a context-aware response
+
+## Vector Database Responsibilities in RAG
+
+Vector databases can handle several key responsibilities:
+
+- **Embedding** both source documents and user prompts
+- **Storing** those embeddings
+- **Retrieving** the most relevant matches
+- **Supplying** the retrieved content for prompt augmentation
+
+_Note: Some RAG pipeline steps, such as embedding the documents and prompts (steps 2 and 5), can also be performed externally. In such cases, the vector database is used primarily for storing and retrieving vectors._
+
+## Why Use Vector Databases for RAG Steps
+
+1. **Prevents critical mistakes** - Such as accidentally using different embedding models for source documents and user prompts, or incorrectly linking embeddings to their corresponding source documents.
+    
+2. **Development becomes faster and cleaner** - With fewer moving parts and less custom logic, your codebase stays simpler and easier to maintain, which in turn makes it faster to implement and debug.
+    
+3. **Performance is a major advantage** - Vector databases are built for high-speed, scalable semantic searches using advanced indexing algorithms. Custom-built alternatives typically cannot match this performance without significant optimization effort.
+    
+
+## Common RAG Pipeline Pitfalls
+
+### Critical Mistakes to Avoid:
+
+- **Using different embedding models** for your documents and queries can break retrieval entirely.
+    
+    - **Solution:** Use the same embedding model throughout. Vector databases usually handle this automatically.
+- **Poor chunking strategy** - creating chunks that are either too large or too small.
+    
+    - **Solution:** Choose a chunk size that is long enough to preserve meaning without including too much irrelevant content.
+- **Forgetting to re-embed content** after changing the distance metric or embedding model.
+    
+    - **Note:** For some databases, such as Chroma DB, this cannot be done on an existing database and might necessitate cloning your collection.
+- **Assuming that the retrieved result is always the best answer.**
+    
+    - **Solution:** Always test your results, because a little tuning can make a big difference.
+
+## Chroma DB Operations
+
+### Creating Collections
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. 10
+11. 11
+12. 12
+13. 13
+14. 14
+15. 15
+16. 16
+17. 17
+18. 18
+19. 19
+
+20. `import chromadb`
+21. `import chromadb.utils.embedding_functions as embedding_functions`
+
+22. `# Define the embedding model`
+23. `sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(`
+24.     `model_name="all-MiniLM-L6-v2"`
+25. `)`
+
+26. `# Define chromadb client`
+27. `client = chromadb.Client()`
+
+28. `# Create collection`
+29. `collection = client.create_collection(`
+30.     `name="my_collection",`
+31.     `metadata={"description": "A collection for storing user data"},`
+32.     `configuration={`
+33.         `"embedding_function": sentence_transformer_ef`
+34.     `}`
+35. `)`
+
+Copied!Wrap Toggled!
+
+### Connecting to Existing Collections
+
+1. 1
+2. 2
+
+3. `# Connect to existing collection`
+4. `collection = client.get_collection(name="my_collection")`
+
+Copied!Wrap Toggled!
+
+### Modifying Collections
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+
+6. `# Alter collection using modify method`
+7. `collection.modify(`
+8.     `name="new_collection_name",`
+9.     `metadata={"key": "value"}`
+10. `)`
+
+Copied!Wrap Toggled!
+
+**Important:** Certain changes, such as modifying the embedding model or distance metric, cannot be made with an existing collection. To apply these changes, you need to clone a collection, which can be an expensive operation computationally if you have a substantial amount of data stored in your collection.
+
+### Adding Documents
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. 10
+11. 11
+12. 12
+
+13. `# Add documents to collection`
+14. `collection.add(`
+15.     `documents=[`
+16.         `"This is a document about LangChain",`
+17.         `"This is a document about LlamaIndex"`
+18.     `],`
+19.     `metadatas=[`
+20.         `{"source": "langchain.com", "version": "0.2"},`
+21.         `{"source": "llamaindex.ai", "version": "0.12"}`
+22.     `],`
+23.     `ids=["id1", "id2"]`
+24. `)`
+
+Copied!Wrap Toggled!
+
+**Note:** Make sure to include an ID for each document in a list passed to the `ids` parameter.
+
+### Retrieving Documents
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+
+9. `# Get all documents (returns Python dictionary)`
+10. `results = collection.get()`
+
+11. `# Get specific documents by ID`
+12. `results = collection.get(ids=["id1"])`
+
+13. `# Include embeddings in results`
+14. `results = collection.get(include=['embeddings'])`
+
+Copied!Wrap Toggled!
+
+**Note:** The get method does not return the embeddings by default to keep the output clean. However, the embeddings are actually stored in the collection.
+
+### Updating Documents
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+
+7. `# Update existing documents`
+8. `collection.update(`
+9.     `ids=["id1"],`
+10.     `metadatas=[{"source": "langchain.com", "version": "0.3"}],`
+11.     `documents=["This an updated document about LangChain"]`
+12. `)`
+
+Copied!Wrap Toggled!
+
+**Important:** Chroma DB handles re-embedding in the background, re-computing the embeddings for the document as soon as the update is submitted.
+
+### Deleting Documents
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. 10
+11. 11
+
+12. `# Delete by IDs`
+13. `collection.delete(ids=["id1"])`
+
+14. `# Delete using metadata filter`
+15. `collection.delete(where={"source": "doc_to_delete.pdf"})`
+
+16. `# Combine IDs and filters`
+17. `collection.delete(`
+18.     `ids=["id1"],`
+19.     `where={"version": "1.0"}`
+20. `)`
+
+Copied!Wrap Toggled!
+
+## Distance Functions in Chroma DB
+
+Chroma DB uses the **Hierarchical Navigable Small World (HNSW)** algorithm to perform approximate nearest neighbor searches.
+
+The `space` parameter defines the distance function used in the embedding space:
+
+- `l2` (default) - squared L2 norm
+- `cosine` - cosine distance
+- `ip` - inner product or dot product distance
+
+### Configuring Distance Function
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+
+10. `# Specify distance function at collection creation`
+11. `collection = client.create_collection(`
+12.     `name="my_collection",`
+13.     `metadata={"description": "A collection for storing user data"},`
+14.     `configuration={`
+15.         `"embedding_function": sentence_transformer_ef,`
+16.         `"hnsw": {"space": "cosine"}`
+17.     `}`
+18. `)`
+
+Copied!Wrap Toggled!
+
+## What Vector Databases Don't Handle
+
+Some RAG pipeline tasks usually happen outside the database:
+
+- **Chunking** is usually done before data enters the vector database
+- **Extra retrieval logic** such as filtering and re-ranking may require extra tools
+- **Prompt augmentation** is typically handled outside the database
+- **Integration with LLMs** is not built into most vector databases
+
+## RAG Frameworks
+
+**Tools such as LangChain and LlamaIndex** wrap around your vector database and help manage the pipeline from document prep to final response.
+
+These frameworks:
+
+- Provide additional structure.
+- Simplify the development and deployment of your RAG application even further.
+- Fill the gaps by connecting all the pieces.
+
+## Key Takeaways
+
+- **Vector databases are the foundation** that makes retrieval augmented generation work.
+- **RAG enhances LLM response quality** by retrieving relevant external information, helping the model generate more accurate and well-supported outputs.
+- **Using a vector database for all relevant RAG steps** helps prevent critical mistakes, speeds up application development, and optimizes performance.
+- **Collections are a way to organize your data** within Chroma DB.
+- **Metadata helps you keep track** of the purpose and contents of your collection.
+- **Always test your results** - a little tuning can make a big difference.
+
+## Author(s)
+
+
+There is something called Langchain Retrivers
+Vectore Stored Retriever :
   
+This content focuses on advanced retrievers in LangChain, specifically three types: multi-query retriever, self-query retriever, and parent document retriever.
+
+**Multi-Query Retriever**
+
+- Utilizes a language model (LLM) to create various versions of a query, enhancing the diversity of retrieved documents.
+- Combines results from multiple queries to provide a richer set of relevant documents.
+
+**Self-Query Retriever**
+
+- Breaks down a query into a semantic string and a metadata filter, allowing for more precise document retrieval.
+- Can access metadata fields, enabling queries that consider both text and associated metadata, such as ratings or release years.
+
+**Parent Document Retriever**
+
+- Addresses the challenge of balancing document size for effective embeddings and context retention.
+- Retrieves larger parent documents based on smaller chunks, ensuring relevant context is maintained during the retrieval process.
+  
+  [[Labsection for Rag]]
+- [Advanced Retrievers in LlamaIndex](https://www.coursera.org/learn/advanced-rag-with-vector-databases-and-retrievers/lecture/5MEnz/advanced-retrievers-in-llamaindex?trk_ref=coach_copy)  Mar 16, 2026
+
+The video lecture "Advanced Retrievers in LLAMAIndex" focuses on various index types and retrievers used in the LLAMAIndex framework for intelligent search strategies.
+
+Index Types
+
+- **VectorStoreIndex**: Utilizes vector embeddings for semantic search, ideal for large language model pipelines.
+- **DocumentSummaryIndex**: Generates summaries of documents to filter relevant content, useful for large document sets.
+- **KeywordTableIndex**: Extracts keywords for exact matching, suitable for rule-based or hybrid searches.
+
+Retrievers
+
+- **Vector Index Retriever**: Finds semantically relevant content using vector embeddings, effective for general-purpose search.
+- **BM25 Retriever**: A keyword-based method that improves upon TF-IDF by addressing term frequency saturation and document length.
+- **Document Summary Index Retriever**: Uses summaries to find relevant content, with two versions based on LLM or semantic similarity.
+- **Auto Merging Retriever**: Preserves context in long documents through hierarchical chunking.
+- **Recursive Retriever**: Follows relationships between nodes using references, ideal for academic citations.
+- **Query Fusion Retriever**: Combines results from different retrievers using various fusion strategies to enhance recall.
+
+The lecture concludes with recommendations for using specific retrievers based on different use cases, such as general Q&A, technical documents, and research papers.
+
+
+[Advanced Retrievers in LlamaIndex](https://www.coursera.org/learn/advanced-rag-with-vector-databases-and-retrievers/lecture/5MEnz/advanced-retrievers-in-llamaindex?trk_ref=coach_copy)  Mar 16, 2026
+
+The video lecture "Advanced Retrievers in LLAMAIndex" focuses on various index types and retrievers used in the LLAMAIndex framework for intelligent search strategies.
+
+Index Types
+
+- **VectorStoreIndex**: Utilizes vector embeddings for semantic search, ideal for large language model pipelines.
+- **DocumentSummaryIndex**: Generates summaries of documents to filter relevant content, useful for large document sets.
+- **KeywordTableIndex**: Extracts keywords for exact matching, suitable for rule-based or hybrid searches.
+
+Retrievers
+
+- **Vector Index Retriever**: Finds semantically relevant content using vector embeddings, effective for general-purpose search.
+- **BM25 Retriever**: A keyword-based method that improves upon TF-IDF by addressing term frequency saturation and document length.
+- **Document Summary Index Retriever**: Uses summaries to find relevant content, with two versions based on LLM or semantic similarity.
+- **Auto Merging Retriever**: Preserves context in long documents through hierarchical chunking.
+- **Recursive Retriever**: Follows relationships between nodes using references, ideal for academic citations.
+- **Query Fusion Retriever**: Combines results from different retrievers using various fusion strategies to enhance recall.
+
+The lecture concludes with recommendations for using specific retrievers based on different use cases, such as general Q&A, technical documents, and research papers.
+
+
+**FAISS vs. Chroma DB**
+
+- FAISS (Facebook AI Similarity Search) is a library for fast vector search, operating on a single machine with high performance but lacking built-in database features and metadata support.
+- Chroma DB is a vector database designed for AI applications, supporting both local and server deployments, and allows for metadata storage and filtering.
+
+**Indexing Options**
+
+- FAISS offers various indexing types, including:
+    - **Flat Index**: Accurate but slow for large datasets, using brute force to find nearest vectors.
+    - **Inverted File Index (IVF)**: Clusters vectors for faster searches, though it may reduce accuracy slightly.
+    - **Locality-Sensitive Hashing (LSH)**: Fast and memory-efficient, suitable for high-dimensional data but not the most accurate.
+    - **Hierarchical Navigable Small World (HNSW)**: Fast and accurate, organizing vectors in a hierarchy for efficient searching.
+
+**Extending Capabilities**
+
+- Milvus can extend FAISS by adding metadata support and distributed capabilities, making it suitable for large-scale applications.
+- Choosing between FAISS, Chroma DB, or Milvus depends on project requirements, such as control, performance, and scalability.
+  
+  [[MAth for hsnw]]
