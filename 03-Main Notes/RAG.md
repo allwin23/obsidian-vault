@@ -714,3 +714,6 @@ In this reading, you gained a foundational understanding of how similarity searc
 - **Configuring HNSW in Chroma DB** – including key parameters like `ef_search`, `ef_construction`, and `max_neighbors`, and how they affect performance and accuracy.
 - **Executing similarity searches** – from adding documents and querying semantically to interpreting results in context.
 - **Refining search results** – using metadata filters and full-text constraints to enhance relevance and reduce
+  
+  [[Entire Math for Rag]]
+  
