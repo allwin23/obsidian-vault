@@ -353,3 +353,23 @@ Despite significant progress, several challenges remain:
 ### Next steps
 
 As you continue your journey in multimodal AI, understanding these video-generation technologies will be essential. In labs, you'll explore how to implement these technologies, combine them with other modalities, and create more natural and effective AI systems.
+[Introduction to Multimodal Retrieval-Augmented Generation (MM-RAG)](https://www.coursera.org/learn/build-multimodal-generative-ai-applications/lecture/kQ1cI/introduction-to-multimodal-retrieval-augmented-generation-mm-rag?trk_ref=coach_copy)  Mar 19, 2026
+
+This content introduces the concept of Multimodal Retrieval Augmented Generation (MM-RAG), which combines various data types to enhance AI systems.
+
+Understanding MM-RAG
+
+- Multimodal systems integrate different data types, such as text, images, and videos.
+- Retrieval augmented generation enhances responses by retrieving relevant information from databases.
+
+Steps in the MM-RAG Process
+
+- **Data Retrieval**: Specialized retrievers gather relevant information across modalities.
+- **Contrastive Learning**: Models are trained to link related data from different types, improving connections between images and text.
+
+Implementation of MM-RAG
+
+- **Data Indexing**: Various data types are converted into embeddings and stored in a vector database.
+- **Data Retrieval**: User queries are embedded and searched for relevant multimodal data.
+- **Augmentation**: Retrieved data is combined with the original query for richer context.
+- **Response Generation**: A multimodal response is produced using the augmented input, integrating information from all modalities.
