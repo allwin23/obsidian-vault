@@ -373,3 +373,6 @@ Implementation of MM-RAG
 - **Data Retrieval**: User queries are embedded and searched for relevant multimodal data.
 - **Augmentation**: Retrieved data is combined with the original query for richer context.
 - **Response Generation**: A multimodal response is produced using the augmented input, integrating information from all modalities.
+  
+  
+  ![[Pasted image 20260319185449.png]]
