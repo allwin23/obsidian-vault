@@ -101,4 +101,73 @@ Additional Patterns
 - **Entity and Aggregate Pattern**: Useful in scenarios like e-commerce, where an order can be seen as an aggregate of products.
 - **Adapter Pattern**: This pattern helps integrate incompatible systems, similar to how plug adapters work for different electrical outlets.
 
-Overall, the lecture emphasizes the importance of these patterns in building scalable and efficient microservices architectures.
+Overall, the lecture emphasizes the importance of these patterns in 
+[What is REST?](https://www.coursera.org/learn/applications-development-microservices-serverless-openshift/lecture/DyPop/what-is-rest?trk_ref=coach_copy)  Mar 19, 2026
+
+The content focuses on understanding RESTful APIs and their significance in application development.
+
+Characteristics of RESTful APIs
+
+- REST stands for Representational State Transfer and is an architectural style for application communication.
+- Key characteristics include managing requests through HTTP, providing stateless client-server communication, and having a uniform interface.
+
+Functionality of REST APIs
+
+- REST APIs perform standard functions like creating, reading, updating, and deleting records (CRUD) using HTTP methods: POST, GET, PUT, and DELETE.
+- Each request is stateless, meaning it contains all necessary information for processing without relying on stored server context.
+
+Benefits of REST APIs
+
+- The uniform interface ensures consistent data representation across different requests.
+- REST APIs are scalable due to their stateless nature, allowing for efficient handling of requests and resources.
+
+[Introduction to API Gateway](https://www.coursera.org/learn/applications-development-microservices-serverless-openshift/lecture/vJCLd/introduction-to-api-gateway?trk_ref=coach_copy)  Mar 19, 2026
+
+The content focuses on the concept and functionality of an API Gateway in application development.
+
+API Gateway Overview
+
+- An API Gateway is a management tool that acts as an intermediary between clients and backend services, simplifying access to multiple microservices.
+- It provides a single point of contact for clients, allowing seamless addition or removal of APIs without client awareness.
+
+Benefits of Using an API Gateway
+
+- It insulates clients from the complexity of microservices architecture, reducing the number of requests needed to retrieve data.
+- The gateway enhances security, offers analytics, and allows for monetization of APIs through billing systems.
+
+Drawbacks of Using an API Gateway
+
+- It introduces an additional component that requires maintenance and can become a single point of failure if not designed properly.
+- The added network step may increase response times for client requests.
+
+Available API Gateway Products
+
+- Various managed and open-source API Gateway products are available, including IBM DataPower Gateway, Google Apigee, Microsoft Azure, and popular open-source options like Kong and Apache APISIX.
+  
+  
+  [[Graphsql]]
+- 
+  
+  [Introduction to Serverless Computing](https://www.coursera.org/learn/applications-development-microservices-serverless-openshift/lecture/Hvcf7/introduction-to-serverless-computing?trk_ref=coach_copy)  Mar 19, 2026
+
+**Serverless computing** is defined as the concept of building and running applications that do not require server management. In this model, the responsibility for infrastructure management is offloaded to cloud providers, allowing developers to focus on writing application code.
+
+Key points include:
+
+- Applications are deployed as functions that are executed, scaled, and billed based on demand.
+- It combines **Function-as-a-Service (FaaS)** platforms and **Backend-as-a-Service (BaaS)** services.
+- Users are billed only for the actual usage, not for idle server time.
+
+This approach leads to faster deployments and increased productivity for developers.
+
+[The Serverless Framework](https://www.coursera.org/learn/applications-development-microservices-serverless-openshift/lecture/HhcEI/the-serverless-framework?trk_ref=coach_copy)  Mar 19, 2026
+
+The **Serverless Framework** is a free and open-source web framework designed to simplify the development and deployment of serverless applications. Here are some key points about it:
+
+- **Purpose**: It allows developers to build and manage serverless applications without worrying about the underlying infrastructure.
+- **Supported Providers**: While it was initially designed for AWS Lambda, it also supports other cloud providers like Microsoft Azure, Google Cloud Platform, and Apache OpenWhisk.
+- **Command Line Interface (CLI)**: The framework provides a CLI that helps automate tasks, structure projects, and implement best practices.
+- **Functionality**: Developers can create functions (small units of code) that are triggered by events, such as HTTP requests or file uploads, and manage resources needed for these functions.
+- **Configuration**: Applications are organized through a configuration file (serverless.yml), where developers define functions, events, and resources for deployment.
+
+This framework is particularly useful for building event-driven architectures and microservices.
