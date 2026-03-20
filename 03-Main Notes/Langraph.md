@@ -544,25 +544,7 @@ Copied!Wrap Toggled!
 - First initialize the `StateGraph` and pass in the `State` variable that will be tracked across the workflow.
 - Then add the nodes to the graph giving them labels.
 - Then add the edges to the graph connectin the nodes in your desired order.
-- Lastly compile the workflow and invoke it with an input.
-
-1. 1
-2. 2
-3. 3
-4. 4
-5. 5
-6. 6
-7. 7
-8. 8
-9. 9
-10. 10
-11. 11
-12. 12
-13. 13
-14. 14
-15. 15
-16. 16
-17. 17
+-
 
 18. `from langgraph.graph import StateGraph, END, START`
 
@@ -639,3 +621,4 @@ A self-improving feedback pattern that allows agents to evaluate, critique, and 
 This cheat sheet gives you a practical foundation for applying agentic design patterns using **LangGraph**. By mastering these core patterns and components, you'll be equipped to structure **complex LLM workflows**, enhance reliability through **state management**, and confidently prototype or scale intelligent systems. Use it as a quick **reference** when designing, debugging, or extending your own multi-agent applications.
 
 ## Author
+[[CrewAi]]
