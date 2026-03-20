@@ -343,3 +343,299 @@ Copied!Wrap Toggled!
 ---
 
 ## Author
+
+[Building AI Agents with Open Source Frameworks](https://www.coursera.org/learn/agentic-ai-with-langgraph-crewai-autogen-and-beeai/lecture/GE6RG/building-ai-agents-with-open-source-frameworks?trk_ref=coach_copy)  Mar 20, 2026
+
+This video lecture focuses on building AI agents using various open-source frameworks, highlighting their structures and functionalities.
+
+Agentic Frameworks Overview
+
+- Introduces frameworks like Crue AI, LangGraph, Autogen, and BAI for creating multi-agent workflows.
+- Discusses the concept of agentic AI, which involves autonomous systems capable of thinking, planning, and acting.
+
+Crue AI and LangGraph
+
+- Crue AI allows for role-based team simulations, where agents are defined with specific roles and tasks, executing them collaboratively.
+- LangGraph offers fine-grained control over workflows using directed acyclic graphs (DAGs), enabling complex interactions and structured automation.
+
+Autogen and BAI Frameworks
+
+- Autogen facilitates dialogue-driven interactions among agents, ideal for conversational applications and quick prototyping.
+- BAI supports modular workflows with tool integration, allowing agents to work in parallel or sequentially to achieve specific goals.
+  
+  
+  #### Coach
+
+Understanding State in LangGraph: A Beginner's Guide
+
+In LangGraph, "state" refers to a collection of variables that hold information about the current context of a workflow. Think of it as a digital notepad where you jot down important details that help guide the process. This state allows different parts of your program to share and access information, making it easier to manage complex tasks.
+
+Imagine you're organizing a big event, like a wedding. The state would be like your checklist, containing details such as the guest list, menu options, and schedule. As you receive new requests or changes, you update this checklist. Similarly, in LangGraph, the state keeps track of essential data, like meal requests or dish details, which can be accessed and modified by different components of your workflow. This ensures that everyone involved in the process is on the same page and can work together efficiently.
+
+Is there any other concept within the content that you need an explanation for?
+
+And if you want to continue exploring this topic, try one of these follow-up questions:
+
+Play
+
+00:00
+
+00:00
+
+Mute
+
+Settings
+
+# Cheat Sheet: Agentic Frameworks and Design Patterns for Effective AI Systems
+
+**Estimated time:** 20 minutes
+
+---
+
+## 1. Agentic AI Design Patterns
+
+**Agentic design patterns** are reusable strategies for organizing multiple language model "agents" into structured workflows. These agents collaborate—each with specialized roles—to handle complex tasks that go beyond what a single prompt can manage. These patterns improve clarity, scalability, and control in LLM-powered applications. They are used to decompose complex problems into smaller, specialized tasks and add structure and memory to multi-step reasoning or decision flows.
+
+### 1.1 Fundamental Components
+
+- **Agent**: a specialized LLM prompt + logic unit
+- **Orchestrator**: routes inputs, maintains state, aggregates outputs
+- **Worker**: executes a single responsibility (for example, summarization, translation)
+- **Router**: dispatches tasks based on intent or condition
+- **Evaluator**: inspects and scores outputs for quality or correctness
+
+These components embody the principle of separation of concerns. Decomposing your workflow into distinct agent roles makes it easier to debug, test, and reuse logic. It mirrors real-world software architecture by assigning specialized responsibilities to each part of the system.
+
+### 1.2 Core Patterns
+
+|Pattern|Description|Use Cases|
+|---|---|---|
+|**Orchestration**|Central controller coordinates agents and tracks state|Document pipelines, decision trees, role-based workflows|
+|**Reflection**|Evaluate and refine outputs with internal feedback loops|Quality improvement, self-correction, iterative generation|
+|**Sequential Coordination**|Chain agents in a fixed order|Multi‑step data pipelines (ingest → summarize → refine)|
+|**Intent‑Based Routing**|Dispatch inputs to agents based on user intent/class.|Multi‑domain assistants (finance vs. weather vs. chat)|
+|**Parallel Execution**|Fan‑out tasks to multiple agents concurrently|Batch translations, multi‑hypothesis generation|
+|**Prompt Chaining**|Decompose a complex prompt into a sequence of simpler prompts|Complex content creation (outline → draft → edit)|
+
+> While "agentic frameworks" can include a variety of libraries and platforms (e.g., LangChain, AutoGen), this reading focuses exclusively on LangGraph as the agentic framework. All examples, patterns, and code snippets use LangGraph's APIs and conventions to illustrate core design patterns for building effective, multi‑agent AI workflows.
+
+---
+
+## 2. LangGraph Workflows
+
+### 2.1 Agents with Structured Output
+
+First, we need chains of LLMs and prompts that configure agents to perform specific tasks. These agents will later be used in workers to perform certain tasks in the workflow. It's important that these agents have structured outputs so they return data in our desired format. This ensures that **LangGraph workflows** remain reliable and composable, especially when downstream agents depend on the outputs of earlier ones.
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. 10
+11. 11
+12. 12
+13. 13
+14. 14
+15. 15
+16. 16
+17. 17
+18. 18
+19. 19
+20. 20
+21. 21
+22. 22
+23. 23
+24. 24
+25. 25
+26. 26
+
+27. `from pydantic import BaseModel, Field`
+28. `from langchain_openai import ChatOpenAI`
+29. `from langchain_core.prompts import ChatPromptTemplate`
+
+30. `# instantiate LLM`
+31. `llm = ChatOpenAI(model="gpt-4o-mini")`
+
+32. `# define output schema`
+33. `class Output(BaseModel):`
+34.     `name: str = Field(`
+35.         `description="Name of the structured output"`
+36.     `)`
+37.     `field: str = Field(`
+38.         `description="Field of the structured output"`
+39.     `)`
+
+40. `# create the LLM prompt template`
+41. `prompt = ChatPromptTemplate.from_messages([`
+42.     `(`
+43.         `"human/system",`
+44.         `"Prompt with {input}"`
+45.     `)`
+46. `])`
+
+47. `# use LCEL to pipe the prompt to the LLM and pass in the structured output schema`
+48. `pipe = prompt | llm.with_structured_output(Output)`
+
+Copied!Wrap Toggled!
+
+### 2.2 States
+
+A simple typed dictionary that tracks variables, values and states across a workflow. This state is what gets upated across a LangGraph `StateGraph` workflow so the **field names** and **data types** are **important**.
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+
+7. `class State(TypedDict):`
+8.     `string_field: str`
+9.     `string_list_field: List[str]`
+10.     `int_field: int`
+11.     `input_field: str`
+12.     `output_field: Output`
+
+Copied!Wrap Toggled!
+
+In LangGraph, the state serves as a contract between nodes. It defines the schema for what data is expected, produced, and passed between components. This contract enables better debugging, validation, and scalability. It also ensures agents interact through a shared vocabulary, reducing unexpected type mismatches and silent failures.
+
+### 2.3 Worker Nodes
+
+These are functions that make up the graph and execute certain tasks with the provided input data. They return an update to the persistent state across a `StateGraph`, updating field(s) with the new data.
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+
+9. `def worker(state: State):`
+10.      `"""Worker that generates the pipe to fill in the output_field of a state"""`
+
+11.     `# use the pipe LLM to generate an Output`
+12.     `output = pipe.invoke({"input": state["input_field"]})`
+
+13.     `# return the Output object as a dictionary to update the state`
+14.     `return {"output_field": output}`
+
+Copied!Wrap Toggled!
+
+### 2.4 Building the Workflow
+
+|Component|What It Does|How to Add It|
+|---|---|---|
+|**Node**|Encapsulates a function (agent/tool) that processes input and returns output|`graph.add_node("name", fn)` or `Node("name", func=fn)`|
+|**Edge**|Defines a direct connection between two nodes|`graph.add_edge("from_node", "to_node")`|
+|**Conditional Edge**|Routes execution based on a boolean or value-based condition|`graph.add_conditional_edges("node", {"True": "A", "False": "B"})`|
+|**Entry Point**|Designates where the graph starts execution|`graph.set_entry_point("start_node")` or `graph.add_edge(START, "to_first_node")`|
+|**End Point**|Designates a terminal node where execution finishes|`graph.set_finish_point("end_node")` or `graph.add_edge("last_node", END)`|
+|**Parallel Branch**|Runs multiple nodes concurrently, gathers all results|`graph.add_parallel("parent", ["node1", "node2"])`|
+|**State**|Stores and passes shared context across the graph|Passed automatically between nodes via input/output dicts|
+
+- First initialize the `StateGraph` and pass in the `State` variable that will be tracked across the workflow.
+- Then add the nodes to the graph giving them labels.
+- Then add the edges to the graph connectin the nodes in your desired order.
+- Lastly compile the workflow and invoke it with an input.
+
+1. 1
+2. 2
+3. 3
+4. 4
+5. 5
+6. 6
+7. 7
+8. 8
+9. 9
+10. 10
+11. 11
+12. 12
+13. 13
+14. 14
+15. 15
+16. 16
+17. 17
+
+18. `from langgraph.graph import StateGraph, END, START`
+
+19. `# initialize the graph`
+20. `builder = StateGraph(State)`
+
+21. `# add the nodes`
+22. `builder.add_node("worker", worker)`
+
+23. `# add the edges`
+24. `builder.add_edge(START, "worker")`
+25. `builder.add_edge("worker", END)`
+
+26. `# compile the workflow into an executable`
+27. `workflow = builder.compile()`
+
+28. `# invoke the workflow with an example input`
+29. `workflow.invoke({"input": "Example input"})`
+
+Copied!Wrap Toggled!
+
+### 2.5 Workflow Visualization
+
+Visualizing LangGraph graphs is easy in a JupyterLab environment. It helps you quickly understand the flow of logic between nodes—especially in more complex graphs involving loops, branching, or multiple agents.
+
+If you're working in a notebook, you can generate and display the graph using Mermaid syntax or as an image.
+
+**Mermaid Chart Visualization (Jupyter-friendly)**
+
+If your `StateGraph` object supports it (ex. `workflow.get_graph()`), you can render it using Mermaid diagrams:
+
+1. 1
+2. 2
+3. 3
+4. 4
+
+5. `from IPython.display import Image, display`
+
+6. `# display the orchestrator workflow as a Mermaid-rendered PNG`
+7. `display(Image(orchestrator_worker.get_graph().draw_mermaid_png()))`
+
+Copied!Wrap Toggled!
+
+## 3. Orchestrator–Worker Pattern
+
+An industry-tested coordination pattern used to break down complex workflows into modular, repeatable tasks. An orchestrator delegates responsibilities to specialized worker agents and aggregates their outputs to form a cohesive result. This pattern improves maintainability, allows for dynamic control flow, and supports multi-stage pipelines with clear structure and logic.
+
+![orchestration](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/Ylv-0mjQHTekX59nJObTVg/orchestration.png)  
+
+|Component|Purpose|
+|---|---|
+|**Orchestrator Node**|Central control unit that routes data, manages logic, and delegates tasks|
+|**Worker Node**|Executes a single, focused subtask within the larger workflow|
+|**Routing Logic**|Decides which worker(s) to activate based on input or intermediate state|
+|**Dynamic Edges**|Connect orchestrator to multiple workers depending on routing conditions|
+
+---
+
+## 4. Reflection Pattern
+
+A self-improving feedback pattern that allows agents to evaluate, critique, and revise their outputs iteratively. By looping results through an evaluator node and back into the generator, this pattern enables internal quality control, self-correction, and optimization, making it ideal for high-stakes tasks requiring accuracy, consistency, or refinement over time.
+
+![reflection](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/sbdKL2dYTuJ6RcPomfG_mQ/reflection.png)  
+
+|Component|Purpose|
+|---|---|
+|**Generator Node**|Generates initial output and generates further outputs when feedback is available|
+|**Evaluator Node**|Scores agent outputs (correctness, style, etc.)|
+|**Routing Node**|Re‑routes based on evaluator feedback, is added as a conditional edge because it might lead to END or loop back to the Generator Node|
+|**Testing Node**|Unit‑tests chains with known in/out examples|
+
+## Summary
+
+This cheat sheet gives you a practical foundation for applying agentic design patterns using **LangGraph**. By mastering these core patterns and components, you'll be equipped to structure **complex LLM workflows**, enhance reliability through **state management**, and confidently prototype or scale intelligent systems. Use it as a quick **reference** when designing, debugging, or extending your own multi-agent applications.
+
+## Author
