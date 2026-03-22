@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Agentic OS.md",
+                "file": "03-Main Notes/Frontend Github.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Agentic OS"
+              "title": "Frontend Github"
             }
           }
         ]
@@ -223,6 +223,7 @@
   "active": "f4174a67e9073903",
   "lastOpenFiles": [
     "3-Tags/CS/Development.md",
+    "03-Main Notes/Frontend Github.md",
     "00-Indexes/CS-Index.md",
     "03-Main Notes/Agentic OS.md",
     "03-Main Notes/CrewAi.md",
@@ -250,7 +251,6 @@
     "01-Rough Notes/Issues and Goal based plan.md",
     "01-Rough Notes/Obsidian Ideas.md",
     "01-Rough Notes/Proof of Work is needed for the sake of things.md",
-    "01-Rough Notes/Untitled.md",
     "03-Main Notes/Untitled 2.base",
     "03-Main Notes/Untitled 1.base",
     "Untitled.canvas",
