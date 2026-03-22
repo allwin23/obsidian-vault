@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/CrewAi.md",
+                "file": "03-Main Notes/Agentic OS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CrewAi"
+              "title": "Agentic OS"
             }
           }
         ]
@@ -222,20 +222,20 @@
   },
   "active": "f4174a67e9073903",
   "lastOpenFiles": [
+    "3-Tags/CS/Development.md",
+    "00-Indexes/CS-Index.md",
+    "03-Main Notes/Agentic OS.md",
+    "03-Main Notes/CrewAi.md",
     "03-Main Notes/Langchain.md",
     "03-Main Notes/Langraph.md",
     "03-Main Notes/MAth for hsnw.md",
     "03-Main Notes/Mircroservice.md",
     "03-Main Notes/MULTI MODAL.md",
-    "03-Main Notes/CrewAi.md",
     "03-Main Notes/Gen AI course Coursera.md",
     "03-Main Notes/Graphsql.md",
-    "3-Tags/CS/Development.md",
     "03-Main Notes/Development.md",
-    "03-Main Notes/Agentic OS.md",
     "Pasted image 20260319185449.png",
     "03-Main Notes/OOPS.md",
-    "00-Indexes/CS-Index.md",
     "03-Main Notes/RAG.md",
     "03-Main Notes/Labsection for Rag.md",
     "03-Main Notes/Entire Math for Rag.md",
