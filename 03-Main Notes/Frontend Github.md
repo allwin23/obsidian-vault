@@ -179,7 +179,7 @@ Feature	Description	Priority
 forge.search	Semantic search across your component library. 'Find me something that handles image galleries with lazy loading'	V1 Core
 forge.get	Fetch a specific component by name and version. Returns full source + metadata.	V1 Core
 forge.getDNA	Returns your full Design DNA profile as structured JSON for agent context injection.	V1 Core
-forge.push	Agent pushes a newly generated component back into your Forge repo with auto-versioning.	V1 Core
+forge.push	Agent pushes a newly generated component back into your Forge repo with auto-versioning.	V1 Core 
 forge.checkCoherence	Agent checks if a component it just generated is coherent with your DNA before using it.	V1 Core
 forge.listWorkspace	Returns all components in a workspace with names, descriptions, and usage metadata.	V1 Core
 forge.fork	Agent forks a public component from the social feed directly into your library.	V2
