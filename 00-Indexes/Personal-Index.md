@@ -6,11 +6,11 @@ created: {{date}}
 # 🧘 Personal - Master Index
 
 ## 🗺️ Areas
-| Area | Tag Hub | Latest |
-|------|---------|--------|
-| Journal | [[3-Tags/Personal/Journal]] | [[{{date:YYYY-MM-DD}}]] |
-| Mental Health | [[3-Tags/Personal/Mental-Health]] | - |
-| Goals | [[3-Tags/Personal/Goals]] | - |
+| Area          | Tag Hub                           | Latest                  |
+| ------------- | --------------------------------- | ----------------------- |
+| Journal       | [[3-Tags/Personal/Journal]]       | [[{{date:YYYY-MM-DD}}]] |
+| Mental Health | [[3-Tags/Personal/Mental-Health]] | -                       |
+| Goals         | [[Goals ]]                        | -                       |
 
 ## 📅 Recent Journal Entries
 ```dataview
