@@ -1,404 +1,495 @@
+**ATOMICHUB**
 
-FORGE
-The Design Intelligence Layer for AI-Assisted Frontend Development
-Complete Product Specification  •  v1.0
+**System Design Document**
 
-Version Control
-for every component you build	AI Intelligence
-that learns your design taste	MCP Interface
-for every AI agent you use
+_Architecture  •  Data Models  •  APIs  •  Infrastructure  •  Sequence Flows_
 
- 
-1. Executive Summary
-THE PROBLEM WE ARE SOLVING
-"The internet is now flooded with AI-generated slop. Every AI tool generates components that look slightly different, feel inconsistent, and don't match your existing codebase. Forge is the answer — a persistent design intelligence that understands how YOU build UI, and enforces that taste across every project, every AI tool, and every collaborator, forever."
+|   |   |   |
+|---|---|---|
+|**Modular Monolith**<br><br>Single deploy, domain-separated|**PostgreSQL+Redis+Qdrant**<br><br>Three-layer data stack|**Vercel + Render**<br><br>Frontend + Backend split|
 
-Product Vision
-Forge is a version-controlled component library platform with an AI intelligence layer. It is GitHub for frontend components, but with a Design DNA engine that understands your personal visual language and enforces coherence across every project you touch. It makes AI-assisted frontend development tasteful, consistent, and reusable by default.
+  
 
-The Sharp Edge — One Sentence Pitch
-THE HOOK
-"Connect Forge's MCP to Claude Code and it will never generate a component that doesn't match your existing design system — automatically, across every project you've ever built."
+# 1. System Overview
 
-Target Users
-Feature	Description	Priority
-Freelancers	Build 5-20 client sites/year, rebuild same components constantly	Primary V1
-Indie Devs	Personal projects, side products, portfolios — tired of starting from scratch	Primary V1
-Small Teams	2-10 dev teams without budget for Chromatic + Storybook + private npm	V2 Target
-Agencies	10+ sites/year, same stack, same components, no shared system	V3 Target
+|   |
+|---|
+|**ARCHITECTURE PHILOSOPHY**<br><br>_AtomicHub is a modular monolith — one deployable unit whose code is strictly separated into domain modules. Each domain owns its own routes, services, repositories, and types. No shared state between domains except through well-defined internal service interfaces. This gives the speed of a monolith today and a clear migration path to microservices if scale demands it._|
 
- 
-2. Product Identity
-Name: FORGE
-Forge was chosen deliberately. Forging is the act of crafting something with precision under pressure — shaping raw material into something durable and exact. It implies craft, permanence, and quality. It is the antithesis of AI slop. When you Forge a component, it is made to last.
+### High-Level System Topology
 
-Tagline	Craft components that last. Ship taste at scale.
-Domain suggestion	forge.dev / useforge.dev / forgeui.dev
-Voice	Precise. Confident. Anti-slop. For developers who care about craft.
-Anti-positioning	Not another component library. Not a design system. Your system.
+|   |
+|---|
+|┌─────────────────────────────────────────────────────────────────────┐<br><br>│                        CLIENTS                                      │<br><br>│  Next.js Web App    CLI (atomichub)    MCP Server    VS Code Ext    │<br><br>└──────────┬──────────────────┬──────────────┬──────────────┬─────────┘<br><br>           │                  │              │              │<br><br>           ▼                  ▼              ▼              ▼<br><br>┌──────────────────────────────────────────────────────────────────────┐<br><br>│                    API GATEWAY  (Hono on Render)                     │<br><br>│   Auth Middleware → Rate Limiter → Router → Domain Modules           │<br><br>└────┬───────┬──────────┬──────────┬──────────┬──────────┬────────────┘<br><br>     │       │          │          │          │          │<br><br>     ▼       ▼          ▼          ▼          ▼          ▼<br><br>  [Auth]  [VCS]      [DNA]      [AI]       [Social]  [Sync]<br><br>  Module  Module     Module     Module     Module    Module<br><br>     │       │          │          │          │          │<br><br>     └───────┴──────────┴────┬─────┴──────────┴──────────┘<br><br>                             │<br><br>          ┌──────────────────┼──────────────────┐<br><br>          ▼                  ▼                  ▼<br><br>    ┌──────────┐      ┌────────────┐    ┌──────────────┐<br><br>    │PostgreSQL│      │   Redis    │    │   Qdrant     │<br><br>    │  (Neon)  │      │ (Upstash)  │    │(Vector Store)│<br><br>    └──────────┘      └────────────┘    └──────────────┘<br><br>          │<br><br>    ┌─────┴──────┐<br><br>    │     R2     │<br><br>    │ (Cloudflare│<br><br>    │  Storage)  │<br><br>    └────────────┘|
 
- 
-3. Repository & Workspace Model
-Core Model: One Repo Per Component
-Every component is an independent versioned repository. This is the foundational design decision. It enables precise MCP searches, targeted imports, independent versioning, and clean forking without pulling in unrelated components.
+### Deployment Split
 
-Workspace Structure
-Users organize components into Workspaces. A Workspace is a logical grouping — not a monorepo. Each Workspace is essentially a tagged collection of component repos with a shared Design DNA context.
+|**Service**|**Platform**|**Runtime**|**Reason**|
+|---|---|---|---|
+|**Next.js Frontend**|Vercel|Edge + Node.js|Native Next.js, global CDN, zero config|
+|**Hono API (Monolith)**|Render|Node.js container|Long-running jobs, WebSockets, full control|
+|**MCP Server**|Cloudflare Workers|V8 isolates|Edge-deployed, <50ms global latency for agents|
+|**BullMQ Workers**|Render (separate service)|Node.js container|Isolated from API, auto-scaling|
+|**Verdaccio npm**|Render (separate service)|Node.js container|npm registry for component publishing|
+|**Qdrant**|Qdrant Cloud|Managed|Vector search for MCP semantic queries|
 
-Entity	Description
-User Account	Top-level identity. Owns workspaces and component repos.
-Workspace	Logical project grouping (e.g. 'ClientA Dashboard', 'Personal Portfolio'). Contains component refs + shared DNA.
-Component Repo	One repo per component. Has its own git-like version history, branches, tags.
-Component Version	Semantic version (1.0.0). Each version is an immutable snapshot of code + metadata + DNA score.
-Fork	Copy of another user's component repo. Maintains upstream link. Auto-adapted to forker's DNA.
-Collection / Kit	Curated set of components published as a named kit (e.g. 'Brutalist UI Kit').
+  
 
-Folder Structure Per Component Repo
-my-button/
-  ├── component.tsx          # Main component source
-  ├── component.stories.tsx  # Auto-generated Storybook story
-  ├── component.test.tsx     # Auto-generated tests
-  ├── forge.json             # Component metadata + DNA scores
-  ├── CHANGELOG.md           # Auto-generated version history
-  └── replay/
-        ├── prompts.json     # All AI prompts used
-        ├── screenshots/     # Input screenshots
-        └── snapshots/       # Version snapshots
+# 2. Domain Module Breakdown
 
- 
-4. Import & Usage Model
-Three Ways to Use Components
-Feature	Description	Priority
-CLI (shadcn-style)	forge add Button — copies source directly into your project. No runtime dependency. You own the code. Auto-resolves all peer dependencies.	V1 Core
-npm Package	npm install @username/forge-components. Auto-published npm scope per user. Versioned. Importable from any project.	V1 Core
-MCP Tool	AI agents query and inject components directly. Claude Code, Cursor, Windsurf all supported via standard MCP protocol.	V1 Core
+The monolith is divided into 7 domain modules. Each module is a self-contained folder with its own routes, service layer, repository layer, and types. Modules communicate only through their exported service interfaces — never through shared DB queries.
 
-Universal URL Import — The Game Changer
-UNIVERSAL IMPORT
-Users paste any component URL from any platform (shadcn/ui, ReactBits, MagicUI, Aceternity, etc.). Forge fetches the component, resolves ALL dependencies automatically, adapts it to the user's Design DNA, and commits it into their repo as a versioned component. No separate installs. No manual dependency management. One import command for the entire internet.
+### Module Directory Structure
 
-Supported import sources (V1):
-•	Direct URL to any component page (shadcn/ui, ReactBits, MagicUI, Aceternity UI, HyperUI, etc.)
-•	GitHub raw file URLs
-•	CodeSandbox / StackBlitz embed URLs
-•	npm package name (forge import react-hot-toast)
+|   |
+|---|
+|src/<br><br>  ├── modules/<br><br>  │   ├── auth/          # Identity, sessions, API tokens, OAuth<br><br>  │   ├── vcs/           # Component repos, commits, branches, PRs, tags<br><br>  │   ├── dna/           # Design DNA, workspace DNA, topology analysis<br><br>  │   ├── ai/            # All AI generation jobs: screenshot, video, a11y, etc<br><br>  │   ├── import/        # Universal URL import, dep resolver, npm publish<br><br>  │   ├── social/        # Feed, stars, forks, comments, kits, profiles<br><br>  │   └── sync/          # Cross-project sync, atomichub.lock, notifications<br><br>  ├── mcp/               # MCP server (deployed separately to CF Workers)<br><br>  ├── shared/<br><br>  │   ├── db/            # Drizzle schema, migrations, db client<br><br>  │   ├── redis/         # Redis client, cache helpers, queue definitions<br><br>  │   ├── storage/       # R2 client wrappers<br><br>  │   ├── queue/         # BullMQ job definitions and processors<br><br>  │   ├── middleware/    # Auth, rate-limit, error handler<br><br>  │   └── types/         # Shared TypeScript types<br><br>  └── index.ts           # Hono app, mounts all module routers|
 
-Dependency Resolution Engine
-When a component is imported from an external URL, Forge's Dependency Resolver:
-•	Parses the component source and identifies all imports
-•	Cross-references against the user's existing installed packages
-•	Installs only missing dependencies
-•	Rewrites import paths to match the user's project structure
-•	Flags any version conflicts and suggests resolutions
-•	Runs a coherence pass to adapt the component's styling to the user's Design DNA
+### Module Responsibility Matrix
 
- 
-5. Design DNA Engine
-WHAT IS DESIGN DNA
-Design DNA is a machine-readable profile of your personal visual language. It is built from your code, updated with every component you create, and used by every AI tool you connect to Forge. It is the reason Forge-generated components always look like they came from you.
+|**Module**|**Owns**|**Calls**|**Emits (Queue Jobs)**|
+|---|---|---|---|
+|**auth**|Users, sessions, API tokens, OAuth accounts|—|—|
+|**vcs**|Component repos, commits, branches, PRs, tags, blame|auth, dna|npm.publish, snapshot.create|
+|**dna**|Global DNA, workspace DNA, topology scores|auth, vcs|dna.analyze, topology.compute|
+|**ai**|AI job dispatch, prompt construction, result storage|auth, vcs, dna|ai.screenshot, ai.video, ai.a11y, ai.coherence|
+|**import**|URL fetch, dep resolver, adaptation pipeline|auth, vcs, dna, ai|import.fetch, import.adapt|
+|**social**|Feed, stars, forks, comments, kits, profiles|auth, vcs, dna|social.fork, kit.publish|
+|**sync**|atomichub.lock, sync notifications, apply|auth, vcs|sync.notify, sync.apply|
 
-DNA Profile Contents
-Feature	Description	Priority
-Spacing Scale	Detected padding/margin patterns. Your preferred spacing rhythm (4px grid, 8px grid, etc.)	Auto-detected
-Color System	Primary, secondary, semantic colors. Dark mode patterns. CSS variable naming conventions.	Auto-detected
-Typography Scale	Font families, size scales, weight usage, line-height patterns.	Auto-detected
-Animation Personality	Preferred easing functions, duration ranges, motion complexity level.	Auto-detected
-Component Patterns	Preferred composition patterns: compound components vs props, slot patterns, etc.	Auto-detected
-Naming Conventions	camelCase vs kebab-case, prop naming patterns, file naming style.	Auto-detected
-Framework Conventions	Next.js App Router vs Pages, 'use client' placement, server component patterns.	Auto-detected
-Complexity Level	How verbose vs minimal your components tend to be. Accessibility depth.	Auto-detected
+  
 
-How DNA Gets Built
-•	Connect GitHub repos — Forge analyzes all .tsx/.jsx files across your repos
-•	Upload codebase — zip upload, Forge runs analysis pipeline
-•	Manual setup — color tokens, spacing scale, font stack via guided UI wizard
-•	Progressive learning — every component you publish refines the DNA automatically
+# 3. Database Schema — PostgreSQL (Neon)
 
-DNA in Action
-On Component Creation	AI uses your DNA as system context before generating any code
-On Fork	Forked component is automatically adapted to your DNA before import
-On URL Import	Imported component styling is rewritten to match your DNA
-On MCP Query	DNA is included in every agent context payload
-On Coherence Check	New components are scored against your DNA before publish
+### 3.1 Auth Domain
 
- 
-6. AI Feature Modules
-6.1 Screenshot to Component
-The V1 flagship AI feature. Paste any screenshot of a UI element. Forge generates production-ready React + Tailwind code that matches your Design DNA. Iteration loop included — you can prompt-refine the output in-platform before committing to your repo.
+|   |
+|---|
+|-- users<br><br>CREATE TABLE users (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  username    TEXT UNIQUE NOT NULL,<br><br>  email       TEXT UNIQUE NOT NULL,<br><br>  avatar_url  TEXT,<br><br>  plan        TEXT DEFAULT 'free',        -- free \| pro \| team<br><br>  created_at  TIMESTAMPTZ DEFAULT now(),<br><br>  updated_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- api_tokens  (scoped tokens for CLI + MCP)<br><br>CREATE TABLE api_tokens (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  name        TEXT NOT NULL,              -- e.g. 'Claude Code MCP'<br><br>  token_hash  TEXT UNIQUE NOT NULL,       -- bcrypt hash, never store plain<br><br>  scope       TEXT[] NOT NULL,            -- ['read','write','admin']<br><br>  workspace_id UUID,                      -- null = all workspaces<br><br>  last_used   TIMESTAMPTZ,<br><br>  expires_at  TIMESTAMPTZ,<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- usage_quotas  (per-user AI usage tracking)<br><br>CREATE TABLE usage_quotas (<br><br>  user_id         UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,<br><br>  screenshot_used INT DEFAULT 0,<br><br>  video_used      INT DEFAULT 0,<br><br>  a11y_used       INT DEFAULT 0,<br><br>  coherence_used  INT DEFAULT 0,<br><br>  reset_at        TIMESTAMPTZ NOT NULL,   -- monthly reset<br><br>  -- limits enforced by plan tier in app layer<br><br>  updated_at      TIMESTAMPTZ DEFAULT now()<br><br>);|
 
-Input	Screenshot (PNG/JPG/WebP), PDF page, or direct URL screenshot
-Output	Production React + Tailwind component, TypeScript typed, with variants
-DNA Application	Spacing, colors, typography all adapted to your DNA automatically
-Iteration	In-platform prompt loop: 'Make it more minimal', 'Add loading state'
-Commit	One-click commit to your Forge repo with auto-generated version tag
-AI Model	User's own API key (Anthropic Claude recommended for vision quality)
+### 3.2 VCS Domain
 
-6.2 Video to Animation Code
-Record or paste a video of any UI animation. Forge analyzes the motion, identifies keyframes, timing curves, and interaction triggers, then generates Framer Motion or CSS animation code. Particularly powerful for replicating animations from design inspiration sites.
+|   |
+|---|
+|-- workspaces<br><br>CREATE TABLE workspaces (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  name        TEXT NOT NULL,<br><br>  description TEXT,<br><br>  is_default  BOOLEAN DEFAULT false,<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- component_repos  (one row = one component repo)<br><br>CREATE TABLE component_repos (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id         UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  workspace_id    UUID REFERENCES workspaces(id),<br><br>  name            TEXT NOT NULL,          -- e.g. 'Button'<br><br>  slug            TEXT NOT NULL,          -- url-safe: 'button'<br><br>  description     TEXT,<br><br>  framework       TEXT NOT NULL,          -- react \| nextjs \| webcomponent<br><br>  is_public       BOOLEAN DEFAULT true,<br><br>  default_branch  TEXT DEFAULT 'main',<br><br>  fork_of_id      UUID REFERENCES component_repos(id),<br><br>  upstream_commit TEXT,                   -- upstream commit SHA at fork time<br><br>  star_count      INT DEFAULT 0,<br><br>  fork_count      INT DEFAULT 0,<br><br>  created_at      TIMESTAMPTZ DEFAULT now(),<br><br>  updated_at      TIMESTAMPTZ DEFAULT now(),<br><br>  UNIQUE(user_id, slug)<br><br>);<br><br>-- branches<br><br>CREATE TABLE branches (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  repo_id         UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  name            TEXT NOT NULL,<br><br>  head_commit_sha TEXT,<br><br>  is_protected    BOOLEAN DEFAULT false,<br><br>  created_at      TIMESTAMPTZ DEFAULT now(),<br><br>  UNIQUE(repo_id, name)<br><br>);<br><br>-- commits<br><br>CREATE TABLE commits (<br><br>  sha             TEXT PRIMARY KEY,       -- SHA256 of content<br><br>  repo_id         UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  branch_id       UUID REFERENCES branches(id),<br><br>  parent_sha      TEXT REFERENCES commits(sha),<br><br>  author_id       UUID REFERENCES users(id),<br><br>  message         TEXT NOT NULL,          -- conventional commit format<br><br>  source_url      TEXT,                   -- R2 key for component source<br><br>  metadata_url    TEXT,                   -- R2 key for atomichub.json<br><br>  ai_assisted     BOOLEAN DEFAULT false,<br><br>  ai_model        TEXT,<br><br>  ai_prompt_ref   TEXT,                   -- R2 key for prompts.json<br><br>  coherence_score INT,<br><br>  a11y_score      INT,<br><br>  human_ratio     NUMERIC(4,2),           -- 0.00–1.00<br><br>  created_at      TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- version_tags  (semver releases)<br><br>CREATE TABLE version_tags (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  repo_id         UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  tag             TEXT NOT NULL,          -- '1.2.0'<br><br>  commit_sha      TEXT REFERENCES commits(sha),<br><br>  channel         TEXT DEFAULT 'stable',  -- stable \| beta \| canary<br><br>  release_notes   TEXT,<br><br>  npm_published   BOOLEAN DEFAULT false,<br><br>  created_at      TIMESTAMPTZ DEFAULT now(),<br><br>  UNIQUE(repo_id, tag)<br><br>);<br><br>-- pull_requests<br><br>CREATE TABLE pull_requests (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  repo_id         UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  author_id       UUID REFERENCES users(id),<br><br>  title           TEXT NOT NULL,<br><br>  description     TEXT,<br><br>  source_branch   TEXT NOT NULL,<br><br>  target_branch   TEXT NOT NULL,<br><br>  status          TEXT DEFAULT 'open',    -- open \| merged \| closed<br><br>  merge_strategy  TEXT,                   -- merge \| squash \| rebase<br><br>  checks_passed   BOOLEAN,<br><br>  coherence_delta INT,                    -- score change if merged<br><br>  created_at      TIMESTAMPTZ DEFAULT now(),<br><br>  updated_at      TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- pr_comments<br><br>CREATE TABLE pr_comments (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  pr_id       UUID REFERENCES pull_requests(id) ON DELETE CASCADE,<br><br>  author_id   UUID REFERENCES users(id),<br><br>  body        TEXT NOT NULL,<br><br>  line_number INT,<br><br>  file_path   TEXT,<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);|
 
-Input	MP4/GIF/WebM video file, or Lottie JSON
-Output	Framer Motion component or CSS @keyframes + transition code
-Motion Adaptation	Easing curves adapted to your DNA animation personality
-prefers-reduced-motion	Auto-generated reduced motion variant included always
+### 3.3 DNA Domain
 
-6.3 Coherence Engine & Taste Filter
-Before any component is published to the social feed, the Coherence Engine scores it. This is Forge's quality gate and the core mechanism against AI slop.
+|   |
+|---|
+|-- global_dna  (one per user)<br><br>CREATE TABLE global_dna (<br><br>  user_id         UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,<br><br>  spacing_scale   JSONB,      -- { base: 4, scale: [4,8,12,16,24,32,48,64] }<br><br>  color_system    JSONB,      -- { primary, secondary, semantic, dark_mode }<br><br>  typography      JSONB,      -- { heading_font, body_font, scale, weights }<br><br>  border_system   JSONB,      -- { radius_scale, border_widths, shadow_levels }<br><br>  animation       JSONB,      -- { easing, duration_range, library }<br><br>  component_patterns JSONB,   -- { composition_style, slot_usage, complexity }<br><br>  naming          JSONB,      -- { props: camelCase, files: kebab-case }<br><br>  framework_conventions JSONB,<br><br>  cold_start_complete BOOLEAN DEFAULT false,<br><br>  source          TEXT,       -- 'github' \| 'upload' \| 'wizard' \| 'progressive'<br><br>  confidence      INT,        -- 0-100, how confident the DNA is<br><br>  updated_at      TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- workspace_dna  (per-project override, merged with global at query time)<br><br>CREATE TABLE workspace_dna (<br><br>  workspace_id    UUID PRIMARY KEY REFERENCES workspaces(id) ON DELETE CASCADE,<br><br>  overrides       JSONB NOT NULL,  -- only fields that differ from global DNA<br><br>  dark_mode       TEXT,            -- 'required' \| 'optional' \| 'none'<br><br>  contracts       TEXT[],          -- active contract IDs<br><br>  updated_at      TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- topology_reports  (AI-generated analysis of component library)<br><br>CREATE TABLE topology_reports (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id         UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  workspace_id    UUID REFERENCES workspaces(id),<br><br>  consistency_score INT,<br><br>  token_coverage    INT,<br><br>  a11y_baseline     INT,<br><br>  dark_mode_coverage INT,<br><br>  suggestions     JSONB,   -- array of { type, severity, message, affected_repos }<br><br>  created_at      TIMESTAMPTZ DEFAULT now()<br><br>);|
 
-Feature	Description	Priority
-DNA Coherence Score	0-100 score: how well the component matches the author's own DNA	V1 AI
-Accessibility Score	WCAG 2.1 AA compliance check. Missing ARIA, contrast ratios, keyboard nav.	V1 AI
-Completeness Score	Does it have loading state? Error state? Empty state? Dark mode?	V1 AI
-Slop Detection	Flags patterns common in low-quality AI generation: magic numbers, inline styles, hardcoded colors.	V1 AI
-Human Touch Score	Ratio of AI-generated vs manually-edited lines. Higher manual edit = higher trust score.	V2
+### 3.4 AI Domain
 
-6.4 Agentic Component Lifecycle
-The most ambitious AI module. Components are not static files — they are living entities with an agent monitoring them.
+|   |
+|---|
+|-- ai_jobs  (all async AI generation tasks)<br><br>CREATE TABLE ai_jobs (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  type        TEXT NOT NULL,  -- screenshot\|video\|a11y\|coherence\|responsive\|darkmode\|figma\|compose<br><br>  status      TEXT DEFAULT 'queued',  -- queued\|processing\|done\|failed<br><br>  input_ref   TEXT,           -- R2 key for input (screenshot/video file)<br><br>  output_ref  TEXT,           -- R2 key for generated component source<br><br>  model_used  TEXT,           -- claude-sonnet-4\|gemini-1.5-pro\|etc<br><br>  prompt_ref  TEXT,           -- R2 key for full prompt sent<br><br>  error       TEXT,<br><br>  repo_id     UUID REFERENCES component_repos(id),<br><br>  commit_sha  TEXT,           -- set after user approves and commits<br><br>  duration_ms INT,<br><br>  created_at  TIMESTAMPTZ DEFAULT now(),<br><br>  updated_at  TIMESTAMPTZ DEFAULT now()<br><br>);|
 
-•	Variant Consolidation Agent — notices you use a Button in 12 different ways across projects and proposes a unified variant system
-•	Accessibility Monitor — detects when WCAG standards update and flags non-compliant components
-•	Framework Migration Agent — detects deprecated API usage (e.g. React 19 changes) and opens automated migration PRs
-•	Trend Adoption Agent — surfaces trending patterns from social feed that match your DNA, asks if you want to adopt
-•	Cross-Project Sync Agent — when you update a component, notifies all projects using it and proposes sync
+### 3.5 Social Domain
 
-6.5 Component Replay
-Every component has a full creation history stored in its replay/ directory. Anyone who forks the component can watch how it was built — prompts, screenshots, version evolution. This is knowledge sharing, not just code sharing.
+|   |
+|---|
+|-- stars<br><br>CREATE TABLE stars (<br><br>  user_id   UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  repo_id   UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  created_at TIMESTAMPTZ DEFAULT now(),<br><br>  PRIMARY KEY (user_id, repo_id)<br><br>);<br><br>-- comments  (on component repos in the social feed)<br><br>CREATE TABLE comments (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  repo_id     UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  parent_id   UUID REFERENCES comments(id),   -- for threaded replies<br><br>  body        TEXT NOT NULL,<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- kits  (curated component collections)<br><br>CREATE TABLE kits (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  name        TEXT NOT NULL,<br><br>  description TEXT,<br><br>  is_public   BOOLEAN DEFAULT true,<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- kit_components<br><br>CREATE TABLE kit_components (<br><br>  kit_id    UUID REFERENCES kits(id) ON DELETE CASCADE,<br><br>  repo_id   UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  order_idx INT DEFAULT 0,<br><br>  PRIMARY KEY (kit_id, repo_id)<br><br>);|
 
-Recorded: AI Prompts	Every prompt sent during component creation or iteration
-Recorded: Screenshots	All visual reference inputs used
-Recorded: Version Snapshots	Immutable snapshot at each version tag
-NOT Recorded	Keystroke-level edits (too invasive, too much storage)
-Replay UI	Timeline scrubber in the component detail page. Step through creation history.
+### 3.6 Sync Domain
 
- 
-7. MCP Integration
-THE STRATEGIC IMPORTANCE OF MCP
-The Forge MCP is what separates this product from every other component tool. It transforms any AI coding agent — Claude Code, Cursor, Windsurf, GitHub Copilot — into a collaborator that knows your entire frontend history.
+|   |
+|---|
+|-- project_registrations  (registered projects using atomichub init)<br><br>CREATE TABLE project_registrations (<br><br>  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,<br><br>  project_name TEXT NOT NULL,<br><br>  lock_ref    TEXT,           -- R2 key for atomichub.lock file<br><br>  created_at  TIMESTAMPTZ DEFAULT now()<br><br>);<br><br>-- sync_subscriptions  (which project uses which component version)<br><br>CREATE TABLE sync_subscriptions (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  project_id      UUID REFERENCES project_registrations(id) ON DELETE CASCADE,<br><br>  repo_id         UUID REFERENCES component_repos(id) ON DELETE CASCADE,<br><br>  pinned_version  TEXT,        -- null = follow latest stable<br><br>  current_tag     TEXT NOT NULL,<br><br>  channel         TEXT DEFAULT 'stable',<br><br>  UNIQUE(project_id, repo_id)<br><br>);<br><br>-- sync_notifications<br><br>CREATE TABLE sync_notifications (<br><br>  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),<br><br>  project_id      UUID REFERENCES project_registrations(id) ON DELETE CASCADE,<br><br>  repo_id         UUID REFERENCES component_repos(id),<br><br>  from_tag        TEXT NOT NULL,<br><br>  to_tag          TEXT NOT NULL,<br><br>  change_type     TEXT NOT NULL,  -- patch \| minor \| major<br><br>  status          TEXT DEFAULT 'pending',  -- pending \| approved \| skipped<br><br>  created_at      TIMESTAMPTZ DEFAULT now()<br><br>);|
 
-MCP Tool Suite
-Feature	Description	Priority
-forge.search	Semantic search across your component library. 'Find me something that handles image galleries with lazy loading'	V1 Core
-forge.get	Fetch a specific component by name and version. Returns full source + metadata.	V1 Core
-forge.getDNA	Returns your full Design DNA profile as structured JSON for agent context injection.	V1 Core
-forge.push	Agent pushes a newly generated component back into your Forge repo with auto-versioning.	V1 Core 
-forge.checkCoherence	Agent checks if a component it just generated is coherent with your DNA before using it.	V1 Core
-forge.listWorkspace	Returns all components in a workspace with names, descriptions, and usage metadata.	V1 Core
-forge.fork	Agent forks a public component from the social feed directly into your library.	V2
-forge.diff	Compares two versions of a component. Useful for agent-driven migration.	V2
+### 3.7 Key Indexes
 
-MCP Auth Setup
-Auth is a first-class concern. The MCP server uses standard OAuth 2.0 token flow:
-•	User generates a Forge API token from their dashboard (scoped: read-only, read-write, or admin)
-•	Token is added to Claude Code config: forge.mcp.token = <token>
-•	MCP server validates token on every request
-•	Workspace-scoped tokens available for team use
-•	Token rotation and revocation from dashboard
+|   |
+|---|
+|-- VCS performance<br><br>CREATE INDEX idx_commits_repo_branch ON commits(repo_id, branch_id);<br><br>CREATE INDEX idx_commits_created ON commits(created_at DESC);<br><br>CREATE INDEX idx_repos_user ON component_repos(user_id);<br><br>CREATE INDEX idx_repos_public ON component_repos(is_public) WHERE is_public = true;<br><br>-- Social feed performance<br><br>CREATE INDEX idx_repos_stars ON component_repos(star_count DESC);<br><br>CREATE INDEX idx_repos_updated ON component_repos(updated_at DESC);<br><br>CREATE INDEX idx_stars_repo ON stars(repo_id);<br><br>-- Sync performance<br><br>CREATE INDEX idx_sync_subs_project ON sync_subscriptions(project_id);<br><br>CREATE INDEX idx_sync_notif_status ON sync_notifications(status) WHERE status = 'pending';<br><br>-- AI jobs<br><br>CREATE INDEX idx_ai_jobs_user_status ON ai_jobs(user_id, status);|
 
-MCP Context Payload
-Every MCP response includes a standardized context block that any AI agent can use:
-{ "component": { "name": "Button", "version": "2.1.0", "source": "...", },
-  "dna_context": { "spacing_scale": "8px", "primary_color": "#6366F1",
-    "animation_easing": "cubic-bezier(0.4, 0, 0.2, 1)", "naming": "camelCase" },
-  "existing_components": ["Card", "Modal", "Navbar", "Input"],
-  "coherence_score": 94,
-  "instruction": "Always use these tokens. Never introduce new spacing values." }
+  
 
- 
-8. Social & Discovery Layer
-The Explore Feed
-Public by default. Every published component is discoverable. The feed is the antidote to AI slop — surfacing only high-quality, coherence-scored, human-crafted components.
+# 4. Redis Caching Strategy (Upstash)
 
-Feed Filters
-•	Framework: React / Next.js
-•	Coherence score threshold (e.g. only show components scoring 85+)
-•	Human Touch: filter by human-crafted only, AI-assisted, or all
-•	DNA Match: show components most compatible with YOUR DNA
-•	Trending / Most Forked / Newest / Most Used
-•	Collection / Kit browsing
+|   |
+|---|
+|**REDIS ROLE**<br><br>_Redis serves three distinct purposes in AtomicHub: (1) response caching for hot read paths, (2) session/token validation cache to avoid DB hits on every request, and (3) BullMQ job queue broker for all async AI and background jobs. All Redis keys have explicit TTLs — nothing cached forever._|
 
-Social Actions
-Feature	Description	Priority
-Fork	Copy a component into your library. Auto-adapted to your DNA. Upstream link maintained.	V1 Core
-Star	Bookmark components. Stars feed the trending algorithm.	V1 Core
-Comment	Threaded comments on components. Design critique, suggestions, questions.	V1 Core
-Share Kit	Group your components into a named kit and publish it as a collection.	V1 Core
-Inspired By	Tag your component with what inspired it. Builds the lineage graph.	V2
-Provenance Graph	Visual graph showing fork lineage across the community.	V2
-Weekly Digest	Email/notification of top components matching your DNA each week.	V2
+### 4.1 Cache Key Schema & TTLs
 
-Creator Profiles
-Every user gets a public creator profile — auto-generated from their published components. This is a portfolio page that updates itself. For Forge's target users (freelancers, indie devs), this is a meaningful secondary benefit: building in public without extra effort.
+|**Cache Key Pattern**|**Value**|**TTL**|
+|---|---|---|
+|**dna:global:{user_id}**|Serialized global DNA JSON|1 hour — invalidate on DNA update|
+|**dna:workspace:{workspace_id}**|Serialized workspace DNA JSON|1 hour — invalidate on DNA update|
+|**dna:effective:{user_id}:{workspace_id}**|Merged effective DNA (global + workspace)|30 min — invalidate on either update|
+|**repo:meta:{repo_id}**|Component repo metadata + latest version|5 min — invalidate on commit/publish|
+|**repo:props:{repo_id}:{version}**|Prop schema JSON for Prop Playground|24 hours — immutable per version|
+|**feed:public:{page}:{filters_hash}**|Paginated public feed results|2 min — balance freshness vs DB load|
+|**token:{token_hash}**|User ID + scope (token validation fast path)|15 min — invalidate on token revoke|
+|**mcp:search:{query_hash}:{user_id}**|MCP semantic search results|10 min — balance freshness vs Qdrant cost|
+|**mcp:get:{repo_id}:{version}**|Full MCP component payload|10 min — invalidate on new version|
+|**sync:pending:{user_id}**|Count of pending sync notifications|5 min — for dashboard badge|
+|**quota:{user_id}:{month}**|Current AI usage counts per type|Until end of month, reset on new month|
+|**topology:{user_id}**|Latest topology report summary|1 hour — invalidate on topology.compute job|
 
-Component Provenance & Trust
-Provenance Badge	Shows fork lineage: forked from X, adapted by Y, used in Z projects
-Human Crafted	Green badge: >80% manually edited lines
-AI Assisted	Blue badge: AI generated, human reviewed and iterated
-AI Generated	Yellow badge: minimal human edits post-generation
-Community Score	Weighted score: coherence + accessibility + human touch + fork count
+### 4.2 Cache Invalidation Strategy
 
- 
-9. Cross-Project Sync
-THE PROBLEM THAT NOBODY TALKS ABOUT
-You fix a bug in your Button in Project 1. Projects 2 through 6 still have the bug. Forever. Forge solves this. When you update a component, every project using it gets notified. One review, one approve, and the fix ships everywhere.
+•        Write-through invalidation: every service method that mutates a record also deletes relevant cache keys
 
-How It Works
-•	User installs Forge CLI in each project: npx forge init
-•	Forge CLI registers the project against the user's account
-•	A forge.lock file tracks which component + version each project is using
-•	When a component is updated in Forge, all registered projects receive a sync notification
-•	User reviews the diff in Forge dashboard and approves or skips per project
-•	Approved syncs are applied via CLI: forge sync (applies all pending updates)
+•        Use Redis SCAN + DEL pattern for wildcard invalidation (e.g. all dna:* keys for a user on DNA update)
 
-Sync Modes
-Auto-sync (patch versions)	Bug fixes (1.0.x) auto-applied with no review required
-Review required (minor)	Feature additions (1.x.0) require explicit approval
-Breaking change alert (major)	API changes (x.0.0) shown as breaking, never auto-applied
-Skip forever	Pin a project to a specific version, never receive sync notifications
+•        Version-keyed cache for immutable data (prop schemas, commit snapshots) — never needs invalidation
 
- 
-10. Design Contracts (Team / V2 Feature)
-Design Contracts are enforced rules at the component library level. Any component that violates a contract is flagged before it can be merged into the shared library. Think CI/CD, but for design consistency.
+•        Feed cache uses short TTL (2 min) instead of active invalidation — acceptable staleness for social feed
 
-Example Contracts
-•	All interactive components MUST have a loading state
-•	All components MUST support dark mode via CSS variables
-•	All motion MUST respect prefers-reduced-motion
-•	All components MUST pass WCAG 2.1 AA contrast minimum
-•	No hardcoded color values — only CSS variables from the design token set
+### 4.3 Queue Architecture (BullMQ)
 
-Contract Enforcement
-At Publish	Contract checks run before any component can be published to shared library
-At Fork	Forked component is checked against your contracts before being added
-At URL Import	Imported components run contract checks, violations shown with fix suggestions
-Agent Enforcement	MCP includes active contracts so AI agents generate compliant code by default
+|**Queue Name**|**Jobs**|**Workers / Concurrency**|
+|---|---|---|
+|**ai:generation**|screenshot, video, a11y-fix, darkmode, responsive, figma, compose|2 workers, concurrency 3 each|
+|**ai:coherence**|coherence check runs (fast, lightweight)|1 worker, concurrency 10|
+|**vcs:publish**|npm publish to Verdaccio on new version tag|1 worker, concurrency 5|
+|**dna:analysis**|github repo analysis, codebase upload analysis|1 worker, concurrency 2|
+|**dna:topology**|topology report generation (heavy, weekly)|1 worker, concurrency 1|
+|**sync:notify**|fan-out sync notifications to registered projects|1 worker, concurrency 20|
+|**import:fetch**|URL import fetch + dep resolution|2 workers, concurrency 5|
+|**social:index**|index new public component into Qdrant|1 worker, concurrency 10|
 
- 
-11. Recommended Tech Stack
-Frontend (The Product UI)
-Framework	Next.js 15 (App Router)
-Styling	Tailwind CSS v4
-Component Base	Radix UI primitives (unstyled) + custom Forge design system
-State Management	Zustand for client state, React Query for server state
-Code Editor	Monaco Editor (for in-platform component editing)
-Component Preview	sandpack (CodeSandbox's in-browser bundler) for live preview
-Animations	Framer Motion
+### 4.4 MCP Latency SLA — How We Hit <200ms
 
-Backend
-Runtime	Node.js with Bun (performance + compatibility)
-Framework	Hono (fast, edge-compatible, TypeScript-native)
-Database	PostgreSQL via Neon (serverless, branching, scales to zero)
-ORM	Drizzle ORM (TypeScript-native, SQL-first)
-Auth	Clerk or Auth.js (social login + API token management)
-Storage	Cloudflare R2 (zero bandwidth fees — component files, screenshots, replays)
-Search	pgvector extension on PostgreSQL for semantic MCP search
-Queue	BullMQ + Redis (Upstash) for async AI jobs and sync notifications
-Cache	Upstash Redis for component metadata caching
+|**Step**|**Target**|**Mechanism**|
+|---|---|---|
+|**Token validation**|<5ms|Redis cache: token:{hash} → user_id + scope|
+|**forge.get (cached)**|<20ms|Redis: mcp:get:{repo_id}:{version} → full payload|
+|**forge.get (miss)**|<80ms|Neon PostgreSQL read + R2 source fetch + Redis set|
+|**forge.search (cached)**|<30ms|Redis: mcp:search:{hash} → result set|
+|**forge.search (miss)**|<180ms|Qdrant vector search + PostgreSQL metadata join + Redis set|
+|**forge.getDNA (cached)**|<10ms|Redis: dna:effective:{uid}:{wid} → DNA JSON|
+|**forge.getDNA (miss)**|<60ms|PostgreSQL read + merge computation + Redis set|
 
-AI Layer
-Primary Model	User's own API key — Claude claude-sonnet-4 (vision + code quality)
-Secondary Model	User's own API key — GPT-4o (fallback, video analysis)
-Embeddings	text-embedding-3-small (OpenAI) for semantic search vectors
-DNA Analysis	Custom pipeline: AST parsing (TypeScript compiler API) + LLM summarization
-Screenshot Analysis	Claude's vision API (best-in-class for UI understanding)
+  
 
-Infrastructure
-Hosting	Vercel (frontend + API routes) or Railway (full backend control)
-CDN	Cloudflare (component file delivery, MCP endpoint edge caching)
-MCP Server	Cloudflare Workers (edge-deployed, low latency for agent queries)
-npm Publishing	Verdaccio (self-hosted npm registry) or direct npmjs.com publishing
-Monitoring	Sentry (errors) + Posthog (analytics) + Axiom (logs)
+# 5. Vector Store — Qdrant
 
- 
-12. Core API Design
-REST API — Component Operations
-Method	Endpoint	Description
-GET	/api/components	List all components for authenticated user
-POST	/api/components	Create new component repo
-GET	/api/components/:id	Get component metadata + latest version
-GET	/api/components/:id/versions	List all versions of a component
-POST	/api/components/:id/versions	Publish new version
-POST	/api/components/import	Import component from external URL
-GET	/api/components/:id/replay	Get replay history
-POST	/api/components/:id/fork	Fork a public component
-GET	/api/dna	Get user's Design DNA profile
-POST	/api/ai/screenshot	Submit screenshot for component generation
-POST	/api/ai/video	Submit video for animation generation
-POST	/api/ai/coherence	Run coherence check on submitted code
-GET	/api/explore	Public component feed with filters
-GET	/api/mcp/search	MCP semantic search endpoint
+|   |
+|---|
+|**PURPOSE**<br><br>_Qdrant powers semantic search for the MCP tool and the Explore feed. When a developer asks Claude Code to 'find me a gallery component with lazy loading', Qdrant returns the most semantically similar components from their library — using embeddings, not keyword matching. This is what makes forge.search feel intelligent rather than just a text search._|
 
- 
-13. Phased Build Roadmap
-Phase 1 — V1 Core (Portfolio MVP)
-Goal: Ship something real that demonstrates the full system. Enough to impress engineers and put in a resume.
-Feature	Description	Priority
-Auth + User accounts	Clerk-based auth, user profiles, API token generation	V1 Core
-Component Repo System	Create, version, and browse component repos	V1 Core
-CLI Tool (forge)	forge add, forge push, forge init, forge sync commands	V1 Core
-npm Auto-publish	Each user gets @username/forge scope auto-published on version bump	V1 Core
-URL Import + Dep Resolver	Paste any component URL, Forge fetches + resolves deps + commits	V1 Core
-Screenshot to Component	Vision AI generates React+Tailwind from screenshot with DNA context	V1 AI
-Design DNA (GitHub import)	Analyze connected GitHub repos to build initial DNA profile	V1 Core
-MCP Server (read)	forge.search, forge.get, forge.getDNA, forge.listWorkspace	V1 Core
-Basic social feed	Explore page, star, fork, public profiles	V1 Core
-Component Replay	Store prompts + screenshots + version snapshots	V1 Core
-Coherence Engine (basic)	DNA coherence score + accessibility check before publish	V1 AI
+### 5.1 Collections
 
-Phase 2 — V2 Growth
-Feature	Description	Priority
-Video to Animation	Upload video/GIF, get Framer Motion code	V2
-Agentic Lifecycle	Variant consolidation, framework migration, accessibility agents	V2
-Cross-Project Sync	forge.lock, sync notifications, one-click apply	V2
-MCP read-write	forge.push from agent, forge.diff, forge.fork	V2
-Provenance Graph	Visual lineage graph for forked components	V2
-Design Contracts (team)	Enforceable rules for shared component libraries	V2
-Collections / Kits	Curated component sets, publishable as named kits	V2
-VSCode Extension	Browse and insert components without leaving the editor	V2
+|**Collection**|**Embedding Source**|**Payload Fields**|
+|---|---|---|
+|**components_public**|name + description + tags + prop names|repo_id, user_id, framework, scores, star_count|
+|**components_private_{user_id}**|name + description + tags + code summary|repo_id, workspace_id, version, updated_at|
+|**dna_profiles**|DNA JSON serialized to text|user_id, confidence, source|
 
-Phase 3 — V3 Scale
-Feature	Description	Priority
-Org / Team accounts	Shared workspaces, role-based access, team DNA	V3
-Monetization	Free tier + Pro (private repos, unlimited AI credits) + Team	V3
-Agency features	Client-namespaced workspaces, white-label kit publishing	V3
-Figma plugin	Import Figma components directly into Forge	V3
-Component marketplace	Buy and sell premium kits and collections	V3
+### 5.2 Embedding Pipeline
 
- 
-14. Competitive Landscape
-Why Forge Wins Where Others Didn't
-THE BIT.DEV LESSON
-Bit.dev attempted component version control and never gained mainstream adoption. The reason: it required too much behavior change without enough immediate payoff. Forge's answer is the MCP — the payoff is immediate and visible in the first AI session. Developers don't change workflows for better organization. They change for superpowers.
+•        Model: text-embedding-3-small (OpenAI) — 1536 dimensions, cheap, fast
 
-Feature	Forge	shadcn/ui	Bit.dev	Storybook	v0.dev
-Personal version control	✓	✗	✓	✗	✗
-Universal URL import	✓	✗	✗	✗	✗
-Design DNA engine	✓	✗	✗	✗	✗
-MCP for AI agents	✓	✗	✗	✗	✗
-Screenshot to component	✓	✗	✗	✗	✓
-Cross-project sync	✓	✗	Partial	✗	✗
-Social fork layer	✓	✗	✓	✗	✗
-Coherence / taste filter	✓	✗	✗	✗	✗
-Component Replay	✓	✗	✗	✗	✗
-Fully free V1	✓	✓	Limited	✓	Limited
+•        Generated at: component publish, fork, URL import, DNA update
 
- 
-15. Open Questions & Decisions Pending
-Feature	Description	Priority
-Final product name	FORGE is the recommendation. Confirm or explore alternatives before domain registration.	Decide now
-npm registry approach	Self-hosted Verdaccio vs publishing directly to npmjs.com under user scope. Verdaccio = more control, npmjs = less infra.	Decide at V1 build
-Video analysis model	No great open model for video-to-animation. GPT-4o or Gemini 1.5 Pro are candidates. Needs evaluation.	V2 decision
-Replay storage cost	Per-component replay storage could grow large. Need per-user storage quota and compression strategy.	Decide at V1 build
-DNA cold start	Users with no GitHub history have no DNA. Need a guided manual setup wizard that produces usable DNA from 5 questions.	V1 required
-Fork adaptation quality	Auto-adapting a forked component to DNA is hard. Need fallback: 'Adaptation suggested — review before commit'.	V1 required
-MCP latency SLA	AI agents need fast MCP responses. Target: <200ms for forge.get, <500ms for forge.search. Needs caching strategy.	V1 required
+•        Queued via social:index BullMQ job — never blocks the publish API response
 
- 
-16. Summary — What We Are Building
+•        Embedding input = concat(name, description, prop_names, code_summary_200_chars)
 
-THE FINAL WORD
-Forge is not a component library. It is not a design system. It is the infrastructure layer that makes your taste portable — across every project, every AI agent, every collaborator, and every inspiration you encounter on the internet. It is what happens when version control, design intelligence, AI tooling, and community are built together from the ground up for the reality of how developers actually build frontend in 2025.
+•        Code summary generated by Claude haiku (cheap) before embedding — not the full source
 
-The product is defined. The vision is clear. The sharp edge is the MCP. The moonshot is Design DNA. The community moat is the social layer.
+### 5.3 Search Flow
 
-Next step: System architecture design.
+|   |
+|---|
+|MCP forge.search('gallery with lazy loading')<br><br>  │<br><br>  ├─ 1. Check Redis: mcp:search:{hash}:{user_id}  →  cache hit? return immediately<br><br>  │<br><br>  ├─ 2. Generate query embedding via text-embedding-3-small<br><br>  │<br><br>  ├─ 3. Qdrant search:<br><br>  │      collection: components_private_{user_id}  (search own library first)<br><br>  │      top_k: 5, score_threshold: 0.75<br><br>  │      filter: { framework: ['react','nextjs','webcomponent'] }<br><br>  │<br><br>  ├─ 4. If < 3 results: also search components_public<br><br>  │      filter: { user_id: NOT current_user }  (exclude already-owned)<br><br>  │<br><br>  ├─ 5. Hydrate results: fetch repo metadata from PostgreSQL<br><br>  │<br><br>  ├─ 6. Fetch component source from R2 for top result<br><br>  │<br><br>  ├─ 7. Cache in Redis: mcp:search:{hash}:{user_id}  TTL 10min<br><br>  │<br><br>  └─ 8. Return MCP payload with DNA context injected|
 
-— END OF PRODUCT SPECIFICATION —
+  
+
+# 6. Object Storage — Cloudflare R2
+
+|   |
+|---|
+|**WHY R2**<br><br>_R2 has zero egress fees. Component source files, screenshots, videos, and replay data are fetched constantly — by CLI, by MCP, by the Prop Playground, by the visual diff engine. With S3, egress would be a meaningful cost at scale. With R2, it is zero._|
+
+### R2 Bucket Structure
+
+|   |
+|---|
+|atomichub-components/          # Component source files<br><br>  {user_id}/{repo_id}/{sha}/<br><br>    component.tsx              # Main source<br><br>    component.ce.ts            # Web Component wrapper<br><br>    atomichub.json             # Metadata<br><br>    CHANGELOG.md<br><br>atomichub-ai/                  # AI job inputs and outputs<br><br>  jobs/{job_id}/<br><br>    input.{png\|mp4\|json}       # Screenshot / video / figma input<br><br>    output.tsx                 # Generated component<br><br>    prompt.json                # Full prompt sent to model<br><br>atomichub-replay/              # Component creation history<br><br>  {repo_id}/<br><br>    prompts.json               # All prompts in chronological order<br><br>    screenshots/{sha}.png      # Reference screenshots<br><br>    snapshots/{version}.tsx    # Version snapshots<br><br>atomichub-dna/                 # DNA analysis artifacts<br><br>  {user_id}/<br><br>    analysis.json              # Full DNA analysis result<br><br>    topology_{date}.json       # Topology report|
+
+### R2 Access Patterns
+
+|**Consumer**|**Access Pattern**|**Auth**|
+|---|---|---|
+|**API (Render)**|Direct R2 SDK reads/writes|Service account credentials|
+|**MCP (CF Workers)**|Presigned URL fetch for component source|Presigned URL generated by API, short TTL|
+|**CLI**|Presigned upload URLs for push, presigned download for add|API token → server generates presigned URL|
+|**Prop Playground**|Source fetched by API, served to sandpack|Public read for public repos, API for private|
+|**Visual Diff**|Two source files fetched for comparison|Same as Prop Playground|
+
+  
+
+# 7. AI Pipeline Architecture
+
+### 7.1 Screenshot → Component Flow
+
+|   |
+|---|
+|POST /api/ai/screenshot<br><br>  │<br><br>  ├─ 1. Validate: user quota check (Redis: quota:{uid}:screenshot)<br><br>  │<br><br>  ├─ 2. Upload screenshot to R2: atomichub-ai/jobs/{job_id}/input.png<br><br>  │<br><br>  ├─ 3. Insert ai_jobs row: status='queued'<br><br>  │<br><br>  ├─ 4. Enqueue BullMQ job: ai:generation  { job_id, type:'screenshot' }<br><br>  │<br><br>  └─ 5. Return 202 Accepted: { job_id }  ← client polls /api/ai/jobs/{job_id}<br><br>BullMQ Worker: ai:generation (screenshot)<br><br>  │<br><br>  ├─ 1. Fetch effective DNA from Redis (or PostgreSQL)<br><br>  │<br><br>  ├─ 2. Fetch workspace contracts from PostgreSQL<br><br>  │<br><br>  ├─ 3. Build system prompt:<br><br>  │      - DNA context (spacing, colors, typography, naming, animation)<br><br>  │      - Active contracts (must-haves)<br><br>  │      - Existing component list (from Qdrant user library)<br><br>  │      - Framework target (React + Tailwind)<br><br>  │<br><br>  ├─ 4. Call Claude claude-sonnet-4 vision API (user's Anthropic key)<br><br>  │      Input: screenshot + system prompt<br><br>  │      Output: component.tsx source<br><br>  │<br><br>  ├─ 5. Run coherence check (Claude haiku): score + violations<br><br>  │<br><br>  ├─ 6. Store output to R2: atomichub-ai/jobs/{job_id}/output.tsx<br><br>  │<br><br>  ├─ 7. Store prompt to R2: atomichub-ai/jobs/{job_id}/prompt.json<br><br>  │<br><br>  ├─ 8. Update ai_jobs: status='done', output_ref, coherence_score<br><br>  │<br><br>  ├─ 9. Increment usage quota: Redis INCR quota:{uid}:screenshot<br><br>  │<br><br>  └─ 10. Notify client via WebSocket or polling response|
+
+### 7.2 Video → Animation Flow (Gemini)
+
+|   |
+|---|
+|POST /api/ai/video<br><br>  │<br><br>  ├─ Validate quota, upload to R2, enqueue ai:generation job<br><br>  └─ Same 202 pattern as screenshot<br><br>BullMQ Worker: ai:generation (video)<br><br>  │<br><br>  ├─ 1. Fetch video from R2<br><br>  │<br><br>  ├─ 2. Build prompt: extract motion timeline, easing, element transforms<br><br>  │      Include DNA animation personality: easing preference, duration range<br><br>  │<br><br>  ├─ 3. Call Gemini 1.5 Pro (user's Google AI key)<br><br>  │      Input: video file + motion extraction prompt<br><br>  │      Output: Framer Motion component OR CSS @keyframes<br><br>  │<br><br>  ├─ 4. Post-process: inject prefers-reduced-motion wrapper<br><br>  │<br><br>  ├─ 5. Adapt easing values to DNA animation personality<br><br>  │<br><br>  └─ 6. Store + notify (same pattern as screenshot)|
+
+### 7.3 DNA Cold Start — 5 Question Wizard
+
+|   |
+|---|
+|POST /api/dna/cold-start  { answers: QuizAnswer[] }<br><br>Q1: 'How would you describe your spacing style?'<br><br>    → A) Tight and dense  B) Comfortable (8px grid)  C) Airy and spacious<br><br>    Maps to: spacing_scale base unit (4px / 8px / 12px)<br><br>Q2: 'Pick the border radius style that fits you:'<br><br>    → A) Sharp (0px)  B) Subtle (4-6px)  C) Rounded (8-12px)  D) Pill (9999px)<br><br>    Maps to: border_system.radius_scale preset<br><br>Q3: 'How do you prefer animations?'<br><br>    → A) None — I prefer static  B) Subtle and functional  C) Expressive and playful<br><br>    Maps to: animation.personality preset<br><br>Q4: 'Upload your brand colors or pick a palette:'<br><br>    → Color picker UI or hex input for primary + secondary<br><br>    Maps to: color_system.primary, color_system.secondary<br><br>Q5: 'Pick your typography stack:'<br><br>    → Shows 6 font pair previews (Inter/Sora, Geist/Cal Sans, etc.)<br><br>    Maps to: typography.heading_font, typography.body_font<br><br>→ Server synthesizes full DNA JSON from answer mapping + reasonable defaults<br><br>→ Sets global_dna.cold_start_complete = true, confidence = 40<br><br>→ DNA refines automatically as user publishes components (confidence rises)|
+
+### 7.4 Fork DNA Adaptation
+
+|   |
+|---|
+|POST /api/social/fork  { repo_id, target_workspace_id }<br><br>  │<br><br>  ├─ 1. Copy repo metadata → new component_repo row<br><br>  │<br><br>  ├─ 2. Fetch source from R2 (original component)<br><br>  │<br><br>  ├─ 3. Fetch effective DNA of FORKER (not original author)<br><br>  │<br><br>  ├─ 4. Enqueue ai:generation job: type='fork_adapt'<br><br>  │<br><br>  └─ 5. Return 202 with repo stub (accessible immediately, adapted version pending)<br><br>BullMQ Worker: fork_adapt<br><br>  │<br><br>  ├─ 1. Diff original DNA vs forker DNA: find deltas<br><br>  │      e.g. primary color changed, border radius changed, font changed<br><br>  │<br><br>  ├─ 2. Build targeted adaptation prompt:<br><br>  │      'Adapt this component. Change primary from #6366F1 to #8B5CF6.<br><br>  │       Change border-radius from 4px to 8px. Keep structure identical.'<br><br>  │<br><br>  ├─ 3. Call Claude haiku (cheap — targeted, not generative)<br><br>  │<br><br>  ├─ 4. Run coherence check against forker's DNA<br><br>  │<br><br>  ├─ 5. If coherence < 70: flag as 'Needs Review' — don't auto-commit<br><br>  │      If coherence >= 70: auto-commit to forker's repo<br><br>  │<br><br>  └─ 6. Notify forker: 'Fork ready — review adaptation before publishing'|
+
+  
+
+# 8. MCP Server Architecture
+
+|   |
+|---|
+|**DEPLOYMENT**<br><br>_The MCP server is deployed as a Cloudflare Worker — separate from the main Render API. This gives edge-global latency (<50ms anywhere), infinite horizontal scaling at zero config, and complete isolation from API load. The Worker is stateless — all data comes from Redis (cache) or the Render API (cache miss fallback)._|
+
+### 8.1 MCP Request Flow
+
+|   |
+|---|
+|Claude Code → MCP Server (CF Worker)<br><br>  │<br><br>  ├─ 1. Parse MCP tool call: { tool: 'atomichub.search', params: { query } }<br><br>  │<br><br>  ├─ 2. Validate API token:<br><br>  │      Check Redis: token:{hash} → { user_id, scope, workspace_id }<br><br>  │      Cache miss: POST Render API /internal/tokens/validate (adds to cache)<br><br>  │<br><br>  ├─ 3. Check scope: read tools require 'read', push requires 'write'<br><br>  │<br><br>  ├─ 4. Route to tool handler<br><br>  │<br><br>  └─ 5. Return MCP-formatted response with DNA context injected<br><br>Tool handler: atomichub.search<br><br>  ├─ Check Redis cache (mcp:search:{hash}:{user_id})<br><br>  ├─ Miss: POST Render API /internal/mcp/search { query, user_id, workspace_id }<br><br>  │        API runs Qdrant search + PostgreSQL hydration<br><br>  ├─ Cache result in Redis (10 min TTL)<br><br>  └─ Inject DNA context from Redis dna:effective:{uid}:{wid}|
+
+### 8.2 MCP Internal API (Render → Worker bridge)
+
+|**Endpoint**|**Called By**|**Returns**|
+|---|---|---|
+|**POST /internal/tokens/validate**|CF Worker on token cache miss|user_id, scope, workspace_id|
+|**POST /internal/mcp/search**|CF Worker on search cache miss|Ranked component list with metadata|
+|**GET /internal/mcp/component/{id}**|CF Worker on get cache miss|Full source + props + metadata|
+|**GET /internal/mcp/dna/{uid}/{wid}**|CF Worker on DNA cache miss|Effective DNA JSON|
+|**POST /internal/mcp/push**|CF Worker on write tool call|Created commit SHA|
+|**GET /internal/mcp/contracts/{wid}**|CF Worker on contracts cache miss|Active contract list|
+
+  
+
+# 9. VCS Engine Design
+
+|   |
+|---|
+|**DESIGN DECISION**<br><br>_AtomicHub does not use libgit2 or shell out to git. It implements a purpose-built VCS on top of PostgreSQL + R2. This gives full control over the data model, allows UI-first features like visual diffing and AI blame annotation, and avoids the complexity of managing bare git repos at scale. The mental model is git-identical from the user's perspective._|
+
+### 9.1 Commit Hashing
+
+|   |
+|---|
+|function computeSHA(content: string, parentSHA: string \| null, metadata: object): string {<br><br>  // SHA256 of: content + parentSHA + author_id + timestamp + metadata<br><br>  const input = JSON.stringify({ content, parentSHA, metadata });<br><br>  return crypto.createHash('sha256').update(input).digest('hex');<br><br>}<br><br>// Each commit is content-addressed — identical content = identical SHA<br><br>// Parent chain forms the commit DAG (same as git's object model)|
+
+### 9.2 Visual Diff Engine
+
+|   |
+|---|
+|GET /api/components/{id}/diff?from={sha_or_tag}&to={sha_or_tag}<br><br>  │<br><br>  ├─ 1. Fetch source A and source B from R2<br><br>  │<br><br>  ├─ 2. Code diff: unified diff algorithm (same as git diff -U3)<br><br>  │<br><br>  ├─ 3. Prop diff: parse TypeScript interfaces from both versions,<br><br>  │      compute added/removed/renamed/type-changed props<br><br>  │<br><br>  ├─ 4. Visual diff: both sources sent to Prop Playground renderer,<br><br>  │      screenshots captured via headless browser (Playwright on Render),<br><br>  │      pixel comparison via pixelmatch → diff percentage + overlay image<br><br>  │<br><br>  ├─ 5. Score diff: coherence_score A vs B, a11y_score A vs B<br><br>  │<br><br>  └─ 6. Return: { code_diff, prop_diff, visual_diff_url, score_delta }|
+
+### 9.3 Blame Construction
+
+|   |
+|---|
+|GET /api/components/{id}/blame?branch=main<br><br>  │<br><br>  ├─ 1. Fetch current source from R2<br><br>  │<br><br>  ├─ 2. Walk commit history from HEAD → initial commit<br><br>  │<br><br>  ├─ 3. For each commit: diff against parent, attribute changed lines<br><br>  │<br><br>  ├─ 4. Build blame map: line_number → { commit_sha, author, timestamp,<br><br>  │                                       ai_assisted, ai_model }<br><br>  │<br><br>  └─ 5. Return blame map + annotated source|
+
+  
+
+# 10. Verdaccio npm Registry
+
+|   |
+|---|
+|**ROLE**<br><br>_Every AtomicHub user gets a scoped npm package: @username/atomichub-components. When a component is tagged with a semver release, a BullMQ job publishes the updated package to the Verdaccio instance running on Render. CLI users can install via npm install @username/atomichub-components or use the shadcn-style atomichub add command (which copies source — no runtime dependency)._|
+
+### Publish Flow
+
+|   |
+|---|
+|POST /api/components/{id}/versions  { tag: '1.2.0', channel: 'stable' }<br><br>  │<br><br>  ├─ 1. Insert version_tags row<br><br>  │<br><br>  ├─ 2. Enqueue vcs:publish job: { repo_id, tag, user_id }<br><br>  │<br><br>  └─ 3. Return 201 Created<br><br>BullMQ Worker: vcs:publish<br><br>  │<br><br>  ├─ 1. Fetch component source from R2<br><br>  │<br><br>  ├─ 2. Generate package.json:<br><br>  │      { name: '@{username}/atomichub-components',<br><br>  │        version: '{tag}',<br><br>  │        exports: { './{ComponentName}': './{ComponentName}.tsx' } }<br><br>  │<br><br>  ├─ 3. Build tarball (tar + gzip)<br><br>  │<br><br>  ├─ 4. PUT to Verdaccio registry API<br><br>  │<br><br>  ├─ 5. Update version_tags.npm_published = true<br><br>  │<br><br>  └─ 6. Invalidate Redis: repo:meta:{repo_id}|
+
+### Verdaccio Config
+
+|   |
+|---|
+|# config.yaml (Render service)<br><br>storage: /verdaccio/storage<br><br>auth:<br><br>  htpasswd:<br><br>    file: /verdaccio/htpasswd<br><br>    max_users: -1<br><br>uplinks:<br><br>  npmjs:<br><br>    url: https://registry.npmjs.org/<br><br>packages:<br><br>  '@*/atomichub-components':<br><br>    access: '$all'          # public read<br><br>    publish: '$authenticated'  # only AtomicHub service account writes<br><br>    proxy: npmjs<br><br>  '**':<br><br>    access: '$all'<br><br>    proxy: npmjs           # proxy all other packages to npmjs|
+
+  
+
+# 11. Auth & Usage Quota System
+
+### 11.1 Authentication Layers
+
+|**Consumer**|**Auth Method**|**How It Works**|
+|---|---|---|
+|**Web app users**|Clerk OAuth/Email|Clerk session token → Clerk SDK validates → user_id extracted|
+|**CLI users**|API Token|atomichub login → browser OAuth → token generated + stored in ~/.atomichub/config|
+|**MCP clients**|API Token|Token in env var ATOMICHUB_TOKEN → CF Worker validates → scoped access|
+|**Internal services**|Service key|Render-to-Render internal network + shared secret header|
+
+### 11.2 API Token Flow
+
+|   |
+|---|
+|1. User visits Dashboard → Settings → API Tokens<br><br>2. Names token ('Claude Code MCP'), selects scope, optionally scopes to workspace<br><br>3. Server: generates random 32-byte token, stores bcrypt(token) in api_tokens table<br><br>4. Returns plain token ONCE — user copies it, never shown again<br><br>5. On every MCP/CLI request:<br><br>   a. Extract token from Authorization: Bearer {token}<br><br>   b. Check Redis: token:{sha256(token)} → cached user_id + scope<br><br>   c. Cache miss: bcrypt compare against api_tokens table, cache result 15min<br><br>   d. Check scope: read/write/admin as required by route<br><br>   e. Update api_tokens.last_used (async, non-blocking)|
+
+### 11.3 Per-User AI Quota System
+
+|   |
+|---|
+|// Quota limits per plan tier (enforced in app layer, not DB)<br><br>const QUOTA_LIMITS = {<br><br>  free: {<br><br>    screenshot: 10,   // per month<br><br>    video: 3,<br><br>    a11y: 20,<br><br>    coherence: 100,   // runs on every publish, so higher limit<br><br>    responsive: 10,<br><br>    darkmode: 10,<br><br>    figma: 5,<br><br>  },<br><br>  pro: {            // all limits 10x free (future monetization)<br><br>    screenshot: 100,<br><br>    // ...<br><br>  }<br><br>};<br><br>// Quota check before every AI job:<br><br>async function checkQuota(userId: string, type: AIJobType): Promise<void> {<br><br>  const key = `quota:${userId}:${currentMonth()}`;<br><br>  const used = await redis.hget(key, type) ?? 0;<br><br>  const limit = QUOTA_LIMITS[userPlan][type];<br><br>  if (Number(used) >= limit) throw new QuotaExceededError(type, limit);<br><br>}<br><br>// After job completes:<br><br>await redis.hincrby(`quota:${userId}:${currentMonth()}`, type, 1);<br><br>// Redis key auto-expires at month end (TTL set on first write)|
+
+  
+
+# 12. Key Sequence Flows
+
+### 12.1 CLI: atomichub add Button
+
+|   |
+|---|
+|Developer terminal → CLI<br><br>  │<br><br>  ├─ 1. Read ~/.atomichub/config for API token + active workspace<br><br>  │<br><br>  ├─ 2. GET /api/components?name=Button&workspace={id}<br><br>  │      Response: { repo_id, latest_tag, source_url (presigned R2) }<br><br>  │<br><br>  ├─ 3. Fetch source from R2 presigned URL<br><br>  │<br><br>  ├─ 4. Read project package.json, resolve missing deps<br><br>  │<br><br>  ├─ 5. npm install {missing_deps} in current project<br><br>  │<br><br>  ├─ 6. Write component.tsx to ./components/Button/<br><br>  │<br><br>  ├─ 7. Append to atomichub.lock:<br><br>  │      { Button: { repo_id, tag: '1.2.0', workspace_id } }<br><br>  │<br><br>  └─ 8. POST /api/sync/register-usage { project_id, repo_id, tag }|
+
+### 12.2 MCP: Claude Code Builds a Feature
+
+|   |
+|---|
+|Developer: 'Build me a user profile card using my component library'<br><br>  │<br><br>  ├─ Claude Code calls atomichub.getDNA({ workspace_id })<br><br>  │      → CF Worker → Redis hit → DNA JSON returned<br><br>  │      Claude now knows: violet accent, 8px grid, Inter font, no hardcoded colors<br><br>  │<br><br>  ├─ Claude Code calls atomichub.listWorkspace({ workspace_id })<br><br>  │      → Returns: ['Avatar', 'Card', 'Badge', 'Button', 'Text']<br><br>  │<br><br>  ├─ Claude Code calls atomichub.search({ query: 'profile card layout' })<br><br>  │      → Qdrant semantic search → 'Card' component returned as top match<br><br>  │<br><br>  ├─ Claude Code calls atomichub.get({ name: 'Card', version: 'latest' })<br><br>  │      → Full Card source returned<br><br>  │<br><br>  ├─ Claude generates ProfileCard using existing Card + Avatar + Badge<br><br>  │      (Composition — no new components generated unnecessarily)<br><br>  │<br><br>  ├─ Claude Code calls atomichub.checkCoherence({ source: generatedCode })<br><br>  │      → Score: 91 — 'Uses correct spacing, colors match DNA, accessible'<br><br>  │<br><br>  ├─ Claude Code calls atomichub.push({ name: 'ProfileCard', source, message: 'feat: profile card' })<br><br>  │      → CF Worker → POST /internal/mcp/push → commit created in PostgreSQL<br><br>  │      → source stored in R2 → Qdrant index queued<br><br>  │<br><br>  └─ Developer has a new ProfileCard in their AtomicHub library automatically|
+
+### 12.3 Cross-Project Sync Flow
+
+|   |
+|---|
+|Developer updates Button v1.1.0 → v1.2.0 (minor: adds loading state)<br><br>  │<br><br>  ├─ 1. New version_tag inserted<br><br>  │<br><br>  ├─ 2. vcs:publish BullMQ job fires → npm published to Verdaccio<br><br>  │<br><br>  ├─ 3. sync:notify job fires:<br><br>  │      Query sync_subscriptions WHERE repo_id = Button.id AND channel = 'stable'<br><br>  │      Found: Project-A (v1.1.0), Project-B (v1.1.0), Project-C (pinned=v1.0.0)<br><br>  │<br><br>  ├─ 4. Insert sync_notifications for Project-A and Project-B (not C — pinned)<br><br>  │      change_type = 'minor' (1.x.0) → requires review<br><br>  │<br><br>  ├─ 5. Developer sees badge in dashboard: '2 pending syncs'<br><br>  │<br><br>  ├─ 6. Developer opens sync dashboard:<br><br>  │      Shows visual diff: Button v1.1.0 rendered vs v1.2.0 rendered<br><br>  │      Shows code diff, prop diff (new 'loading' prop added)<br><br>  │<br><br>  ├─ 7. Developer approves for Project-A, skips Project-B<br><br>  │<br><br>  └─ 8. atomichub sync (in Project-A terminal):<br><br>         Fetches approved updates, writes new Button source, updates atomichub.lock|
+
+  
+
+# 13. Prop Playground Architecture
+
+|   |
+|---|
+|**TECH CHOICE**<br><br>_Sandpack (CodeSandbox's in-browser bundler) runs entirely in the browser — no server-side rendering needed. The component source is fetched from R2, injected into a sandpack template, and rendered live. The controls panel is driven by the component.props.json schema auto-generated by the TypeScript compiler API at publish time._|
+
+### Prop Schema Generation Pipeline
+
+|   |
+|---|
+|// Runs as part of vcs:publish BullMQ job<br><br>import { Project, ts } from 'ts-morph';<br><br>function extractPropSchema(source: string): PropSchema[] {<br><br>  const project = new Project({ useInMemoryFileSystem: true });<br><br>  const file = project.createSourceFile('component.tsx', source);<br><br>  // Find the Props interface or type<br><br>  const propsInterface = file.getInterface('Props') ?? file.getTypeAlias('Props');<br><br>  return propsInterface.getProperties().map(prop => ({<br><br>    name: prop.getName(),<br><br>    type: inferControlType(prop.getType()),  // string→text, boolean→toggle, union→select<br><br>    values: extractUnionValues(prop.getType()),<br><br>    default: extractJSDocDefault(prop),<br><br>    required: !prop.hasQuestionToken(),<br><br>  }));<br><br>}|
+
+### Sandpack Integration
+
+|   |
+|---|
+|// Frontend: ComponentPlayground.tsx<br><br>import { Sandpack } from '@codesandbox/sandpack-react';<br><br>// Files injected into sandpack at load time:<br><br>const files = {<br><br>  '/component.tsx': componentSource,           // from R2<br><br>  '/App.tsx': generateAppWrapper(propValues),  // generated from prop controls state<br><br>  '/index.tsx': SANDPACK_ENTRY,<br><br>};<br><br>// When any control changes:<br><br>// 1. Update propValues state<br><br>// 2. Regenerate /App.tsx with new prop values<br><br>// 3. Sandpack hot-reloads — preview updates in <100ms|
+
+  
+
+# 14. Universal URL Import Pipeline
+
+|   |
+|---|
+|POST /api/import  { url: 'https://reactbits.dev/components/animated-content' }<br><br>  │<br><br>  ├─ 1. Validate URL, check quota<br><br>  │<br><br>  ├─ 2. Enqueue import:fetch job → return 202<br><br>  │<br><br>BullMQ Worker: import:fetch<br><br>  │<br><br>  ├─ 1. HTTP fetch URL → parse HTML<br><br>  │<br><br>  ├─ 2. Source extraction strategy (tried in order):<br><br>  │      a. Look for <code> blocks with .tsx/.jsx content<br><br>  │      b. Look for CodeSandbox/StackBlitz embed URLs → fetch their file API<br><br>  │      c. Look for GitHub raw URLs → direct fetch<br><br>  │      d. Headless Playwright fetch (last resort for JS-rendered pages)<br><br>  │<br><br>  ├─ 3. Parse extracted source → identify all imports<br><br>  │<br><br>  ├─ 4. Dependency resolution:<br><br>  │      For each import: check if it's in npm registry<br><br>  │      Build manifest: { peerDeps: [], devDeps: [], internal: [] }<br><br>  │<br><br>  ├─ 5. Enqueue ai:generation job: type='fork_adapt' against user's DNA<br><br>  │<br><br>  ├─ 6. Store adapted source to R2<br><br>  │<br><br>  ├─ 7. Create commit in user's component repo<br><br>  │<br><br>  └─ 8. Return: { repo_id, dep_manifest, coherence_score, adaptation_notes }|
+
+  
+
+# 15. Infrastructure & Environment Configuration
+
+### 15.1 Service Inventory
+
+|**Service**|**Platform**|**Plan**|**Config Notes**|
+|---|---|---|---|
+|**Next.js App**|Vercel|Hobby → Pro|NEXT_PUBLIC_API_URL, NEXT_PUBLIC_CLERK_KEY|
+|**Hono API**|Render|Starter ($7/mo)|Main monolith. 512MB RAM sufficient for V1.|
+|**BullMQ Workers**|Render|Starter ($7/mo)|Separate service. Shares Redis with API.|
+|**Verdaccio**|Render|Starter ($7/mo)|Persistent disk for storage. 1GB sufficient V1.|
+|**Playwright**|Render (API)|Included|Headless browser for visual diff screenshots.|
+|**PostgreSQL**|Neon|Free tier → Pro|Serverless, branching for staging. pgvector enabled.|
+|**Redis**|Upstash|Free → Pay-per-use|Serverless Redis. BullMQ + caching.|
+|**Qdrant**|Qdrant Cloud|Free → Starter|Vector search. 1GB free tier sufficient for V1.|
+|**R2**|Cloudflare|Free tier (10GB)|Object storage. Zero egress.|
+|**MCP Server**|CF Workers|Free (100k/day)|Edge MCP endpoint.|
+
+### 15.2 Environment Variables
+
+|   |
+|---|
+|# Render API service<br><br>DATABASE_URL=postgresql://...         # Neon connection string<br><br>REDIS_URL=redis://...                 # Upstash Redis URL<br><br>REDIS_TOKEN=...                       # Upstash REST token<br><br>QDRANT_URL=https://...qdrant.io       # Qdrant Cloud endpoint<br><br>QDRANT_API_KEY=...                    # Qdrant API key<br><br>R2_ACCOUNT_ID=...                     # Cloudflare account<br><br>R2_ACCESS_KEY_ID=...                  # R2 credentials<br><br>R2_SECRET_ACCESS_KEY=...<br><br>R2_BUCKET_COMPONENTS=atomichub-components<br><br>R2_BUCKET_AI=atomichub-ai<br><br>R2_BUCKET_REPLAY=atomichub-replay<br><br>CLERK_SECRET_KEY=...                  # Clerk backend key<br><br>VERDACCIO_URL=http://verdaccio:4873   # Internal Render network<br><br>VERDACCIO_TOKEN=...                   # Service account token<br><br>MCP_INTERNAL_SECRET=...              # CF Worker → API auth<br><br>OPENAI_API_KEY=...                   # For text-embedding-3-small ONLY<br><br>                                      # (user models come from their own keys)<br><br># Cloudflare Worker (MCP server)<br><br>API_BASE_URL=https://api.atomichub.dev<br><br>REDIS_URL=...                         # Same Upstash instance<br><br>MCP_INTERNAL_SECRET=...              # Shared with Render API|
+
+  
+
+# 16. Security Considerations
+
+|   |
+|---|
+|**CRITICAL ITEMS**<br><br>_These are non-negotiable security requirements that must be implemented before any public launch. Skipping any of these creates real attack surface._|
+
+|**Concern**|**Risk**|**Mitigation**|
+|---|---|---|
+|**User API keys in DB**|High|Never store plain. AES-256-GCM encrypt at rest. Decrypt only in worker at job time. Key stored in env var, never in DB.|
+|**URL import SSRF**|Critical|Validate URL against allowlist of domains. Block internal IPs (169.254.x.x, 10.x.x.x, 172.x.x.x). Max redirect depth: 3.|
+|**Sandpack code execution**|Medium|Sandpack runs in browser iframe with sandbox attribute. No server-side code execution. CSP headers enforced.|
+|**Verdaccio package poisoning**|High|Only AtomicHub service account can publish. Namespace scoped to @*/atomichub-components. Packages validated before publish.|
+|**R2 presigned URL abuse**|Medium|Short TTL (15 min) on all presigned URLs. URLs scoped to specific object key. Rate limit presigned URL generation.|
+|**SQL injection**|Low — mitigated|Drizzle ORM parameterizes all queries. No raw SQL string interpolation permitted.|
+|**Token hash timing attack**|Medium|Use bcrypt (not SHA256) for token comparison. bcrypt's constant-time compare prevents timing attacks.|
+|**Playwright SSRF via visual diff**|Critical|Playwright runs in isolated container. Network restricted to R2 URLs only. Timeout: 10s max.|
+
+  
+
+# 17. Recommended Build Order
+
+|   |
+|---|
+|**PRINCIPLE**<br><br>_Build the dumbest thing that demonstrates the core value first. Each milestone should be independently deployable and demonstrable. Never build infrastructure before the feature it serves._|
+
+|**Sprint**|**Milestone**|**Delivers**|**Validates**|
+|---|---|---|---|
+|**1**|Auth + DB foundations|Clerk auth, PostgreSQL schema (all tables), basic API scaffold, Vercel + Render deployed|Stack works end to end|
+|**2**|Component Repo CRUD|Create repo, view repo, basic commit (no branching yet), R2 storage|Core VCS concept|
+|**3**|Full git features|Branches, PRs, tags, revert, blame, visual diff (code only)|VCS completeness|
+|**4**|CLI tool|atomichub init, login, add, push, commit, log|Developer DX|
+|**5**|DNA cold start + analysis|5-question wizard, GitHub import analysis, DNA stored|DNA engine baseline|
+|**6**|Screenshot → Component|AI job pipeline, BullMQ, quota, iteration loop, auto-commit|V1 AI flagship|
+|**7**|Prop Playground|sandpack integration, prop schema generation, Monaco editor|V1 UX differentiator|
+|**8**|Visual diffing (full)|Screenshot diff via Playwright, prop diff, side-by-side render|Key feature complete|
+|**9**|MCP server|CF Workers MCP, all 10 tools, token auth, Redis caching|Sharp edge live|
+|**10**|Universal URL import|Fetch pipeline, dep resolver, DNA adaptation, Playwright fallback|Import system live|
+|**11**|npm + Verdaccio|Verdaccio deploy, publish on tag, user scoped packages|Distribution live|
+|**12**|Cross-project sync|atomichub.lock, sync notifications, dashboard, apply command|Sync feature live|
+|**13**|Social layer|Public feed, stars, forks, comments, creator profiles|Community live|
+|**14**|Remaining AI suite|A11y fixer, dark mode gen, responsive gen, composition suggester|AI suite complete|
+|**15**|Coherence + contracts|Full coherence engine, design contracts, enforcement gates|Quality system live|
+|**16**|Polish + launch|Topology analysis, onboarding flow, documentation, demo video|V1 ship-ready|
+
+  
+
+# 18. System Design Summary
+
+|   |
+|---|
+|**ARCHITECTURE LOCKED**<br><br>_Modular monolith on Render (Hono). Next.js on Vercel. MCP on Cloudflare Workers. PostgreSQL (Neon) + Redis (Upstash) + Qdrant Cloud + Cloudflare R2. Verdaccio on Render for npm. BullMQ for all async AI and background jobs. Every decision is optimized for zero-to-V1 speed while maintaining a clean migration path to microservices at scale._|
+
+### Data Flow in One Sentence Per Domain
+
+•        Auth: Clerk handles identity. API tokens stored hashed. Validated via Redis fast path.
+
+•        VCS: Custom content-addressed commit graph in PostgreSQL. Sources in R2. Visual diff via Playwright + pixelmatch.
+
+•        DNA: Two-level (global + workspace). Stored in PostgreSQL. Cached in Redis. Used by every AI job as system context.
+
+•        AI: All jobs async via BullMQ. User brings own API keys. Results in R2. Quota tracked in Redis.
+
+•        MCP: Cloudflare Workers edge server. Redis cache for <200ms. Falls back to Render API for cache misses.
+
+•        Import: URL fetch → source extract → dep resolve → DNA adapt → commit. Playwright as last-resort fetcher.
+
+•        Social: PostgreSQL for graph. Qdrant for semantic search. Redis for feed cache.
+
+•        Sync: atomichub.lock tracks usage. Notifications fan-out via BullMQ. Visual diff before every apply.
+
+_— END OF SYSTEM DESIGN DOCUMENT —_

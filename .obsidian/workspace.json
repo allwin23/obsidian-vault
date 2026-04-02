@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/April plan.md",
+                "file": "03-Main Notes/Frontend Github.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "April plan"
+              "title": "Frontend Github"
             }
           }
         ],
@@ -237,16 +237,21 @@
   },
   "active": "5db1a97c2a9930ed",
   "lastOpenFiles": [
-    "03-Main Notes/Placement Season.md",
-    "03-Main Notes/April plan.md",
-    "03-Main Notes/Goals.md",
-    "00-Indexes/Personal-Index.md",
-    "3-Tags/Personal/Journal.md",
+    "3-Tags/CS/Development.md",
     "00-Indexes/CS-Index.md",
+    "03-Main Notes/Frontend Github.md",
+    "00-Indexes/Personal-Index.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "01-Rough Notes/Obsidian Ideas.md",
+    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
+    "06-Kanbancards/Untitled.md",
+    "07-Daily Journal/01-01-2026.md",
+    "03-Main Notes/April plan.md",
+    "03-Main Notes/Placement Season.md",
+    "03-Main Notes/Goals.md",
+    "3-Tags/Personal/Journal.md",
     "00-Indexes/Finance-Index.md",
     "00-Indexes/Interests-Index.md",
-    "03-Main Notes/Frontend Github.md",
-    "3-Tags/CS/Development.md",
     "03-Main Notes/Agentic OS.md",
     "03-Main Notes/CrewAi.md",
     "03-Main Notes/Langchain.md",
@@ -259,11 +264,6 @@
     "03-Main Notes/Development.md",
     "Pasted image 20260319185449.png",
     "03-Main Notes/OOPS.md",
-    "03-Main Notes/RAG.md",
-    "03-Main Notes/Labsection for Rag.md",
-    "03-Main Notes/Entire Math for Rag.md",
-    "03-Main Notes/Hashing.md",
-    "03-Main Notes/2.Subset2.md",
     "tn_10th_ch7_mensuration_full_text_exam.pdf",
     "Pasted image 20260313230149.png",
     "03-Main Notes/Untitled 2.base",
