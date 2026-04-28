@@ -14,3 +14,10 @@ There is going to be lot of description handling over the weight But for now as 
     5. 6. [[Frontend Github]] 
     6. own coding assitant Tool kit 
     7. Own Clerk model 
+       
+
+
+
+## Hackathon Projects 
+
+Agentic Ai - 
