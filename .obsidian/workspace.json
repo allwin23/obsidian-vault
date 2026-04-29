@@ -4,67 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "7dbca740a8f9c122",
+        "id": "677b7c57d0938639",
         "type": "tabs",
         "children": [
           {
-            "id": "f4174a67e9073903",
+            "id": "d89cbaf4336d4e8f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Frontend Github.md",
+                "file": "07-Daily Journal/28-04-26.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Frontend Github"
+              "title": "28-04-26"
             }
           },
           {
-            "id": "5db1a97c2a9930ed",
+            "id": "edba9b348d7124fa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00-Indexes/Personal-Index.md",
+                "file": "03-Main Notes/29-04-26.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Personal-Index"
-            }
-          },
-          {
-            "id": "9cd2699a5a225f60",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3-Tags/Personal/Journal.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Journal"
-            }
-          },
-          {
-            "id": "57712e941ee7f035",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/Agentic OS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Agentic OS"
+              "title": "29-04-26"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -263,20 +235,31 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "57712e941ee7f035",
+  "active": "edba9b348d7124fa",
   "lastOpenFiles": [
-    "3-Tags/CS/Development.md",
-    "00-Indexes/CS-Index.md",
-    "03-Main Notes/PARSEWAVE REVIEWER.md",
-    "3-Tags/Personal/Journal.md",
-    "03-Main Notes/Parswave MM task.md",
+    "07-Daily Journal/28-04-26.md",
+    "03-Main Notes/29-04-26.md",
+    "03-Main Notes/29-08-26.md",
+    "Pasted image 20260313230149.png",
+    "03-Main Notes/Music.md",
     "00-Indexes/Personal-Index.md",
     "00-Indexes/Interests-Index.md",
     "00-Indexes/Finance-Index.md",
-    "01-Rough Notes/Issues and Goal based plan.md",
+    "00-Indexes/CS-Index.md",
     "01-Rough Notes/Obsidian Ideas.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "03-Main Notes/Agentic OS.md",
+    "3-Tags/CS/Development.md",
+    "02-Tags/DSA.md",
+    "01-Rough Notes/Untitled.md",
     "01-Rough Notes/Proof of Work is needed for the sake of things.md",
     "03-Main Notes/Frontend Github.md",
+    "Pasted image 20260319185449.png",
+    "3-Tags/Personal/Journal.md",
+    "Pasted image 20260103160317.png",
+    "tn_10th_ch7_mensuration_full_text_exam.pdf",
+    "03-Main Notes/PARSEWAVE REVIEWER.md",
+    "03-Main Notes/Parswave MM task.md",
     "03-Main Notes/April plan.md",
     "03-Main Notes/Placement Season.md",
     "03-Main Notes/Goals.md",
@@ -287,23 +270,12 @@
     "AtomicHub_System_Design.docx",
     "06-Kanbancards/Untitled.md",
     "07-Daily Journal/01-01-2026.md",
-    "03-Main Notes/Agentic OS.md",
     "03-Main Notes/CrewAi.md",
     "03-Main Notes/Langchain.md",
-    "03-Main Notes/Langraph.md",
-    "03-Main Notes/MAth for hsnw.md",
-    "03-Main Notes/Mircroservice.md",
-    "03-Main Notes/MULTI MODAL.md",
-    "03-Main Notes/Gen AI course Coursera.md",
-    "03-Main Notes/Graphsql.md",
-    "Pasted image 20260319185449.png",
-    "tn_10th_ch7_mensuration_full_text_exam.pdf",
-    "Pasted image 20260313230149.png",
     "03-Main Notes/Untitled 2.base",
     "03-Main Notes/Untitled 1.base",
     "Untitled.canvas",
     "Excalidraw",
-    "Pasted image 20260103160317.png",
     "3-Tags/CS",
     "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20251216221627.png"

@@ -11,6 +11,8 @@ created: {{date}}
 | Journal       | [[3-Tags/Personal/Journal]]       | [[{{date:YYYY-MM-DD}}]] |
 | Mental Health | [[3-Tags/Personal/Mental-Health]] | -                       |
 | Goals         | [[Goals ]]                        | -                       |
+| Music         | [[Music]]                         |                         |
+|               |                                   |                         |
 
 ## 📅 Recent Journal Entries
 ```dataview
