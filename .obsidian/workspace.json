@@ -4,53 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "677b7c57d0938639",
+        "id": "d55c61fe61416885",
         "type": "tabs",
         "children": [
           {
-            "id": "d89cbaf4336d4e8f",
+            "id": "4acd631afdf6c737",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "07-Daily Journal/28-04-26.md",
-                "mode": "source",
-                "source": false
+                "aFile": "03-Main Notes/Let kcuf  everything and restart from start.md",
+                "bFile": "03-Main Notes/Let kcuf  everything and restart from start.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "28-04-26"
+              "icon": "diff",
+              "title": "Diff: Let kcuf  everything and restart from start  (Working Tree)"
             }
           },
           {
-            "id": "edba9b348d7124fa",
+            "id": "e1eb55ff4b819abe",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "webviewer",
               "state": {
-                "file": "07-Daily Journal/01-01-2026.md",
-                "mode": "source",
-                "source": false
+                "url": "https://github.com/agiresearch/AIOS/blob/main/aios/llm_core/utils.py",
+                "title": "AIOS/aios/llm_core/utils.py at main · agiresearch/AIOS · GitHub",
+                "mode": "webview"
               },
-              "icon": "lucide-file",
-              "title": "01-01-2026"
+              "icon": "globe-2",
+              "title": "AIOS/aios/llm_core/utils.py at main · agiresearch/AIOS · GitHub"
             }
           },
           {
-            "id": "75794c1b69ac847a",
+            "id": "a45660848c0ef52c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/3.Combination sum-1.md",
+                "file": "03-Main Notes/Development.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3.Combination sum-1"
+              "title": "Development"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -249,38 +249,38 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "75794c1b69ac847a",
+  "active": "e1eb55ff4b819abe",
   "lastOpenFiles": [
+    "03-Main Notes/Development.md",
+    "03-Main Notes/Let kcuf  everything and restart from start.md",
+    "03-Main Notes/Agentic OS.md",
+    "03-Main Notes/9. Search Matrix or Binary Search.md",
+    "03-Main Notes/Arrays.md",
+    "03-Main Notes/4.Sort Colors.md",
+    "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
+    "03-Main Notes/4. . Combination Sum II.md",
+    "03-Main Notes/5.Palindrome Partitioning.md",
+    "03-Main Notes/6. Permutation Sequence.md",
+    "03-Main Notes/6.Rotate Matrix.md",
+    "03-Main Notes/7. Permutations.md",
+    "03-Main Notes/8. Duplicate or Cycle finding or Tortoise hare.md",
+    "03-Main Notes/10.Power.md",
+    "03-Main Notes/Untitled 3.md",
+    "05-Templates📜/T-BusinessIdea.md",
+    "03-Main Notes/2. Subset problem 2.md",
+    "03-Main Notes/Untitled 5.md",
+    "03-Main Notes/3.Combination sum-1.md",
+    "07-Daily Journal/01-01-2026.md",
+    "07-Daily Journal/28-04-26.md",
     "03-Main Notes/Recursion.md",
     "02-Tags/DSA.md",
     "00-Indexes/Finance-Index.md",
-    "03-Main Notes/Let kcuf  everything and restart from start.md",
-    "07-Daily Journal/01-01-2026.md",
     "00-Indexes/Personal-Index.md",
     "03-Main Notes/Untitled Kanban 1.md",
-    "00-Indexes/CS-Index.md",
-    "00-Indexes/Interests-Index.md",
-    "03-Main Notes/29-04-26.md",
-    "07-Daily Journal/28-04-26.md",
-    "03-Main Notes/29-08-26.md",
     "Pasted image 20260313230149.png",
-    "03-Main Notes/Music.md",
-    "01-Rough Notes/Obsidian Ideas.md",
-    "01-Rough Notes/Issues and Goal based plan.md",
-    "03-Main Notes/Agentic OS.md",
-    "3-Tags/CS/Development.md",
-    "01-Rough Notes/Untitled.md",
-    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
-    "03-Main Notes/Frontend Github.md",
     "Pasted image 20260319185449.png",
-    "3-Tags/Personal/Journal.md",
     "Pasted image 20260103160317.png",
     "tn_10th_ch7_mensuration_full_text_exam.pdf",
-    "03-Main Notes/PARSEWAVE REVIEWER.md",
-    "03-Main Notes/Parswave MM task.md",
-    "03-Main Notes/April plan.md",
-    "03-Main Notes/Placement Season.md",
-    "03-Main Notes/Goals.md",
     "AtomicHub_Product_Specification_v2.docx",
     "AtomicHub_System_Design 1.docx",
     "AtomicHub_Sprint_Plan 1.docx",
