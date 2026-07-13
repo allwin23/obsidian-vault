@@ -27,12 +27,12 @@
             "state": {
               "type": "webviewer",
               "state": {
-                "url": "https://github.com/agiresearch/AIOS/blob/main/aios/llm_core/utils.py",
-                "title": "AIOS/aios/llm_core/utils.py at main · agiresearch/AIOS · GitHub",
+                "url": "https://github.com/agiresearch/AIOS/blob/main/install/install.sh",
+                "title": "AIOS/install/install.sh at main · agiresearch/AIOS · GitHub",
                 "mode": "webview"
               },
               "icon": "globe-2",
-              "title": "AIOS/aios/llm_core/utils.py at main · agiresearch/AIOS · GitHub"
+              "title": "AIOS/install/install.sh at main · agiresearch/AIOS · GitHub"
             }
           },
           {
@@ -41,16 +41,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Development.md",
+                "file": "03-Main Notes/Langraph.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Development"
+              "title": "Langraph"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -249,12 +249,22 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e1eb55ff4b819abe",
+  "active": "a45660848c0ef52c",
   "lastOpenFiles": [
-    "03-Main Notes/Development.md",
     "03-Main Notes/Let kcuf  everything and restart from start.md",
-    "03-Main Notes/Agentic OS.md",
+    "03-Main Notes/MAth for hsnw.md",
+    "03-Main Notes/Mircroservice.md",
+    "03-Main Notes/MULTI MODAL.md",
+    "03-Main Notes/Music.md",
+    "03-Main Notes/OOPS.md",
+    "03-Main Notes/PARSEWAVE REVIEWER.md",
+    "03-Main Notes/Parswave MM task.md",
+    "03-Main Notes/Pasted image 20251217131955.png",
+    "03-Main Notes/Placement Season.md",
+    "03-Main Notes/PrefetchForge.md",
     "03-Main Notes/9. Search Matrix or Binary Search.md",
+    "03-Main Notes/Development.md",
+    "03-Main Notes/Agentic OS.md",
     "03-Main Notes/Arrays.md",
     "03-Main Notes/4.Sort Colors.md",
     "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
@@ -268,15 +278,6 @@
     "03-Main Notes/Untitled 3.md",
     "05-Templates📜/T-BusinessIdea.md",
     "03-Main Notes/2. Subset problem 2.md",
-    "03-Main Notes/Untitled 5.md",
-    "03-Main Notes/3.Combination sum-1.md",
-    "07-Daily Journal/01-01-2026.md",
-    "07-Daily Journal/28-04-26.md",
-    "03-Main Notes/Recursion.md",
-    "02-Tags/DSA.md",
-    "00-Indexes/Finance-Index.md",
-    "00-Indexes/Personal-Index.md",
-    "03-Main Notes/Untitled Kanban 1.md",
     "Pasted image 20260313230149.png",
     "Pasted image 20260319185449.png",
     "Pasted image 20260103160317.png",
@@ -291,7 +292,6 @@
     "Untitled.canvas",
     "Excalidraw",
     "3-Tags/CS",
-    "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20251216221627.png"
   ]
 }

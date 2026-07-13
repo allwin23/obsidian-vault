@@ -1,4 +1,4 @@
-[Core Components of LangGraph](https://www.coursera.org/learn/agentic-ai-with-langchain-and-langgraph/lecture/ius5N/core-components-of-langgraph?trk_ref=coach_copy)  Mar 19, 2026
+  [Core Components of LangGraph](https://www.coursera.org/learn/agentic-ai-with-langchain-and-langgraph/lecture/ius5N/core-components-of-langgraph?trk_ref=coach_copy)  Mar 19, 2026
 
 This video lecture focuses on the core components of LangGraph, an advanced framework for building stateful, multi-agent applications within the LangChain ecosystem.
 
