@@ -33,7 +33,7 @@ potential: low | medium | high
 
 ## ✅ Validation Checklist
 - [ ] Problem validated
-- [ ] Solution tested
+- [ ] Solution tested 
 - [ ] Customer interviews done
 - [ ] MVP built
 - [ ] First sale

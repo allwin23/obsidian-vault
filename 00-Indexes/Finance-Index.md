@@ -35,5 +35,5 @@ SORT potential DESC
 ```
 
 ## 🔗 Related
-- [[CS-Index]] - For fintech
+- [[CS-Index  108639623]] - For fintech
 - [[Blockchain]] - Crypto/DeFi

@@ -1,4 +1,4 @@
-
+ 
 The course content provides an overview of multimodal AI, which refers to artificial intelligence systems capable of processing and understanding multiple types of data simultaneously.
 
 Understanding Multimodal AI
