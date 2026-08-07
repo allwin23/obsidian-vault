@@ -37,12 +37,75 @@ Let me start with the school one which where is tiny little boy who is very comp
  Off days as having chores 10 days 
  Extra 2 days 
  4 extra days la one day completely  for the Driving Remaining days Build to auto applier    
-
+ The Wonking schedule :
  U  can have masturbation for every Wednesday night in August and Sep 
  Make it as 2nd sat and 4th sat oct Nov 
  December and Jan make it 2nd sat and let it be that for next 1 year   
 
 
-Politics Youtube has to be completely gave up as I can see there is no use case at all 
+Politics You tube has to be completely gave up as I can see there is no use case at all 
 
-I had few issues and then make sure that 
+Regarding Resume what is pending Patha 
+this has to be completed withing next one month 
+3 Awesome projects That should have great value and user Base as well 
+And maybe create another resume for AI engineer role 
+And certifications Do Aws 2 exams 
+Mongo Db  certifications 
+
+Portions that needed to be learnt 
+To clear basic interview questions  
+
+DBMS
+SQL
+Networks
+Oops 
+Dsa + c++ 
+Os / linux 
+
+
+ Skills 
+ Java script , Typescript,  Python  Language
+ Backend Fastapi , nodejs, (If possible go )
+ Framworks : React , next js ,valina , react native ,Angular Basics 
+ Cloud Aws, GraphQl
+ Databses ; Postsql, Supabase , 
+ Platforms : Ubunyt , ;lInuusz 
+
+## Routine 
+
+ 24 Sleep - 6.5 hrs  
+ 17.5 hrs remaining 
+    1.5 for morning routine and workout 
+    .5 for tea break 
+    3 meals 3 hours 
+    in between  10 min break  20 mins for Night routine    
+
+ 
+ 6 to 7 30    1 30 hrs Morning routine + workout  
+ 7 30 to 9 30  Session 1 
+ 9 30 to 10 30 its going to be Breakfast time 
+ 10 30 to 12 30 Session 2 
+ 5 mins break 
+ 12 35 to 2 35 session 3 
+ 1 hr Lunch 
+ 3 30 to 5 30 session 4
+ 30 mins tea break 
+ 6 to 8 session 5
+ 8 to 9 dinner time 
+ 9 to 11 session session 6 
+ 30 mins for the night routine 
+
+
+
+This is going to  be the routine for next 6 months 
+
+## Philosophy 
+
+ What do you think u need to change in order to achieve greatness 
+ 
+ 1. The perfection trap - this is the biggest con of yourself that stops you to even begin This is something that ruined you  entirely I feel I think from here on this is not going to happen I am going to try whatever that comes to my mind and the result will be handled by my system The result will act as the feedback loop to my system it bring changes it assets the perspective If it is positive and if it is negative it will bring changes to the system And I am going to simply try the ideas I have all my life It simply fits even expressing my thoughts . I have been only obsessing over the people achievements like looking at the finished art at the museum I want to go to studio and fail miserably and get the Learnings and move forward 
+ Example:
+ That Byjus Procrastination , Job application procrastination 
+
+
+2. The comparison insecurity : 
