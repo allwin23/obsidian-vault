@@ -1,4 +1,4 @@
-I want to write a proper history of things that would be doing good to analyse what have done so far which makes to me realise where I am actually standing in the place of my journey and then make sure that these things are done in the proper way form now on so that we need to fix something. 
+   I want to write a proper history of things that would be doing good to analyse what have done so far which makes to me realise where I am actually standing in the place of my journey and then make sure that these things are done in the proper way form now on so that we need to fix something. 
 The whole objective will be pointing out the same thing which is Have ever lived up your potential actually rather being delusion about your achievements . And focussing on the habits that u have to change that forever. 
 ## School Journey: 
 
