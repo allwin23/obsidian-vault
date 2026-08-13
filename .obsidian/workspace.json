@@ -22,6 +22,32 @@
             }
           },
           {
+            "id": "e07457cbdfd56365",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.13.6"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.13.6"
+            }
+          },
+          {
+            "id": "23fcc26ad4431bf6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/1.Set Matrix Zeroes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1.Set Matrix Zeroes"
+            }
+          },
+          {
             "id": "5877eba5dacd0dfc",
             "type": "leaf",
             "state": {
@@ -35,7 +61,8 @@
               "title": "Philosophy"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -236,8 +263,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "699a9dc75e2c88c9",
+  "active": "23fcc26ad4431bf6",
   "lastOpenFiles": [
+    "02-Tags/DSA.md",
+    "03-Main Notes/1.Set Matrix Zeroes.md",
+    "03-Main Notes/1.Sum of all Subsets.md",
+    "03-Main Notes/Recursion.md",
+    "03-Main Notes/3.Combination sum-1.md",
+    "03-Main Notes/2.Pascal's Triangle.md",
+    "03-Main Notes/2.Subset2.md",
+    "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
+    "03-Main Notes/4.Sort Colors.md",
+    "03-Main Notes/7. Permutations.md",
+    "03-Main Notes/5.Palindrome Partitioning.md",
+    "03-Main Notes/6. Permutation Sequence.md",
     "03-Main Notes/Philosophy.md",
     "03-Main Notes/Sooooooo Farrrr.md",
     "03-Main Notes/Hashing.md",
@@ -246,26 +285,14 @@
     "03-Main Notes/MULTI MODAL.md",
     "07-Daily Journal/07-08-2026.md",
     "03-Main Notes/Frontend Github.md",
-    "03-Main Notes/3.Combination sum-1.md",
     "05-Templates📜/T-CodingQuestions.md",
     "00-Indexes/CS-Index  108639623.md",
     "00-Indexes/Finance-Index.md",
     "00-Indexes/Interests-Index.md",
     "00-Indexes/Personal-Index.md",
     "3-Tags/CS/Development.md",
-    "02-Tags/DSA.md",
     "03-Main Notes/Anu Gift Plan and App kitty and star.md",
     "~$omicHub_System_Design 1.docx",
-    "03-Main Notes/1.Sum of all Subsets.md",
-    "03-Main Notes/Anu Gift ideas.md",
-    "05-Templates📜/T-DailyJournal.md",
-    "03-Main Notes/Business-Ideas.md",
-    "05-Templates📜/T-BusinessIdea.md",
-    "03-Main Notes/Feb16.md",
-    "03-Main Notes/Placement Season.md",
-    "03-Main Notes/RAG.md",
-    "03-Main Notes/Langraph.md",
-    "03-Main Notes/AWS.md",
     "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20260313230149.png",
     "Pasted image 20260319185449.png",
