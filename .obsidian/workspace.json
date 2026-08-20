@@ -76,7 +76,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -277,10 +277,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ef264d806e4b8b81",
+  "active": "5877eba5dacd0dfc",
   "lastOpenFiles": [
-    "03-Main Notes/1.Set Matrix Zeroes.md",
     "03-Main Notes/18.08.26.md",
+    "03-Main Notes/1.Set Matrix Zeroes.md",
     "02-Tags/DSA.md",
     "03-Main Notes/1.Sum of all Subsets.md",
     "03-Main Notes/Recursion.md",
