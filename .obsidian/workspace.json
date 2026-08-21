@@ -67,16 +67,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Philosophy.md",
+                "file": "03-Main Notes/1.Set Matrix Zeroes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Philosophy"
+              "title": "1.Set Matrix Zeroes"
+            }
+          },
+          {
+            "id": "4ed0bfd048ed89c5",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -131,7 +141,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -277,10 +288,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "5877eba5dacd0dfc",
+  "active": "e07457cbdfd56365",
   "lastOpenFiles": [
-    "03-Main Notes/18.08.26.md",
     "03-Main Notes/1.Set Matrix Zeroes.md",
+    "03-Main Notes/0,1,2,0],[3,4,5,2],[1,3,1,5.md",
+    "03-Main Notes/Philosophy.md",
+    "03-Main Notes/18.08.26.md",
     "02-Tags/DSA.md",
     "03-Main Notes/1.Sum of all Subsets.md",
     "03-Main Notes/Recursion.md",
@@ -292,7 +305,6 @@
     "03-Main Notes/7. Permutations.md",
     "03-Main Notes/5.Palindrome Partitioning.md",
     "03-Main Notes/6. Permutation Sequence.md",
-    "03-Main Notes/Philosophy.md",
     "03-Main Notes/Sooooooo Farrrr.md",
     "03-Main Notes/Hashing.md",
     "03-Main Notes/PrefetchForge.md",
@@ -305,7 +317,6 @@
     "00-Indexes/Finance-Index.md",
     "00-Indexes/Interests-Index.md",
     "00-Indexes/Personal-Index.md",
-    "3-Tags/CS/Development.md",
     "~$omicHub_System_Design 1.docx",
     "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20260313230149.png",
