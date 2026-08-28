@@ -4,89 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "d55c61fe61416885",
+        "id": "273ea9184ee56a6c",
         "type": "tabs",
         "children": [
           {
-            "id": "699a9dc75e2c88c9",
+            "id": "10695be49c15f18b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Sooooooo Farrrr.md",
+                "file": "03-Main Notes/Habits and discipline.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sooooooo Farrrr"
-            }
-          },
-          {
-            "id": "e07457cbdfd56365",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.13.6"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.13.6"
-            }
-          },
-          {
-            "id": "23fcc26ad4431bf6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/1.Set Matrix Zeroes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1.Set Matrix Zeroes"
-            }
-          },
-          {
-            "id": "ef264d806e4b8b81",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/18.08.26.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "18.08.26"
-            }
-          },
-          {
-            "id": "5877eba5dacd0dfc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/1.Set Matrix Zeroes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1.Set Matrix Zeroes"
-            }
-          },
-          {
-            "id": "4ed0bfd048ed89c5",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Habits and discipline"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -120,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#dsa",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -288,35 +223,35 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e07457cbdfd56365",
+  "active": "f9e771bc63c575ab",
   "lastOpenFiles": [
+    "Untitled",
+    "03-Main Notes/Sooooooo Farrrr.md",
+    "03-Main Notes/Arrays.md",
+    "3-Tags/CS/Development.md",
+    "03-Main Notes/MULTI MODAL.md",
+    "02-Tags/DSA.md",
+    "00-Indexes/CS-Index  108639623.md",
+    "00-Indexes/Personal-Index.md",
+    "00-Indexes/Interests-Index.md",
+    "00-Indexes/Finance-Index.md",
+    "03-Main Notes/Habits and discipline.md",
+    "03-Main Notes/Untitled 4.md",
+    "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
+    "03-Main Notes/Untitled.md",
+    "03-Main Notes/Philosophy.md",
+    "03-Main Notes/6.Rotate Matrix.md",
+    "03-Main Notes/4. . Combination Sum II.md",
     "03-Main Notes/1.Set Matrix Zeroes.md",
     "03-Main Notes/0,1,2,0],[3,4,5,2],[1,3,1,5.md",
-    "03-Main Notes/Philosophy.md",
     "03-Main Notes/18.08.26.md",
-    "02-Tags/DSA.md",
     "03-Main Notes/1.Sum of all Subsets.md",
     "03-Main Notes/Recursion.md",
     "03-Main Notes/3.Combination sum-1.md",
     "03-Main Notes/2.Pascal's Triangle.md",
     "03-Main Notes/2.Subset2.md",
-    "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
     "03-Main Notes/4.Sort Colors.md",
-    "03-Main Notes/7. Permutations.md",
-    "03-Main Notes/5.Palindrome Partitioning.md",
-    "03-Main Notes/6. Permutation Sequence.md",
-    "03-Main Notes/Sooooooo Farrrr.md",
-    "03-Main Notes/Hashing.md",
-    "03-Main Notes/PrefetchForge.md",
     "03-Main Notes/Untitled.base",
-    "03-Main Notes/MULTI MODAL.md",
-    "07-Daily Journal/07-08-2026.md",
-    "03-Main Notes/Frontend Github.md",
-    "05-Templates📜/T-CodingQuestions.md",
-    "00-Indexes/CS-Index  108639623.md",
-    "00-Indexes/Finance-Index.md",
-    "00-Indexes/Interests-Index.md",
-    "00-Indexes/Personal-Index.md",
     "~$omicHub_System_Design 1.docx",
     "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20260313230149.png",

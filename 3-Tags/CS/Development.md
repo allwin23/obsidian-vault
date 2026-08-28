@@ -10,7 +10,7 @@ There is going to be lot of description handling over the weight But for now as 
  2.[[ Agentic OS]]
  1. Skillian where interviwe kit latest upadtes 
     4. Job and lead engine 
-       5.Productivie Buddy App
+       5.Productivie Buddy App 
     5. 6. [[Frontend Github]] 
     6. own coding assitant Tool kit 
     7. Own Clerk model 

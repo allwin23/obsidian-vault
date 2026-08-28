@@ -63,7 +63,7 @@ Dsa + c++
 Os / linux 
 
 
- Skills 
+ Skills   
  Java script , Typescript,  Python  Language
  Backend Fastapi , nodejs, (If possible go )
  Framworks : React , next js ,valina , react native ,Angular Basics 
@@ -101,8 +101,11 @@ This is going to  be the routine for next 6 months
 
 ## Habits and Discipline :
 
+[[Habits and discipline]]
 
- The philosophy of discipline that makes the things to be honest 
+
  
-       
+ 
+
+ 
        
