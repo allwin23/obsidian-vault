@@ -8,17 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "10695be49c15f18b",
+            "id": "fddda2078fda8ed8",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/Habits and discipline.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Habits and discipline"
+              "title": "New tab"
             }
           }
         ]
@@ -76,8 +72,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -159,13 +154,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "07-Daily Journal/17-12-2025.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 17-12-2025"
+              "title": "Outline"
             }
           },
           {
@@ -205,7 +199,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 441.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -223,49 +217,49 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f9e771bc63c575ab",
+  "active": "4fe6a0f3f32ede09",
   "lastOpenFiles": [
-    "Untitled",
-    "03-Main Notes/Sooooooo Farrrr.md",
-    "03-Main Notes/Arrays.md",
-    "3-Tags/CS/Development.md",
-    "03-Main Notes/MULTI MODAL.md",
-    "02-Tags/DSA.md",
+    "03-Main Notes/PT.md",
     "00-Indexes/CS-Index  108639623.md",
+    "03-Main Notes/Frontend Github.md",
+    "3-Tags/CS/Development.md",
+    "05-Templates📜/Goal Template.md",
+    "3-Tags/Personal/Journal.md",
+    "03-Main Notes/PrefetchForge.md",
+    "08-Goals-System/Bucket List.md",
+    "3-Tags/Personal",
+    "3-Tags/CS",
+    "3-Tags",
+    "03-Main Notes/Langchain.md",
+    "03-Main Notes/Development.md",
     "00-Indexes/Personal-Index.md",
+    "08-Goals-System/Dreams/Career.md",
+    "08-Goals-System/Dashboard.md",
+    "08-Goals-System/Goals/Clear all my loans and family loans.md",
+    "08-Goals-System/Goals/LAND MY FIRST JOB.md",
+    "08-Goals-System/README - How This System Works.md",
+    "05-Templates📜/Dream Template.md",
+    "08-Goals-System/Templates/Dream Template.md",
+    "08-Goals-System/Templates",
+    "08-Goals-System/Goals",
+    "08-Goals-System/Dreams",
+    "08-Goals-System",
+    "Untitled",
     "00-Indexes/Interests-Index.md",
     "00-Indexes/Finance-Index.md",
-    "03-Main Notes/Habits and discipline.md",
-    "03-Main Notes/Untitled 4.md",
-    "03-Main Notes/5. Best Time to Buy and Sell Stock.md",
-    "03-Main Notes/Untitled.md",
-    "03-Main Notes/Philosophy.md",
-    "03-Main Notes/6.Rotate Matrix.md",
-    "03-Main Notes/4. . Combination Sum II.md",
-    "03-Main Notes/1.Set Matrix Zeroes.md",
-    "03-Main Notes/0,1,2,0],[3,4,5,2],[1,3,1,5.md",
-    "03-Main Notes/18.08.26.md",
-    "03-Main Notes/1.Sum of all Subsets.md",
-    "03-Main Notes/Recursion.md",
-    "03-Main Notes/3.Combination sum-1.md",
-    "03-Main Notes/2.Pascal's Triangle.md",
-    "03-Main Notes/2.Subset2.md",
-    "03-Main Notes/4.Sort Colors.md",
-    "03-Main Notes/Untitled.base",
-    "~$omicHub_System_Design 1.docx",
-    "03-Main Notes/Pasted image 20251217131955.png",
-    "Pasted image 20260313230149.png",
-    "Pasted image 20260319185449.png",
-    "Pasted image 20260103160317.png",
-    "tn_10th_ch7_mensuration_full_text_exam.pdf",
-    "AtomicHub_Product_Specification_v2.docx",
-    "AtomicHub_System_Design 1.docx",
-    "AtomicHub_Sprint_Plan 1.docx",
-    "AtomicHub_Sprint_Plan.docx",
-    "AtomicHub_System_Design.docx",
-    "03-Main Notes/Untitled 2.base",
-    "03-Main Notes/Untitled 1.base",
+    "Excalidraw/Drawing 2026-01-21 12.01.30.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-16 17.59.47.excalidraw.md",
     "Untitled.canvas",
+    "Pasted image 20260103160317.png",
+    "Pasted image 20260319185449.png",
+    "tn_10th_ch7_mensuration_full_text_exam.pdf",
+    "Pasted image 20260313230149.png",
+    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
+    "01-Rough Notes/Untitled.md",
+    "01-Rough Notes/Obsidian Ideas.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "03-Main Notes/Untitled.base",
+    "03-Main Notes/Pasted image 20251217131955.png",
     "Pasted image 20251216221627.png"
   ]
 }
