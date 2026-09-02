@@ -20,4 +20,4 @@ There is going to be lot of description handling over the weight But for now as 
 
 ## Hackathon Projects 
 
-Agentic Ai - 
+

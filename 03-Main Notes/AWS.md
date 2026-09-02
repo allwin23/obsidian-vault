@@ -1,4 +1,10 @@
-| Phase                 | What to Know (Checklist)                                                                                                                                                                                                   | Status |
+Plan is very simple Prepare for Aws Ai exam now and then write the Ai exam as soosn as possible and then make sure that u will write the Cloud exam as well 
+
+
+[[Aws Ai practitioner]]
+
+
+| <br>Phase             | What to Know (Checklist)                                                                                                                                                                                                   | Status |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | **Cloud Basics**      | Cloud computing basics; IaaS / PaaS / SaaS; Public vs Private vs Hybrid cloud; Benefits (scalability, elasticity, pay-as-you-go); AWS Global Infrastructure; Regions vs AZs vs Edge locations; Shared Responsibility Model | ⬜      |
 | **Compute**           | EC2 (virtual servers); Lambda (serverless); Elastic Beanstalk (app deployment)                                                                                                                                             | ⬜      |
