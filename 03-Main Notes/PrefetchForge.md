@@ -12,3 +12,4 @@
 |**Disk Space**|Uses a lot of space (heavy `node_modules`).|Uses very little space.|
 |**Installation**|Slower (installs sequentially).|Much faster (installs in parallel).|
 
+i want to learn python basics for next one week the thins be make ciomfortable read pythong codes this this is for the job related withj reneforment learning evironment

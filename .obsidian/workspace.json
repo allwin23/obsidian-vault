@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Aws Ai practitioner.md",
+                "file": "07-Daily Journal/02-09-2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Aws Ai practitioner"
+              "title": "02-09-2026"
             }
           },
           {
@@ -27,30 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Deep Learning & Generative AI Fundamentals — AIF-C01 Task Statement 1.1.md",
+                "file": "05-Templates📜/Goal Template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Deep Learning & Generative AI Fundamentals — AIF-C01 Task Statement 1.1"
+              "title": "Goal Template"
             }
           },
           {
-            "id": "27860d8a61393bb1",
+            "id": "7236e94de9b2563a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Machine Learning Fundamentals — AIF-C01 Task Statement 1.1.md",
+                "file": "03-Main Notes/Language.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Machine Learning Fundamentals — AIF-C01 Task Statement 1.1"
+              "title": "Language"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -84,7 +84,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Aws",
+                "query": "tag:status/hub",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -105,8 +105,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -233,7 +232,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 441.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -251,37 +250,37 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ea1ce0b71e3ad8ea",
+  "active": "7236e94de9b2563a",
   "lastOpenFiles": [
-    "03-Main Notes/Deep Learning & Generative AI Fundamentals — AIF-C01 Task Statement 1.1.md",
-    "03-Main Notes/Aws Ai practitioner.md",
-    "03-Main Notes/Model Performance, Overfitting, Underfitting & Bias — AIF-C01 Task Statement 1.1.md",
-    "03-Main Notes/Machine Learning Fundamentals — AIF-C01 Task Statement 1.1.md",
-    "03-Main Notes/Machine Learning Training, Inference & Learning Styles — AIF-C01 Task Statement 1.1.md",
-    "03-Main Notes/AWS.md",
-    "03-Main Notes/Ai practioner.md",
-    "08-Goals-System/Goals/Clear all my loans and family loans.md",
-    "3-Tags/CS/Development.md",
     "00-Indexes/CS-Index  108639623.md",
-    "03-Main Notes/Untitled 6.md",
-    "08-Goals-System/Bucket List.md",
-    "07-Daily Journal/17-12-2025.md",
-    "07-Daily Journal/01-01-2026.md",
-    "03-Main Notes/PT.md",
-    "03-Main Notes/Frontend Github.md",
+    "03-Main Notes/Untitled 8.md",
     "05-Templates📜/Goal Template.md",
-    "3-Tags/Personal/Journal.md",
+    "05-Templates📜/T-BusinessIdea.md",
+    "00-Indexes/Personal-Index.md",
+    "05-Templates📜/Dream Template.md",
+    "05-Templates📜/T-CodingQuestions.md",
+    "03-Main Notes/Python.md",
+    "03-Main Notes/Language.md",
+    "00-Indexes/Interests-Index.md",
+    "00-Indexes/Finance-Index.md",
+    "01-Rough Notes/Untitled.md",
+    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "01-Rough Notes/Obsidian Ideas.md",
     "03-Main Notes/PrefetchForge.md",
+    "03-Main Notes/Development.md",
+    "08-Goals-System/Bucket List.md",
+    "08-Goals-System/README - How This System Works.md",
+    "06-Kanbancards/Untitled.md",
+    "3-Tags/CS/Development.md",
+    "3-Tags/Personal/Journal.md",
+    "02-Tags/DSA.md",
+    "daily-tracker-interactive.md",
+    "03-Main Notes/Machine Learning Fundamentals — AIF-C01 Task Statement 1.1.md",
+    "03-Main Notes/Untitled 7.md",
     "3-Tags/Personal",
     "3-Tags/CS",
     "3-Tags",
-    "03-Main Notes/Langchain.md",
-    "03-Main Notes/Development.md",
-    "00-Indexes/Personal-Index.md",
-    "08-Goals-System/Dreams/Career.md",
-    "08-Goals-System/Dashboard.md",
-    "08-Goals-System/Goals/LAND MY FIRST JOB.md",
-    "08-Goals-System/README - How This System Works.md",
     "08-Goals-System/Templates",
     "08-Goals-System/Goals",
     "08-Goals-System/Dreams",

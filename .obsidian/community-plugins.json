@@ -9,5 +9,6 @@
   "obsidian-icon-folder",
   "dataview",
   "obsidian-linter",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-meta-bind-plugin"
 ]
