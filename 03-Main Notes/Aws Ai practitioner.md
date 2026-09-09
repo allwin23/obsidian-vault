@@ -12,4 +12,4 @@ Machine learning models are trained by using large datasets to identify patterns
 [[Model Performance, Overfitting, Underfitting & Bias — AIF-C01 Task Statement 1.1]]
 [[Deep Learning & Generative AI Fundamentals — AIF-C01 Task Statement 1.1]]
 [[Practical AI Use Cases & When NOT to Use AI — AIF-C01 Task Statement 1.2]]
-[[]]
+[[ML Problem Types — AIF-C01 Task Statement 1.2]]
