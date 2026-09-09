@@ -9,10 +9,10 @@ tags:
   - dream
 ---
 
-# 🌟 Career - Example Dream (rename this file to your real dream)
+# 🌟 Career
 
 ## Vision
-*Example: "I lead a small, sharp engineering team building something I actually believe in — I'm known for judgment, not just output."*
+I want to have some excelent carrer 
 
 ## Why this matters to me
 *Example: "I've spent years executing other people's vision. I want the next chapter to be mine to shape."*
@@ -25,12 +25,11 @@ SORT choice(timeframe = "short-term", 1, choice(timeframe = "mid-term", 2, 3)) a
 ```
 
 
-## Bucket List tied to this Dream
-```dataview
-TASK
-FROM "Bucket List"
-WHERE contains(tags, "dream/" + this.file.name)
-```
+## 🪣 Bucket List for this Dream
+- [ ] Get a reputable position and name for my work 
+- [ ] 
+- [ ] 
+
 
 ## Notes / Reflections
 - 2026-08-28: Dream created — delete this example once you've made your real ones.

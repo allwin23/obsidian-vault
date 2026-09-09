@@ -1,10 +1,10 @@
 ---
 type: goal
-dream: "[[Career]]"
+dream: "[[Financial]]"
 domain: Career
 timeframe: short-term
 status: not-started
-current-focus: false
+current-focus: true
 progress: 0
 deadline:
 created: 2026-08-28
@@ -21,9 +21,9 @@ tags:
 
 
 ## Milestones
-- [x] fgfg
-- [x]  
-- [x]  
+- [ ] 
+- [ ]  
+- [ ]  
 - [ ]  
 
 ## Update Log

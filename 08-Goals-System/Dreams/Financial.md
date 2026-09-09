@@ -1,15 +1,15 @@
 ---
 type: dream
-domain: 
+domain: Financial
 status: active
 priority: medium
-target-year: 
-created: {{date}}
+target-year:
+created: 2026-09-09
 tags:
   - dream
 ---
 
-# 🌟 {{title}}
+# 🌟 Untitled
 
 ## Vision
 *What does this actually look like when it's real? Be specific — picture it.*
@@ -38,4 +38,4 @@ WHERE contains(tags, "dream/" + this.file.name)
 ## Notes / Reflections
 *Anything that shifts how you see this dream — log dated entries below.*
 
-- {{date}}: 
+- 2026-09-09: 

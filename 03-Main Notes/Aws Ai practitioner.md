@@ -1,6 +1,6 @@
 
 
-
+[[Aws prompt]]
 So here is the starting notes of the Aws Ai practitioner 
 
 
@@ -11,5 +11,5 @@ Machine learning models are trained by using large datasets to identify patterns
 [[Machine Learning Training, Inference & Learning Styles — AIF-C01 Task Statement 1.1]]
 [[Model Performance, Overfitting, Underfitting & Bias — AIF-C01 Task Statement 1.1]]
 [[Deep Learning & Generative AI Fundamentals — AIF-C01 Task Statement 1.1]]
-[[]]
+[[Practical AI Use Cases & When NOT to Use AI — AIF-C01 Task Statement 1.2]]
 [[]]

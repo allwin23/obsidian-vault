@@ -4,16 +4,6 @@ type: dashboard
 
 # 🧭 Dashboard
 
-*This is the one page to open daily.*
-
-## 🌟 Dreams (by priority)
-```dataview
-TABLE domain as "Domain", status as "Status", target-year as "Target Year"
-FROM "Dreams"
-WHERE status = "active"
-SORT choice(priority = "high", 1, choice(priority = "medium", 2, 3)) asc
-```
-
 ## 🎯 Current Focus (what you're actually working on right now)
 ```dataview
 TABLE domain as "Domain", dream as "Dream", deadline as "Deadline", progress as "Progress %"
