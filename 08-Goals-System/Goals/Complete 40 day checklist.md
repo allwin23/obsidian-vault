@@ -30,43 +30,43 @@ tags:
 ## Update Log
 detailed timeline review and things 
  Date        Project      Aws       English     Ai works  parsewave
-Sep 11     Phase 0,1,2,3  D1           
-Sep 12     P 4 5 6 7      D1,D2
-Sep 13     P 8 9 10 11    D2,D3
-Sep 14     P 12 13 14 15  D3,D4
-Sep 15     P16,17,18,19   D4,D5
-Sep 16     P20 ,21,22,23  D5,D5
-Sep 17     Pending        D5
-Sep 18     Pending        Pending 
-Sep 19     Polish         r&d own 
-Sep 20     Aos design     r&d own 
-Sep 21     Aos            r&d own 
-Sep 22     Aos            r&d own 
-Sep 23       Bday off 
-Sep 24       Exam date    
+Sep 11     Phase 0,1,2,3  D1                               1Pyt 1Prpmt
+Sep 12     P 4 5 6 7      D1,D2                            1Pyt 1Prpmt
+Sep 13     P 8 9 10 11    D2,D3                            1Pyt 1Prpmt
+Sep 14     P 12 13 14 15  D3,D4                            1Pyt 1Prpmt
+Sep 15     P16,17,18,19   D4,D5                            1Pyt 1Prpmt
+Sep 16     P20 ,21,22,23  D5,D5                            1Pyt 1Prpmt
+Sep 17     Pending        D5                               1Pyt 1Doc
+Sep 18     Pending        Pending                          1Pyt 1Doc
+Sep 19     Polish         r&d own                          1Pyt 1Doc
+Sep 20     Aos design     r&d own                          1Pyt 1Doc
+Sep 21     Aos            r&d own                          1Pyt 1Doc
+Sep 22     Aos            r&d own                          1Pyt 1Doc
+Sep 23       Bday off                                      
+Sep 24       Exam date                                     
 Sep 25       Exam date 
-Sep 26     Aos            cloud 
+Sep 26     Aos            cloud                            1Pyt 1Doc   
 Sep 27        Bday celeb   
-Sep 28     Aos            
-Sep 29     Aos            cloud 
-Sep 30     Aos            cloud 
+Sep 28     Aos                                             1Pyt 1Doc 
+Sep 29     Aos            cloud                            1Pyt 1Doc 
+Sep 30     Aos            cloud                            1Pyt 1Doc
 Oct 1      Linux day 
-Oct 2      Aos            cloud
-Oct 3      Aos            cloud
-Oct 4      Aos            cloud
-Oct 5      Aos            cloud 
-Oct 6      Aos            cloud
-Oct 7      Aos            cloud 
-Oct 8      Full           cloud 
-Oct 9      Full
-Oct 10     Full
-Oct 11     Full
-Oct 12     Full
-Oct 13     Full 
-Oct 14     Full
-Oct 15     Full
-Oct 16     Full
-Oct 17     Full
+Oct 2      Aos            cloud                            1Pyt 1Bas
+Oct 3      Aos            cloud                            1Pyt 1BAs
+Oct 4      Aos            cloud                            1Pyt 1Bas
+Oct 5      Aos            cloud                            1Pyt 1bas
+Oct 6      Aos            cloud                            1Tas 1bas
+Oct 7      Aos            cloud                            1Tas 1bas
+Oct 8      Full           cloud                            1Tas 1bas
+Oct 9      Full                                            1Tas 1bas
+Oct 10     Full                                            1Tas 1bas
+Oct 11     Full                                            1Tas 1bas
+Oct 12     Full                                            2tas
+Oct 13     Full                                            2tas
+Oct 14     Full                                            2tas
+Oct 15     Full                                            2tas
+Oct 16     Full                                            2tas
+Oct 17     Full                                            2tas
 Oct 18                                 Exam date
 Oct 19                                 Exam date 
 Oct 20           Velankanni 
