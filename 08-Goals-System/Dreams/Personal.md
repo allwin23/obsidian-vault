@@ -4,12 +4,12 @@ domain:
 status: active
 priority: medium
 target-year: 
-created: 2026-09-09
+created: 2026-09-10
 tags:
   - dream
 ---
 
-# 🌟 Untitled
+# 🌟 Personal
 
 ## Vision
 *What does this actually look like when it's real? Be specific — picture it.*
@@ -38,4 +38,4 @@ WHERE contains(tags, "dream/" + this.file.name)
 ## Notes / Reflections
 *Anything that shifts how you see this dream — log dated entries below.*
 
-- 2026-09-09: 
+- 2026-09-10: 
