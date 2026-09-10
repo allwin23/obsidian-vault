@@ -44,7 +44,7 @@ if (!p.selected_week) {
   }
 
   async function readTaskEfficiency(y, m, day) {
-    const path = `Efficiency/Work Efficiency/${y}-${String(m).padStart(2,'0')}.md`;
+    const path = `09-Efficiency/Work Efficiency/${y}-${String(m).padStart(2,'0')}.md`;
     const file = app.vault.getAbstractFileByPath(path);
     if (!file) return null;
     const content = await app.vault.read(file);
@@ -74,7 +74,7 @@ if (!p.selected_week) {
   }
 
   function readTimeEfficiency(y, m, day) {
-    const page = dv.page(`Efficiency/Time Efficiency/${y}-${String(m).padStart(2,'0')}.md`);
+    const page = dv.page(`09-Efficiency/Time Efficiency/${y}-${String(m).padStart(2,'0')}.md`);
     if (!page) return { req: null, act: null };
     const dd = String(day).padStart(2, '0');
     const worked = page['worked_' + dd];
@@ -117,7 +117,7 @@ if (!p.selected_week) {
 ## Monthly Efficiency
 
 ```dataviewjs
-const timeFiles = dv.pages('"Efficiency/Time Efficiency"');
+const timeFiles = dv.pages('"09-Efficiency/Time Efficiency"');
 const rows = [];
 
 for (const page of timeFiles) {
@@ -187,7 +187,7 @@ async function monthWorkAverage(path) {
   return count ? (total / count) : null;
 }
 
-const workFiles = dv.pages('"Efficiency/Work Efficiency"');
+const workFiles = dv.pages('"09-Efficiency/Work Efficiency"');
 const rows = [];
 for (const page of workFiles) {
   const avg = await monthWorkAverage(page.file.path);
@@ -204,7 +204,7 @@ dv.table(['Month', 'Avg Efficiency'], rows);
 
 ```dataviewjs
 async function readTaskEfficiency(y, m, day) {
-  const path = `Efficiency/Work Efficiency/${y}-${String(m).padStart(2,'0')}.md`;
+  const path = `09-Efficiency/Work Efficiency/${y}-${String(m).padStart(2,'0')}.md`;
   const file = app.vault.getAbstractFileByPath(path);
   if (!file) return null;
   const content = await app.vault.read(file);
@@ -233,7 +233,7 @@ async function readTaskEfficiency(y, m, day) {
   return (done / planned) * 100;
 }
 
-const timeFiles = dv.pages('"Efficiency/Time Efficiency"').sort(p => p.file.name);
+const timeFiles = dv.pages('"09-Efficiency/Time Efficiency"').sort(p => p.file.name);
 const rows = [];
 
 for (const page of timeFiles) {
