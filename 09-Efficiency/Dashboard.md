@@ -1,5 +1,5 @@
 ---
-selected_week: 
+selected_week: 2026-09-11
 ---
 
 # Efficiency Dashboard
