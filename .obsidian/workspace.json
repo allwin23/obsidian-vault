@@ -36,45 +36,45 @@
             }
           },
           {
-            "id": "f7413dc0dabf2a90",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "09-Efficiency/Time Efficiency/2026-09.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-09"
-            }
-          },
-          {
-            "id": "59f3f0e308fad2b3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "03-Main Notes/ahent.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "ahent"
-            }
-          },
-          {
             "id": "81eaf817ecbd46f3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/Training Ai.md",
+                "file": "05-Templates📜/Time Efficiency - Month.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Training Ai"
+              "title": "Time Efficiency - Month"
+            }
+          },
+          {
+            "id": "d9ecb0ed161c755d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05-Templates📜/Time Efficiency - Month.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Time Efficiency - Month"
+            }
+          },
+          {
+            "id": "0778dd703103a90f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/Untitled 11.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled 11"
             }
           },
           {
@@ -106,7 +106,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -306,42 +306,43 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f7413dc0dabf2a90",
+  "active": "0778dd703103a90f",
   "lastOpenFiles": [
+    "05-Templates📜/Time Efficiency - Month.md",
+    "03-Main Notes/Untitled 11.md",
+    "05-Templates📜/Work Efficiency - Month.md",
+    "03-Main Notes/Untitled 10.md",
+    "Efficiency/Time Efficiency/2026-09.md",
+    "03-Main Notes/Training Ai.md",
+    "Efficiency/Work Efficiency/2026-09.md",
+    "Efficiency/Work Efficiency",
+    "Efficiency/Time Efficiency",
+    "05-Templates📜/Work Efficiency - Month.md",
+    "Efficiency/Templates",
+    "Efficiency/Assets/efficiency-style.css",
+    "Efficiency/Assets",
+    "Efficiency/README.md",
+    "Efficiency/Dashboard.md",
+    "Efficiency",
+    "03-Main Notes/ahent.md",
+    "09-Efficiency/Time Efficiency/2026-09.md",
     "09-Efficiency/Templates/Time Efficiency - Month.md",
     "09-Efficiency/Dashboard.md",
     "09-Efficiency/README.md",
     "09-Efficiency/Work Efficiency/2026-09.md",
-    "09-Efficiency/Time Efficiency/2026-09.md",
     "09-Efficiency/Templates/Work Efficiency - Month.md",
-    "05-Templates📜/Work Efficiency - Month.md",
-    "Efficiency/Time Efficiency",
-    "Efficiency",
     "09-Efficiency/Assets/efficiency-style.css",
     "09-Efficiency/Work Efficiency",
     "09-Efficiency/Time Efficiency",
     "09-Efficiency/Templates",
-    "09-Efficiency/Assets",
-    "09-Efficiency",
-    "Efficiency/Work Efficiency/2026-09.md",
-    "Efficiency/Work Efficiency",
-    "Efficiency/Templates/Work Efficiency - Month.md",
-    "Efficiency/Templates/Time Efficiency - Month.md",
-    "Efficiency/Templates",
-    "Efficiency/README.md",
-    "Efficiency/Dashboard.md",
-    "05-Templates📜/Time Efficiency - Month.md",
     "08-Goals-System/Dreams/Financial.md",
     "08-Goals-System/Dreams/Career.md",
     "08-Goals-System/Goals/Clear all my loans and family loans.md",
     "09-Efficiency holder/Efficiency percentage.md",
     "08-Goals-System/Goals/Complete 40 day checklist.md",
-    "03-Main Notes/ahent.md",
     "08-Goals-System/Dreams/Relationship and then Friendship.md",
     "08-Goals-System/Dreams/Personal.md",
     "08-Goals-System/Dashboard.md",
-    "08-Goals-System/Bucket List.md",
-    "03-Main Notes/Untitled 9.md",
     "Untitled.canvas",
     "Pasted image 20260103160317.png",
     "Pasted image 20260319185449.png",

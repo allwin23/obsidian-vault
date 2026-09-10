@@ -10,6 +10,7 @@ front += `month: ${input}\n`;
 for (let d = 1; d <= daysInMonth; d++) {
   const dd = String(d).padStart(2, '0');
   front += `planned_${dd}: \n`;
+  
   front += `worked_${dd}: \n`;
 }
 front += "---\n\n";
@@ -127,3 +128,5 @@ tR += front + body;
 
 await tp.file.move("/Efficiency/Time Efficiency/" + input);
 -%>
+
+

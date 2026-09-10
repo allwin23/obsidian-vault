@@ -1,11 +1,25 @@
 ---
-selected_week: 2026-09-10
+selected_week: 
 ---
 
 # Efficiency Dashboard
 
 **Select a week (any date in that week — week runs Monday to Sunday):**
-`INPUT[date:selected_week]`
+
+```dataviewjs
+const fm = dv.current();
+const file = app.vault.getAbstractFileByPath(fm.file.path);
+const wrap = dv.el('div', '', { cls: 'eff-week-pick' });
+const input = document.createElement('input');
+input.type = 'date';
+input.value = fm.selected_week ?? '';
+input.addEventListener('change', async () => {
+  await app.fileManager.processFrontMatter(file, (frontmatter) => {
+    frontmatter.selected_week = input.value;
+  });
+});
+wrap.appendChild(input);
+```
 
 ---
 
@@ -107,7 +121,7 @@ const timeFiles = dv.pages('"Efficiency/Time Efficiency"');
 const rows = [];
 
 for (const page of timeFiles) {
-  const month = page.month;
+  const month = page.file.name;
   if (!month) continue;
   let reqTotal = 0, reqCount = 0, actTotal = 0, actCount = 0;
   for (const key in page) {
@@ -219,11 +233,11 @@ async function readTaskEfficiency(y, m, day) {
   return (done / planned) * 100;
 }
 
-const timeFiles = dv.pages('"Efficiency/Time Efficiency"').sort(p => p.month);
+const timeFiles = dv.pages('"Efficiency/Time Efficiency"').sort(p => p.file.name);
 const rows = [];
 
 for (const page of timeFiles) {
-  const [y, m] = page.month.split('-').map(Number);
+  const [y, m] = page.file.name.split('-').map(Number);
   const daysInMonth = new Date(y, m, 0).getDate();
   for (let day = 1; day <= daysInMonth; day++) {
     const dd = String(day).padStart(2, '0');
