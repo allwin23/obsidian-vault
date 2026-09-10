@@ -12,18 +12,17 @@ tags:
   - goal
 ---
 
-# 🎯 Untitled
 
-**Belongs to dream:** [[Career]]
 
 ## What "done" looks like
 
-
+Our family will look be peaceful mom and dad will be really proud of  I will be the saviour for all the faults my dad I want that image of myself 
 
 ## Milestones
+- [ ] Educational Loan 
+- [ ]  lease loan 
+- [ ]  Jewel loan 
 - [ ] 
-- [ ]  
-- [ ]  
 - [ ]  
 
 ## Update Log

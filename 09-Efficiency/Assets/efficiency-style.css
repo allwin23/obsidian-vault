@@ -1,0 +1,102 @@
+/* Efficiency vault — card styling
+   Enable via Settings → Appearance → CSS snippets → "efficiency-style" */
+
+.callout[data-callout="card"] {
+  --callout-color: 120, 120, 130;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  background: var(--background-secondary);
+  padding: 14px 18px 16px 18px;
+  margin: 14px 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* remove the default callout icon for a plain, text-led card */
+.callout[data-callout="card"] .callout-icon {
+  display: none;
+}
+
+.callout[data-callout="card"] .callout-title {
+  font-weight: 600;
+  font-size: 1em;
+  letter-spacing: 0.01em;
+  color: var(--text-normal);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.callout[data-callout="card"] .callout-title-inner {
+  color: var(--text-normal);
+}
+
+.callout[data-callout="card"] .callout-content {
+  padding-top: 2px;
+}
+
+/* Meta Bind number inputs inside cards */
+.callout[data-callout="card"] input[type="number"] {
+  width: 70px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  padding: 2px 6px;
+  background: var(--background-primary);
+}
+
+/* checklist rows inside work-efficiency cards */
+.callout[data-callout="card"] .task-list-item {
+  margin: 4px 0;
+}
+
+/* plain markdown table used in Time Efficiency month pages */
+.markdown-rendered table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0 18px 0;
+}
+
+.markdown-rendered table th {
+  text-align: left;
+  font-weight: 600;
+  background: var(--background-secondary);
+  padding: 6px 12px;
+  border-bottom: 2px solid var(--background-modifier-border);
+}
+
+.markdown-rendered table td {
+  padding: 5px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.markdown-rendered table input[type="number"] {
+  width: 64px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  padding: 2px 4px;
+  background: var(--background-primary);
+}
+
+/* dataview / meta-bind rendered tables on Dashboard and month-summary sections */
+.dataview.table-view-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dataview.table-view-table th {
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--background-modifier-border);
+  padding: 6px 10px;
+}
+
+.dataview.table-view-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* metric text used by VIEW[] efficiency displays */
+.metric-bind-view {
+  font-weight: 600;
+}
