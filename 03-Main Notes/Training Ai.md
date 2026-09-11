@@ -1,8 +1,9 @@
 Outlier 
 Aligner 
-Mecor
-interviews 
+Mercor
+
 
 Micro1 
 Oneforma
 Turing 
+

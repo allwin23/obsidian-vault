@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "08-Goals-System/Goals/Complete 40 day checklist.md",
+                "file": "09-Efficiency/Dashboard.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Complete 40 day checklist"
+              "title": "Dashboard"
             }
           },
           {
@@ -351,16 +351,17 @@
   "active": "95bb16860f02baa0",
   "lastOpenFiles": [
     "09-Efficiency/Work Efficiency/2026-09.md",
-    "09-Efficiency/Time Efficiency/2026-09.md",
     "08-Goals-System/Goals/Complete 40 day checklist.md",
+    "09-Efficiency/Dashboard.md",
+    "03-Main Notes/Training Ai.md",
+    "00-Indexes/CS-Index  108639623.md",
+    "09-Efficiency/Time Efficiency/2026-09.md",
     "08-Goals-System/Goals/Clear all my loans and family loans.md",
     "03-Main Notes/AWS Pre-trained AI Services, Bedrock & SageMaker — AIF-C01 Task Statement 1.2.md",
     "03-Main Notes/Aws Ai practitioner.md",
     "03-Main Notes/Pre-trained AWS AI Services — AIF-C01 Task Statement 1.2.md",
     "03-Main Notes/Aws prompt.md",
     "03-Main Notes/AWS.md",
-    "00-Indexes/CS-Index  108639623.md",
-    "09-Efficiency/Dashboard.md",
     "09-Efficiency/efficiency-style.css 1.md",
     "09-Efficiency/efficiency-style.css.md",
     "03-Main Notes/efficiency-style.css.md",
@@ -376,7 +377,6 @@
     "03-Main Notes/Untitled 12.md",
     "Efficiency/README.md",
     "01-Rough Notes/Issues and Goal based plan.md",
-    "03-Main Notes/Untitled 11.md",
     "09-Efficiency/Work Efficiency",
     "09-Efficiency/Time Efficiency",
     "Efficiency/Templates",
