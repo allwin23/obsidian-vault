@@ -14,3 +14,4 @@ Machine learning models are trained by using large datasets to identify patterns
 [[Practical AI Use Cases & When NOT to Use AI — AIF-C01 Task Statement 1.2]]
 [[ML Problem Types — AIF-C01 Task Statement 1.2]]
 [[Pre-trained AWS AI Services — AIF-C01 Task Statement 1.2]]
+[[AWS Pre-trained AI Services, Bedrock & SageMaker — AIF-C01 Task Statement 1.2]]
