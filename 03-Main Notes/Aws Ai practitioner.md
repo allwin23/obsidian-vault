@@ -6,7 +6,7 @@ So here is the starting notes of the Aws Ai practitioner
 
 he goal with AI is to create self-learning system that derives meaning from data.
 Machine learning models are trained by using large datasets to identify patterns and make predictions.
-
+10-09-26
 [[Machine Learning Fundamentals — AIF-C01 Task Statement 1.1]]
 [[Machine Learning Training, Inference & Learning Styles — AIF-C01 Task Statement 1.1]]
 [[Model Performance, Overfitting, Underfitting & Bias — AIF-C01 Task Statement 1.1]]
@@ -14,4 +14,10 @@ Machine learning models are trained by using large datasets to identify patterns
 [[Practical AI Use Cases & When NOT to Use AI — AIF-C01 Task Statement 1.2]]
 [[ML Problem Types — AIF-C01 Task Statement 1.2]]
 [[Pre-trained AWS AI Services — AIF-C01 Task Statement 1.2]]
+
+11-09-26
 [[AWS Pre-trained AI Services, Bedrock & SageMaker — AIF-C01 Task Statement 1.2]]
+[[AWS AIF-C01 — Task Statement 1.2]]
+[[AWS AIF-C01 — Task Statement 1.3 ML Development Lifecycle]]
+[[AWS AIF-C01 — Task Statement 1.3ML Development Lifecycle — Collecting & Processing Training Data]]
+[[AWS AIF-C01 — Task Statement 1.3Lifecycle — Train, Tune & Evaluate the Model]]
