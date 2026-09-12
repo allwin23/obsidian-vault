@@ -29,24 +29,24 @@ tags:
 
 ## Update Log
 detailed timeline review and things 
- Date        Project      Aws       English     Ai works  parsewave
+ Date        Project      Aws       English     Ai works  Parswewave
 Sep 11     Phase 0,1,2,3  D1                               1Pyt 1Prpmt
-Sep 12     P 4 5 6 7      D1,D2                            1Pyt 1Prpmt
-Sep 13     P 8 9 10 11    D2,D3                            1Pyt 1Prpmt
-Sep 14     P 12 13 14 15  D3,D4                            1Pyt 1Prpmt
-Sep 15     P16,17,18,19   D4,D5                            1Pyt 1Prpmt
-Sep 16     P20 ,21,22,23  D5,D5                            1Pyt 1Prpmt
-Sep 17     Pending        D5                               1Pyt 1Doc
-Sep 18     Pending        Pending                          1Pyt 1Doc
-Sep 19     Polish         r&d own                          1Pyt 1Doc
-Sep 20     Aos design     r&d own                          1Pyt 1Doc
-Sep 21     Aos            r&d own                          1Pyt 1Doc
+Sep 12                     off day due to some things 
+Sep 13     P 4 5 6 7      D1,D2                            Sunday church
+Sep 14     P 8 9 10 11    D2,D3                            1Pyt 1Prpmt
+Sep 15     P 12 13 14 15  D3,D4                            1Pyt 1Prpmt
+Sep 16     P16,17,18,19   D4,D5                            1Pyt 1Prpmt
+Sep 17     P20 ,21,22,23  D5,D5                            1Pyt 1Prpmt
+Sep 18     Pending        D5                               1Pyt 1Doc
+Sep 19     Pending        Pending                          1Pyt 1Doc
+Sep 20     Polish         r&d own                          1Pyt 1Doc
+Sep 21     Aos design     r&d own                          1Pyt 1Doc
 Sep 22     Aos            r&d own                          1Pyt 1Doc
 Sep 23       Bday off                                      
 Sep 24       Exam date                                     
 Sep 25       Exam date 
 Sep 26     Aos            cloud                            1Pyt 1Doc   
-Sep 27        Bday celeb   
+Sep 27        Bday celeb                                   1Pyt 1Prpmt
 Sep 28     Aos                                             1Pyt 1Doc 
 Sep 29     Aos            cloud                            1Pyt 1Doc 
 Sep 30     Aos            cloud                            1Pyt 1Doc
