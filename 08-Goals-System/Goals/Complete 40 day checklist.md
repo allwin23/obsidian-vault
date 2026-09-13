@@ -21,7 +21,7 @@ tags:
 
 
 ## Milestones
-- [ ] Intergrity os on sep 19
+- [ ] Akriver on sep 19
 - [ ] Agentic os oct 5 
 - [ ] Full stack project oct 20 
 - [ ] Ai practioner sep 25 

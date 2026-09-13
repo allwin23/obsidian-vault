@@ -21,3 +21,9 @@ Machine learning models are trained by using large datasets to identify patterns
 [[AWS AIF-C01 — Task Statement 1.3 ML Development Lifecycle]]
 [[AWS AIF-C01 — Task Statement 1.3ML Development Lifecycle — Collecting & Processing Training Data]]
 [[AWS AIF-C01 — Task Statement 1.3Lifecycle — Train, Tune & Evaluate the Model]]
+
+13-09-26
+[[ML Development Lifecycle — Deploying Models for Inference]]
+[[ML Development Lifecycle — Monitoring, Drift & MLOps]]
+[[MLps Services & Model Evaluation Metrics]]
+[[ML Model Evaluation Metrics & Business Metrics]]

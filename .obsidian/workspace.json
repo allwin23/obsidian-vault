@@ -4,11 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "5d3d926f34106a3a",
+        "id": "0af5b35e89704ce4",
         "type": "tabs",
         "children": [
           {
-            "id": "748eaba934e51917",
+            "id": "7b3e32996e5d3271",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "08-Goals-System/Goals/Complete 40 day checklist.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Complete 40 day checklist"
+            }
+          },
+          {
+            "id": "6a52d40217a48544",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,31 +36,115 @@
             }
           },
           {
-            "id": "0aee8cbdbd4cf7ea",
+            "id": "15ff7a1a2c5e816c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "09-Efficiency/Dashboard.md",
+                "file": "03-Main Notes/13-09-26.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dashboard"
+              "title": "13-09-26"
             }
           },
           {
-            "id": "98e2970d17166ca1",
+            "id": "62aae48b5cf4f2ce",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Main Notes/12-09-26.md",
+                "file": "03-Main Notes/ML Model Evaluation Metrics & Business Metrics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "12-09-26"
+              "title": "ML Model Evaluation Metrics & Business Metrics"
+            }
+          },
+          {
+            "id": "cf50bdc3a9ec76f3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/MLps Services & Model Evaluation Metrics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MLps Services & Model Evaluation Metrics"
+            }
+          },
+          {
+            "id": "aed9151147eb8b1a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/ML Development Lifecycle — Monitoring, Drift & MLOps.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ML Development Lifecycle — Monitoring, Drift & MLOps"
+            }
+          },
+          {
+            "id": "347dc904304ad00e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/ML Development Lifecycle — Deploying Models for Inference.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ML Development Lifecycle — Deploying Models for Inference"
+            }
+          },
+          {
+            "id": "df623e265d004ce2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/AWS AIF-C01 — Task Statement 1.3.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AWS AIF-C01 — Task Statement 1.3"
+            }
+          },
+          {
+            "id": "c0a1d4b2a918eb5c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/ML Development Lifecycle — Deploying Models for Inference.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ML Development Lifecycle — Deploying Models for Inference"
+            }
+          },
+          {
+            "id": "7a3a69a3abd6db44",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/MLOps Services & Model Evaluation Metrics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MLOps Services & Model Evaluation Metrics"
             }
           }
         ],
@@ -250,34 +348,34 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "98e2970d17166ca1",
+  "active": "15ff7a1a2c5e816c",
   "lastOpenFiles": [
     "09-Efficiency/Dashboard.md",
-    "03-Main Notes/12-09-26.md",
-    "09-Efficiency/Work Efficiency/2026-09.md",
+    "03-Main Notes/13-09-26.md",
     "09-Efficiency/Time Efficiency/2026-09.md",
+    "09-Efficiency/Work Efficiency/2026-09.md",
+    "08-Goals-System/Dashboard.md",
     "08-Goals-System/Goals/Complete 40 day checklist.md",
+    "03-Main Notes/Untitled 14.md",
+    "03-Main Notes/MLps Services & Model Evaluation Metrics.md",
+    "03-Main Notes/Aws Ai practitioner.md",
+    "03-Main Notes/ML Model Evaluation Metrics & Business Metrics.md",
+    "03-Main Notes/ML Development Lifecycle — Monitoring, Drift & MLOps.md",
+    "03-Main Notes/ML Development Lifecycle — Deploying Models for Inference.md",
+    "03-Main Notes/AWS AIF-C01 — Task Statement 1.3.md",
+    "03-Main Notes/MLOps Services & Model Evaluation Metrics.md",
+    "03-Main Notes/AWS.md",
+    "00-Indexes/CS-Index  108639623.md",
+    "03-Main Notes/12-09-26.md",
     "05-Templates📜/Dream Template.md",
     "05-Templates📜/Goal Template.md",
     "00-Indexes/Personal-Index.md",
     "00-Indexes/Interests-Index.md",
     "00-Indexes/Finance-Index.md",
-    "00-Indexes/CS-Index  108639623.md",
     "08-Goals-System/Goals/Clear all my loans and family loans.md",
     "02-Tags/DSA.md",
     "08-Goals-System/Dreams/Career.md",
     "01-Rough Notes/Untitled.md",
-    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
-    "01-Rough Notes/Obsidian Ideas.md",
-    "01-Rough Notes/Issues and Goal based plan.md",
-    "03-Main Notes/11-09-26.md",
-    "03-Main Notes/AWS AIF-C01 — Task Statement 1.3Lifecycle — Train, Tune & Evaluate the Model.md",
-    "03-Main Notes/Aws Ai practitioner.md",
-    "03-Main Notes/AWS.md",
-    "03-Main Notes/AWS AIF-C01 — Task Statement 1.3ML Development Lifecycle — Collecting & Processing Training Data.md",
-    "03-Main Notes/AWS AIF-C01 — Task Statement 1.3 ML Development Lifecycle.md",
-    "03-Main Notes/AWS AIF-C01 — Task Statement 1.2.md",
-    "03-Main Notes/AWS Pre-trained AI Services, Bedrock & SageMaker — AIF-C01 Task Statement 1.2.md",
     "10-Dashsss",
     "09-Efficiency/Work Efficiency",
     "09-Efficiency/Time Efficiency",
