@@ -6,7 +6,7 @@ timeframe: short-term
 status: in-progress
 current-focus: true
 progress: 0
-deadline: 2026-10-20
+deadline: 2026-10-25
 created: 2026-09-10
 tags:
   - goal
