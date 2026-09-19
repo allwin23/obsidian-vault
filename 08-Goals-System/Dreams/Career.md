@@ -9,11 +9,10 @@ tags:
   - dream
 ---
 
-# 🌟 Career
 
 ## Vision
-I want to have some excelent carrer 
-
+Career is very important to me I feel that is an identity to anyone . And It defines me It shapes me It is the most important thing to me  
+            
 ## Why this matters to me
 *Example: "I've spent years executing other people's vision. I want the next chapter to be mine to shape."*
 

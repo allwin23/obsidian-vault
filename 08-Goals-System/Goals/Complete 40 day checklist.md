@@ -37,16 +37,16 @@ tags:
 | **Sep 14** | 🔴 **LAZY / LOST**       | —                     | —                 | —             | —             |            |
 | **Sep 15** | 🔴 **LAZY / LOST**       | —                     | —                 | —             | —             |            |
 | **Sep 16** | 🔴 **LAZY / LOST**       | —                     | —                 | —             | —             |            |
-| **Sep 17** | Aws 6 hrs do the pending | learing akriver       | -                 | -             | -             | -          |
-| **Sep 18** | Aws do the pending       | D5                    | 1 Pyt + 1 Prpmt   | Tamil 1       | Day 3         |            |
-| **Sep 19** | P8,9,10,11               | D5                    | 1 Pyt + 1 Prpmt   | Tamil2        | Day 4         |            |
-| **Sep 20** | P 12,13,14,15            | D5                    | 1 Pyt + 1 Prpmt   | Tamil3        | Day 5         | church     |
-| **Sep 21** | P 16,17,18,19            | R&D                   | 1 Pyt + 1 Prpmt   | Turing        | Day 6         |            |
-| **Sep 22** | p 20,21,22,23            | R&D own               | 1 Pyt + 1 Prpmt   | Turing        | Day 7         |            |
+| **Sep 17** |                          | learing akriver       | -                 | -             | -             | -          |
+| **Sep 18** | Aws do the pending       | D5                    |                   |               | Day 3         |            |
+| **Sep 19** | Aws 6 hrs do the pending | D5                    | 1 Pyt + 1 Prpmt   | Tamil2        | Day 4         |            |
+| **Sep 20** | P8,9,10,11               | D5                    | 1 Pyt + 1 Prpmt   | Tamil3        | Day 5         | church     |
+| **Sep 21** | P 12,13,14,15            | R&D                   | 1 Pyt + 1 Prpmt   | Tamil 1       | Day 6         |            |
+| **Sep 22** | P 16,17,18,19            | R&D own               | 1 Pyt + 1 Prpmt   | Turing        | Day 7         |            |
 | **Sep 23** | 🎂 **Bday off**          | R&D own               | 1 Pyt + 1 Doc     | —             | Day 8         |            |
 | **Sep 24** | exam date                | exam date             | exam date         | exam date     | exam date     | exam date  |
 | **Sep 25** | exam date                | exam date             | exam date         | exam date     | exam date     | exam date  |
-| **Sep 26** | Pending                  | Cloud                 | 1 Pyt + 1 Doc     | —             | —             |            |
+| **Sep 26** | p 20,21,22,23            | Cloud                 | 1 Pyt + 1 Doc     | —             | —             |            |
 | **Sep 27** | Bday celeb               | Bday celeb            | Bday celeb        | Bday celeb    | Bday celeb    | Bday celeb |
 | **Sep 28** | Pending                  | Cloud                 | 1 Pyt + 1 Doc     | Micro1        | Day 9         |            |
 | **Sep 29** | Polish                   | Cloud                 | 1 Pyt + 1 Doc     | Micro1        | Day10         |            |

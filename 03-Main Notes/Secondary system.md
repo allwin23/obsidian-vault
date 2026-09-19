@@ -1,9 +1,9 @@
 ---
 type: goal
-dream: "[[Personal]]"
+dream: "[[Career]]"
 domain:
 timeframe: short-term
-status: not-started
+status: in-progress
 current-focus: true
 progress: 0
 deadline:
