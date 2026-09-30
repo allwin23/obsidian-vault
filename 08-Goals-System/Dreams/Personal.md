@@ -1,9 +1,9 @@
 ---
 type: dream
-domain: 
+domain: Personal
 status: active
 priority: medium
-target-year: 
+target-year: 2032
 created: 2026-09-10
 tags:
   - dream
@@ -14,25 +14,15 @@ tags:
 ## Vision
 *What does this actually look like when it's real? Be specific — picture it.*
 
-
-
 ## Why this matters to me
 *The real reason, not the surface one.*
 
-
-
 ## Linked Goals
 ```dataview
-TABLE status as "Status", timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %"
-WHERE type = "goal" and dream and contains(string(dream), this.file.name)
-SORT choice(timeframe = "short-term", 1, choice(timeframe = "mid-term", 2, 3)) asc
-```
-
-## Bucket List tied to this Dream
-```dataview
-TASK
-FROM "Bucket List"
-WHERE contains(tags, "dream/" + this.file.name)
+TABLE timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %", achieved as "Achieved"
+FROM "08-Goals-System/Goals"
+WHERE dream = this.file.link
+SORT deadline asc
 ```
 
 ## Notes / Reflections

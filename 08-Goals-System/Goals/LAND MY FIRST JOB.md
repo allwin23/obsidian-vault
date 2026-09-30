@@ -1,10 +1,9 @@
 ---
 type: goal
-dream: "[[08-Goals-System/Dreams/Career]]"
-domain: Career
+dream: "[[Career]]"
 timeframe: short-term
-status: in-progress
-current-focus: true
+current_focus: true
+achieved: false
 progress: 30
 deadline: 2027-01-31
 created: 2026-08-28
@@ -12,14 +11,14 @@ tags:
   - goal
 ---
 
-# 
+# LAND MY FIRST JOB
 
-**Belongs to dream:** [[08-Goals-System/Dreams/Career]]
+**Belongs to dream:** [[Career]]
 
 ## What "done" looks like
 *Example: "I've shipped one project end-to-end as the sole technical owner, from spec to launch."*
 
-## Milestones
+## 🪣 Bucket List
 - [ ] Get assigned ownership of a real project
 - [ ] Finish the spec / plan
 - [ ] Ship v1

@@ -1,28 +1,25 @@
 ---
 type: goal
 dream: "[[Financial]]"
-domain: Career
 timeframe: short-term
-status: not-started
-current-focus: true
+current_focus: true
+achieved: false
 progress: 0
-deadline:
+deadline: 2028-09-22
 created: 2026-08-28
 tags:
   - goal
 ---
 
-
-
 ## What "done" looks like
 
 Our family will look be peaceful mom and dad will be really proud of  I will be the saviour for all the faults my dad I want that image of myself 
 
-## Milestones
+## 🪣 Bucket List
 - [ ] Educational Loan 
 - [ ]  lease loan 
 - [ ]  Jewel loan 
-- [ ] 
+- [ ]  Mama personal loan
 - [ ]  
 
 ## Update Log

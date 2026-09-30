@@ -6,32 +6,33 @@ type: dashboard
 
 ## 🎯 Current Focus (what you're actually working on right now)
 ```dataview
-TABLE domain as "Domain", dream as "Dream", deadline as "Deadline", progress as "Progress %"
-FROM "Goals"
-WHERE current-focus = true AND status != "done"
+TABLE dream as "Dream", timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %"
+FROM "08-Goals-System/Goals"
+WHERE current_focus = true AND achieved != true
 SORT deadline asc
 ```
 
-## 📋 All Active Goals, by timeframe
+## 📋 All Active Goals, by date
 ```dataview
-TABLE domain as "Domain", timeframe as "Timeframe", status as "Status", deadline as "Deadline"
-FROM "Goals"
-WHERE status = "in-progress" OR status = "not-started"
-SORT timeframe asc, deadline asc
+TABLE dream as "Dream", timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %"
+FROM "08-Goals-System/Goals"
+WHERE achieved != true
+SORT deadline asc
 ```
 
 ## 🪣 Open Bucket List Items
 ```dataview
 TASK
-FROM "Bucket List"
+FROM "08-Goals-System/Goals"
 WHERE !completed
+GROUP BY string(file.link) + " — " + string(default(dream, "No dream linked"))
 ```
 
 ## 🏆 Recently Achieved
 ```dataview
-TABLE domain as "Domain", dream as "Dream"
-FROM "Goals"
-WHERE status = "done"
+TABLE deadline as "Deadline"
+FROM "08-Goals-System/Goals"
+WHERE achieved = true
 SORT file.mtime desc
 LIMIT 5
 ```

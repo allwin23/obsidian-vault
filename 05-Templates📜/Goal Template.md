@@ -1,31 +1,25 @@
 ---
 type: goal
 dream: "[[]]"
-domain: 
 timeframe: short-term
-status: not-started
 current-focus: false
 progress: 0
-deadline: 
-created: {{date}}
+deadline:
+created:
+  "{ date }":
 tags:
   - goal
 ---
 
-# 🎯 {{title}}
 
-**Belongs to dream:** [[]]
 
 ## What "done" looks like
 
+  
 
-
-## Milestones
-- [ ] 
+## 🪣 Bucket List
+- [ ] Music studio with some instrument with proper mixing and things 
 - [ ] 
 - [ ] 
 
 ## Update Log
-*Add a dated line every time something changes — this is your progress trail.*
-
-- {{date}}: Goal created.

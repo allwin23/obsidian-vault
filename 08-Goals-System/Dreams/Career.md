@@ -9,52 +9,24 @@ tags:
   - dream
 ---
 
+# 🌟 Career
 
 ## Vision
 Career is very important to me I feel that is an identity to anyone . And It defines me It shapes me It is the most important thing to me  
-            
+
 ## Why this matters to me
 *Example: "I've spent years executing other people's vision. I want the next chapter to be mine to shape."*
 
 ## Linked Goals
 ```dataview
-TABLE status as "Status", timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %"
-WHERE type = "goal" and dream and contains(string(dream), this.file.name)
-SORT choice(timeframe = "short-term", 1, choice(timeframe = "mid-term", 2, 3)) asc
+TABLE timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %", achieved as "Achieved"
+FROM "08-Goals-System/Goals"
+WHERE dream = this.file.link
+SORT deadline asc
 ```
-
-
-
-# 🌟 Career
-
-## Vision
-*What does this actually look like when it's real? Be specific — picture it.*
-
-
-
-## Why this matters to me
-*The real reason, not the surface one.*
-
-
-
-## Linked Goals
-```dataview
-TABLE status as "Status", timeframe as "Timeframe", deadline as "Deadline", progress as "Progress %"
-WHERE type = "goal" and dream and contains(string(dream), this.file.name)
-SORT choice(timeframe = "short-term", 1, choice(timeframe = "mid-term", 2, 3)) asc
-```
-
-## ## 🪣 Bucket List for this Dream
-- [ ] Get a reputable position and name for my work 
-- [ ] 
-- [ ] 
 
 ## Notes / Reflections
 *Anything that shifts how you see this dream — log dated entries below.*
 
 - 2026-09-09: 
-
-
-
-## Notes / Reflections
-- 2026-08-28: Dream created — delete this example once you've made your real ones.
+- Idea to turn into a goal one day: Get a reputable position and name for my work
