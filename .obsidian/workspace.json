@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d474ee6f7d1364d0",
+            "id": "e8cb6d45d79be332",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
+                "file": "08-Goals-System/Goals/Complete 40 day checklist.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: workspace.json  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Complete 40 day checklist"
             }
           }
         ]
@@ -158,6 +158,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "08-Goals-System/Goals/Complete 40 day checklist.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -171,7 +172,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {},
+              "state": {
+                "file": "08-Goals-System/Goals/Complete 40 day checklist.md"
+              },
               "icon": "lucide-info",
               "title": "File properties"
             }
@@ -201,7 +204,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 288.699951171875
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -216,15 +219,22 @@
       "share-to-notionnext:Share to NotionNext": false,
       "obsidian-kanban:Create new board": false,
       "templater-obsidian:Templater": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "d474ee6f7d1364d0",
+  "active": "e8cb6d45d79be332",
   "lastOpenFiles": [
+    "09-Efficiency/Dashboard.md",
+    "09-Efficiency/Work Efficiency/2026-09.md",
+    "09-Efficiency/Time Efficiency/2026-09.md",
+    "03-Main Notes/Parish Application.md",
+    "00-Indexes/CS-Index  108639623.md",
+    "00-Indexes/Interests-Index.md",
+    "00-Indexes/Finance-Index.md",
     "01-Rough Notes/Issues and Goal based plan.md",
     "03-Main Notes/AWS.md",
     "03-Main Notes/Aws Cloud practitioner.md",
-    "00-Indexes/CS-Index  108639623.md",
     "05-Templates📜/T-DailyJournal.md",
     "05-Templates📜/T-SourceMaterial.md",
     "07-Daily Journal/29-09-26.md",
@@ -236,7 +246,6 @@
     "04-Source Material 🫆/Pasted image 20260929235518.png",
     "08-Goals-System/Goals/Have the luxury Vehicle specially car.md",
     "08-Goals-System/Dreams/Relationship and then Friendship.md",
-    "09-Efficiency/Work Efficiency/2026-09.md",
     "04-Source Material 🫆/Pasted image 20260929235955.png",
     "04-Source Material 🫆/Pasted image 20260929235924.png",
     "04-Source Material 🫆/Pasted image 20260929235759.png",
@@ -246,13 +255,8 @@
     "08-Goals-System/Goals/Clear all my loans and family loans.md",
     "08-Goals-System/Goals/LAND MY FIRST JOB.md",
     "08-Goals-System/Goals/Create Interest Studio for mom and dad.md",
-    "09-Efficiency/Dashboard.md",
-    "09-Efficiency/Time Efficiency/2026-09.md",
     "03-Main Notes/Aws Ai practitioner.md",
     "03-Main Notes/Aws Revision Card.md",
-    "03-Main Notes/Aws5.9.md",
-    "03-Main Notes/AWS GenAI Cost Tradeoffs, Bedrock, SageMaker JumpStart & Infrastructure.md",
-    "03-Main Notes/AWS Infrastructure & Technologies for Generative AI Applications.md",
     "04-Source Material 🫆/Pasted image 20260926212849.png",
     "Pasted image 20260926212117.png",
     "Goals-System/Dreams",

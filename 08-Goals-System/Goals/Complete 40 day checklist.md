@@ -58,12 +58,12 @@ tags:
 | **Sep 27 Sun** | **AWS pending**         | **AWS pending**       | **AWS pending**    | **AWS pending**    | **AWS pending**    | **AWS pending + Church**   |
 | **Sep 28 Mon** | **Exam date**           | **Exam date**         | **Exam date**      | **Exam date**      | **Exam date**      | **Exam date**              |
 | **Sep 29 Tue** | **Exam date**           | **Exam date**         | **Exam date**      | **Exam date**      | **Exam date**      | **Exam date**              |
-| **Sep 30**     | P8,9,10,11              | Cloud                 | 1 Pyt + 1 Doc      | Tamil 2            | **Day 3**          | Whatsapp automation        |
-| **Oct 1**      | P12,13,14,15            | Cloud                 | 1 Pyt + 1 Doc      | Tamil 3            | **Day 4**          | —                          |
-| **Oct 2**      | P16,17,18,19            | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 5**          | —                          |
-| **Oct 3**      | P20,21,22,23            | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 6**          | —                          |
+| **Sep 30**     | church                  | Cloud                 |                    | Tamil 2            | **Day 3**          | Whatsapp automation        |
+| **OCt1**       | P8,9,10,11              | Cloud                 | 1 Pyt + 1 Doc      | Tamil 3            | **Day 4**          | Ppt presentat              |
+| **Oct 2**      | P12,13,14,15            | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 5**          | —                          |
+| **Oct 3**      | P16,17,18,19            | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 6**          | —                          |
 | **Oct 4 Sun**  | 🎂 **Bday celeb**       | 🎂 **Bday celeb**     | 🎂 **Bday celeb**  | 🎂 **Bday celeb**  | 🎂 **Bday celeb**  | 🎂 **Bday celeb + Church** |
-| **Oct 5**      | **Polish**              | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 7**          | —                          |
+| **Oct 5**      | P20,21,22,23            | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 7**          | —                          |
 | **Oct 6**      | **AOS design**          | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 8**          | —                          |
 | **Oct 7**      | **AOS**                 | Cloud                 | 1 Pyt + 1 Doc      | Micro 1            | **Day 9**          | —                          |
 | **Oct 8**      | **Linux Day**           | **Linux Day**         | **Linux Day**      | **Linux Day**      | **Linux Day**      | —                          |
