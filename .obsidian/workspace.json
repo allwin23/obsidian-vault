@@ -11,10 +11,14 @@
             "id": "d474ee6f7d1364d0",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "split-diff-view",
+              "state": {
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
+                "aRef": ""
+              },
+              "icon": "diff",
+              "title": "Diff: workspace.json  (Working Tree)"
             }
           }
         ]
@@ -197,7 +201,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 447.9000244140625
+    "width": 288.699951171875
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -215,7 +219,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "4fe6a0f3f32ede09",
+  "active": "d474ee6f7d1364d0",
   "lastOpenFiles": [
     "01-Rough Notes/Issues and Goal based plan.md",
     "03-Main Notes/AWS.md",
