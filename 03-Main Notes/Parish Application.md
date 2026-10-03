@@ -24,3 +24,8 @@ Mass booking reports
 Donations and Subscriptions reports
 Online mass intentions 
 Normal people log in panni paka additional charges 
+
+
+Ppt flow and pitch flow
+Explain their contract 
+and expose their additional charge scam 
