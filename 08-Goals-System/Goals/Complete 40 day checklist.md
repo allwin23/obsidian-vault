@@ -25,7 +25,7 @@ tags:
 - [ ] Full stack project oct 20 
 - [ ] Ai practioner sep 25 
 - [ ] Cloud practioner oct 15 
-
+ 
 ## Update Log
 | Date           | Project work            | AWS work              | Parswave training  | AI Work            | English            | Agency                   |
 | -------------- | ----------------------- | --------------------- | ------------------ | ------------------ | ------------------ | ------------------------ |

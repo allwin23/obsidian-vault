@@ -1,7 +1,7 @@
 ---
 selected_week: 2026-09-30
 ---
- 
+  
 # Efficiency Dashboard
 
 **Select a week (any date in that week — week runs Monday to Sunday):**
