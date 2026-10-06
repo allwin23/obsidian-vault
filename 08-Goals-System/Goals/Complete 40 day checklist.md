@@ -10,7 +10,7 @@ created: 2026-09-10
 tags:
   - goal
 ---
-
+  
 # 🎯 Untitled
 
 ![[Pasted image 20260926212849.png]]
