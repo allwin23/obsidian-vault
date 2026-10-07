@@ -1,5 +1,5 @@
 
-1.Maintain main record 30
+1.Maintain main record base for entire family all the personal informations and other stuffs alll the details in the family card will be available wihout any  
 2.Should be able to print any kind of schema queryy
 3.collections Spl or montly records and things 10
 4.council attendance 10
