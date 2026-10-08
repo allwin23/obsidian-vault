@@ -12,7 +12,7 @@ created: {{date}}
 | Mental Health | [[3-Tags/Personal/Mental-Health]] | -                       |
 | Goals         | [[Goals ]]                        | -                       |
 | Music         | [[Music]]                         |                         |
-|               |                                   |                         |
+| English       | [[English]]                       |                         |
 
 ## 📅 Recent Journal Entries
 ```dataview

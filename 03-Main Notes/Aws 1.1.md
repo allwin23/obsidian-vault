@@ -1119,7 +1119,7 @@ AWS documentation describes PoPs as hosting services including:
 - Amazon CloudFront
     
 - Amazon Route 53
-    
+
 - AWS Global Accelerator
     
 

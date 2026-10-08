@@ -29,3 +29,17 @@ Normal people log in panni paka additional charges
 Ppt flow and pitch flow
 Explain their contract 
 and expose their additional charge scam 
+
+
+
+
+First user applications and preferences
+App
+main crm
+certificate registry
+frontend one 
+
+
+Photos must 
+target payemnt
+pa
