@@ -27,16 +27,86 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "07-Daily Journal/8-10-2026.md",
+                "file": "03-Main Notes/Frontend Github.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "8-10-2026"
+              "title": "Frontend Github"
+            }
+          },
+          {
+            "id": "4797ae2396018113",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00-Indexes/Finance-Index.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Finance-Index"
+            }
+          },
+          {
+            "id": "07463a910307c58c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00-Indexes/CS-Index  108639623.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CS-Index  108639623"
+            }
+          },
+          {
+            "id": "7cd875565549c4d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01-Rough Notes/Research things.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Research things"
+            }
+          },
+          {
+            "id": "bee3e49bcc1d1047",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-Main Notes/1.Set Matrix Zeroes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1.Set Matrix Zeroes"
+            }
+          },
+          {
+            "id": "ea15035d5f9465fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01-Rough Notes/Research things.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Research things"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -238,34 +308,36 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "5301185f676d4a5f",
+  "active": "ea15035d5f9465fa",
   "lastOpenFiles": [
-    "09-Efficiency/Dashboard.md",
-    "07-Daily Journal/8-10-2026.md",
-    "09-Efficiency/Work Efficiency/2026-10.md",
-    "09-Efficiency/Time Efficiency/2026-10.md",
-    "03-Main Notes/awscloud 1.2.md",
-    "03-Main Notes/Aws Cloud practitioner.md",
-    "03-Main Notes/Aws 1.1.md",
-    "03-Main Notes/AWS.md",
-    "00-Indexes/CS-Index  108639623.md",
-    "03-Main Notes/Parish Application.md",
-    "01-Rough Notes/Issues and Goal based plan.md",
-    "08-Goals-System/Goals/Complete 40 day checklist.md",
-    "03-Main Notes/English.md",
-    "00-Indexes/Personal-Index.md",
-    "03-Main Notes/Music.md",
-    "07-Daily Journal/06-10-26.md",
-    "08-Goals-System/Goals/Create Interest Studio for mom and dad.md",
-    "08-Goals-System/Goals/Clear all my loans and family loans.md",
-    "08-Goals-System/Dashboard.md",
-    "01-Rough Notes/Untitled.md",
-    "01-Rough Notes/Ppt flow and pitch flow.md",
-    "01-Rough Notes/Obsidian Ideas.md",
-    "00-Indexes/Interests-Index.md",
+    "02-Tags/DSA.md",
     "00-Indexes/Finance-Index.md",
-    "03-Main Notes/Parswave training plan.md",
-    "03-Main Notes/PT.md",
+    "00-Indexes/CS-Index  108639623.md",
+    "00-Indexes/Interests-Index.md",
+    "00-Indexes/Personal-Index.md",
+    "01-Rough Notes/Issues and Goal based plan.md",
+    "01-Rough Notes/Obsidian Ideas.md",
+    "01-Rough Notes/Proof of Work is needed for the sake of things.md",
+    "03-Main Notes/Training Ai.md",
+    "03-Main Notes/Untitled 22.md",
+    "03-Main Notes/1.Set Matrix Zeroes.md",
+    "03-Main Notes/4.Sort Colors.md",
+    "03-Main Notes/Arrays.md",
+    "03-Main Notes/8. Duplicate or Cycle finding or Tortoise hare.md",
+    "03-Main Notes/2.Pascal's Triangle.md",
+    "03-Main Notes/0,1,2,0],[3,4,5,2],[1,3,1,5.md",
+    "01-Rough Notes/Ppt flow and pitch flow.md",
+    "03-Main Notes/Development.md",
+    "01-Rough Notes/Research things.md",
+    "03-Main Notes/Frontend Github.md",
+    "09-Efficiency/Dashboard.md",
+    "09-Efficiency/Work Efficiency/2026-10.md",
+    "09-Efficiency/Work Efficiency/2026-09.md",
+    "03-Main Notes/Parish Application.md",
+    "03-Main Notes/Untitled 21.md",
+    "03-Main Notes/Aws Cloud practitioner.md",
+    "~$omicHub_System_Design 1.docx",
+    "~$omicHub_Sprint_Plan 1.docx",
     "04-Source Material 🫆/Pasted image 20260929234715.png",
     "04-Source Material 🫆/Pasted image 20260929235518.png",
     "04-Source Material 🫆/Pasted image 20260929235955.png",
@@ -282,8 +354,6 @@
     "09-Efficiency/Work Efficiency",
     "09-Efficiency/Time Efficiency",
     "Efficiency/Templates",
-    "Efficiency/Assets/efficiency-style.css",
-    "Efficiency/Assets",
     "Untitled.canvas",
     "Pasted image 20260103160317.png",
     "Pasted image 20260319185449.png"
